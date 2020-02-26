@@ -52,27 +52,6 @@ public final class JsonStringToObjectExtensions
 	 *            the generic type of values
 	 * @param jsonString
 	 *            the json string
-	 * @return the t
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred
-	 */
-	public static <K, V> Map<K, V> toMapObject(final String jsonString) throws IOException
-	{
-		Objects.requireNonNull(jsonString);
-		return toMapObject(jsonString, new TypeReference<Map<K, V>>()
-		{
-		}, ObjectMapperFactory.newObjectMapper(true));
-	}
-
-	/**
-	 * Transforms the given json string into a java map object
-	 *
-	 * @param <K>
-	 *            the generic type of keys
-	 * @param <V>
-	 *            the generic type of values
-	 * @param jsonString
-	 *            the json string
 	 * @param typeReference
 	 *            the type reference
 	 * @return the t
