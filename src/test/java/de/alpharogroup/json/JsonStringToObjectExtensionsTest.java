@@ -258,6 +258,31 @@ public class JsonStringToObjectExtensionsTest
 
 
 	/**
+	 * Test method for
+	 * {@link JsonStringToObjectExtensions#toObject(String, TypeReference, ObjectMapper)}
+	 *
+	 * @throws JsonParseException
+	 *             If an error occurs when parsing the string into Object
+	 * @throws JsonMappingException
+	 *             the If an error occurs when mapping the string into Object
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	@Test
+	public void testToObjectWithSignin()
+		throws JsonParseException, JsonMappingException, IOException
+	{
+		Signin actual;
+		Signin expected;
+		String jsonString;
+
+		jsonString = "{\"username\":\"foo\",\"password\":\"bar\"}";
+		actual = JsonStringToObjectExtensions.toObject(jsonString, Signin.class);
+		expected = Signin.builder().username("foo").password("bar").build();
+		assertEquals(expected, actual);
+	}
+
+	/**
 	 * Test method for {@link JsonStringToObjectExtensions#toObject(String, Class)}
 	 *
 	 * @throws JsonParseException
@@ -277,33 +302,11 @@ public class JsonStringToObjectExtensionsTest
 		String jsonString;
 
 		jsonString = "{\"username\":\"foo\",\"password\":\"bar\"}";
-		typeReference = new TypeReference<Signin>(){};
+		typeReference = new TypeReference<Signin>()
+		{
+		};
 		actual = JsonStringToObjectExtensions.toObject(jsonString, typeReference,
 			ObjectMapperFactory.newObjectMapper());
-		expected = Signin.builder().username("foo").password("bar").build();
-		assertEquals(expected, actual);
-	}
-
-	/**
-	 * Test method for {@link JsonStringToObjectExtensions#toObject(String, TypeReference, ObjectMapper)}
-	 *
-	 * @throws JsonParseException
-	 *             If an error occurs when parsing the string into Object
-	 * @throws JsonMappingException
-	 *             the If an error occurs when mapping the string into Object
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
-	@Test
-	public void testToObjectWithSignin()
-		throws JsonParseException, JsonMappingException, IOException
-	{
-		Signin actual;
-		Signin expected;
-		String jsonString;
-
-		jsonString = "{\"username\":\"foo\",\"password\":\"bar\"}";
-		actual = JsonStringToObjectExtensions.toObject(jsonString, Signin.class);
 		expected = Signin.builder().username("foo").password("bar").build();
 		assertEquals(expected, actual);
 	}
