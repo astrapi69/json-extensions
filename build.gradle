@@ -1,0 +1,176 @@
+
+plugins {
+    id "java"
+    id "java-library"
+    id "maven-publish"
+    id "signing"
+    id "com.github.ben-manes.versions" version "0.28.0"
+    id "com.github.hierynomus.license" version "0.15.0"
+}
+
+apply plugin: "jacoco"
+
+group = "de.alpharogroup"
+version = "$projectVersion"
+description = "$rootProject.name"
+sourceCompatibility = "1.8"
+
+repositories {
+    jcenter()
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
+    implementation("org.json:json:$jsonVersion")
+    testImplementation("de.alpharogroup:silly-collections:$sillyCollectionsVersion")
+    testImplementation("com.fasterxml.jackson.datatype:jackson-datatype-json-org:$jacksonVersion")
+    testImplementation("de.alpharogroup:file-worker:$fileWorkerVersion")
+    testImplementation("de.alpharogroup:test-objects:$testObjectsVersion")
+    testImplementation("org.meanbean:meanbean:$meanbeanVersion")
+    testImplementation("org.testng:testng:$testngVersion")
+}
+
+task sourcesJar(type: Jar) {
+    archiveClassifier.set("sources")
+    from(sourceSets.main.allJava)
+}
+
+task javadocJar(type: Jar) {
+    from javadoc
+    archiveClassifier.set("javadoc")
+    javadoc.properties.failOnError = true
+}
+
+jar {
+    manifest {
+        attributes("Implementation-Title": project.name,
+                "Implementation-Version": project.version)
+    }
+}
+
+def releaseVersion = !version.endsWith("SNAPSHOT")
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = "$group"
+            artifactId = "$rootProject.name"
+            version = "$version"
+            from components.java
+            artifact sourcesJar
+            artifact javadocJar
+            pom {
+                name = "$rootProject.name"
+                description = "Useful extensions and utilities for handle xml or transform dtd to xsd and xslt"
+                url = "https://github.com/astrapi69/"+"$rootProject.name"
+                organization {
+                    name = "Alpha Ro Group UG (haftungsbeschrängt)"
+                    url = "http://www.alpharogroup.de/"
+                }
+                issueManagement {
+                    system = "GitHub"
+                    url = "https://github.com/astrapi69/"+"$rootProject.name"+"/issues"
+                }
+                licenses {
+                    license {
+                        name = "MIT License"
+                        url = "http://www.opensource.org/licenses/mit-license.php"
+                        distribution = "repo"
+                    }
+                }
+                developers {
+                    developer {
+                        id = "astrapi69"
+                        name = "Asterios Raptis"
+                    }
+                }
+                scm {
+                    connection = "scm:git:git:@github.com:astrapi69/"+"$rootProject.name"+".git"
+                    developerConnection = "scm:git:git@github.com:astrapi69/"+"$rootProject.name"+".git"
+                    url = "git:@github.com:astrapi69/"+"$rootProject.name"+".git"
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            credentials {
+                username System.getenv("ossrhUsername") ?: project.property("ossrhUsername")
+                password System.getenv("ossrhPassword") ?: project.property("ossrhPassword")
+            }
+            def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+            def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots"
+            url = releaseVersion ? releasesRepoUrl : snapshotsRepoUrl
+        }
+    }
+}
+
+signing {
+    if (releaseVersion) {
+        sign publishing.publications.mavenJava
+    }
+}
+
+javadoc {
+    if(JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption("html5", true)
+    }
+}
+
+license {
+    ext.year="2015"
+    ext.owner="Asterios Raptis"
+    header rootProject.file("src/main/resources/LICENSE.txt")
+    excludes(["**/README",
+              "**/README.md",
+              "**/LICENSE",
+              "**/NOTICE",
+              "**/*.xml",
+              "**/*.xsl",
+              "**/*.xsd",
+              "**/*.dtd",
+              "**/*.html",
+              "**/*.json",
+              "**/*.jsp",
+              "**/*.jpa",
+              "**/*.sql",
+              "**/*.properties",
+              "**/*.bat",
+              "**/*.gradle",
+              "**/*.MF",
+              "**/*.txt",
+              "**/*.vm",
+              "**/*.log",
+              "**/*.map",
+              "**/*.js.map",
+              "**/*.tmpl",
+              "**/*.js.tmpl",
+              "**/*.editorconfig",
+              "src/test/resources/**",
+              "src/main/resources/**",
+              "out/**",
+              "build/**"])
+}
+
+// workhack for license issue #76
+gradle.startParameter.excludedTaskNames += "licenseMain"
+gradle.startParameter.excludedTaskNames += "licenseTest"
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+test {
+    useTestNG()
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled false
+    }
+}
+
+check.dependsOn jacocoTestReport
