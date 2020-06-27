@@ -82,7 +82,7 @@ ext {
 }
 dependencies {
 			...
-compile("de.alpharogroup:json-extensions:jsonExtensionsVersion")
+implementation("de.alpharogroup:json-extensions:$jsonExtensionsVersion")
 			...
 }
 ```
