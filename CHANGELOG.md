@@ -4,7 +4,9 @@
 Version 1.1-SNAPSHOT
 -------------
 
+ADDED:
 
+- new class ObjectToJsonFileExtensions for save directly an object to a json file
 
 Version 1
 -------------
