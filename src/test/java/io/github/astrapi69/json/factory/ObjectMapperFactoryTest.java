@@ -22,7 +22,7 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.json.factory;
+package io.github.astrapi69.json.factory;
 
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -36,7 +36,7 @@ import org.testng.annotations.Test;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import de.alpharogroup.collections.map.MapFactory;
+import io.github.astrapi69.collections.map.MapFactory;
 
 /**
  * The unit test class for the class {@link ObjectMapperFactory}

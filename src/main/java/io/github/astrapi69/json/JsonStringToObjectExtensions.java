@@ -22,7 +22,7 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.json;
+package io.github.astrapi69.json;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -34,7 +34,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import de.alpharogroup.json.factory.ObjectMapperFactory;
+import io.github.astrapi69.json.factory.ObjectMapperFactory;
 
 /**
  * The class {@link JsonStringToObjectExtensions} converts json strings to java object and java
@@ -42,6 +42,10 @@ import de.alpharogroup.json.factory.ObjectMapperFactory;
  */
 public final class JsonStringToObjectExtensions
 {
+
+	private JsonStringToObjectExtensions()
+	{
+	}
 
 	/**
 	 * Transforms the given json string into a java map object
@@ -257,10 +261,6 @@ public final class JsonStringToObjectExtensions
 		Objects.requireNonNull(jsonString);
 		Objects.requireNonNull(elementClass);
 		return (List<T>)toObjectCollection(jsonString, List.class, elementClass);
-	}
-
-	private JsonStringToObjectExtensions()
-	{
 	}
 
 }

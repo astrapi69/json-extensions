@@ -22,64 +22,76 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.json;
+package io.github.astrapi69.json;
 
 import static org.testng.AssertJUnit.assertEquals;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.meanbean.test.BeanTester;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import de.alpharogroup.collections.CollectionExtensions;
-import de.alpharogroup.collections.list.ListFactory;
-import de.alpharogroup.json.factory.ObjectMapperFactory;
-import de.alpharogroup.test.objects.Employee;
-import de.alpharogroup.test.objects.Person;
-import de.alpharogroup.test.objects.enums.Gender;
+import io.github.astrapi69.collections.CollectionExtensions;
+import io.github.astrapi69.collections.list.ListFactory;
+import io.github.astrapi69.json.factory.ObjectMapperFactory;
+import io.github.astrapi69.search.PathFinder;
+import io.github.astrapi69.test.objects.Employee;
+import io.github.astrapi69.test.objects.Person;
+import io.github.astrapi69.test.objects.enums.Gender;
 
 /**
- * The unit test class for the class {@link JSONObjectToObjectExtensions}
+ * The unit test class for the class {@link JsonFileToObjectExtensions}
  */
-public class JSONObjectToObjectExtensionsTest
+public class JsonFileToObjectExtensionsTest
 {
 
+	File jsonDir;
+	File jsonFile;
+	File jsonListFile;
+
+	@BeforeMethod
+	protected void setUp()
+	{
+		jsonDir = new File(PathFinder.getSrcTestResourcesDir(), "json");
+		jsonFile = new File(jsonDir, "person.json");
+		jsonListFile = new File(jsonDir, "employees.json");
+	}
+
 	/**
-	 * Test method for
-	 * {@link JSONObjectToObjectExtensions#toObject(JSONObject, Class, ObjectMapper)}
-	 * 
+	 * Test method for {@link JsonFileToObjectExtensions#toObject(File, Class, ObjectMapper)}
+	 *
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred
 	 */
 	@Test
-	public void testToObject() throws IOException
+	public void testToObjectFileClassOfTObjectMapper() throws IOException
 	{
 		Employee actual;
 		Employee expected;
-		String jsonString;
 		ObjectMapper objectMapper;
-		jsonString = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
-		expected = JsonStringToObjectExtensions.toObject(jsonString, Employee.class);
 
-		JSONObject obj = new JSONObject(jsonString);
 		objectMapper = ObjectMapperFactory.newObjectMapper();
-		actual = JSONObjectToObjectExtensions.toObject(obj, Employee.class, objectMapper);
+		actual = JsonFileToObjectExtensions.toObject(jsonFile, Employee.class, objectMapper);
+		expected = Employee.builder().person(Person.builder().gender(Gender.FEMALE).name("Anna")
+			.nickname("beast").married(true).about("Ha ha ha...").build()).id("23").build();
 		assertEquals(expected, actual);
 	}
 
 	/**
-	 * Test method for {@link JSONObjectToObjectExtensions#toObjectList(JSONArray, Class)}
-	 * 
+	 * Test method for
+	 * {@link JsonFileToObjectExtensions#toObject(File, TypeReference, ObjectMapper)}
+	 *
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred
 	 */
 	@Test
-	public void testToObjectList() throws IOException
+	public void testToObjectFileTypeReferenceOfTObjectMapper() throws IOException
 	{
 		boolean actual;
 		boolean expected;
@@ -88,15 +100,13 @@ public class JSONObjectToObjectExtensionsTest
 		Employee firstExpected;
 		Employee secondExpected;
 		Employee thirdExpected;
-		String jsonString;
+		ObjectMapper objectMapper;
 
-		jsonString = "[{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"},"
-			+ "{\"person\":{\"name\":\"Andreas\",\"nickname\":\"cute\",\"gender\":\"MALE\",\"about\":\"fine person\",\"married\":false},\"id\":\"24\"},"
-			+ "{\"person\":{\"name\":\"Tatjana\",\"nickname\":\"beautiful\",\"gender\":\"FEMALE\",\"about\":\"Im hot\",\"married\":false},\"id\":\"25\"}]";
-
-		JSONArray jsonArray = new JSONArray(jsonString);
-
-		jsonList = JSONObjectToObjectExtensions.toObjectList(jsonArray, Employee.class);
+		objectMapper = ObjectMapperFactory.newObjectMapper();
+		jsonList = JsonFileToObjectExtensions.toObject(jsonListFile,
+			new TypeReference<List<Employee>>()
+			{
+			}, objectMapper);
 		firstExpected = Employee.builder().person(Person.builder().gender(Gender.FEMALE)
 			.name("Anna").nickname("beast").married(true).about("Ha ha ha...").build()).id("23")
 			.build();
@@ -114,13 +124,13 @@ public class JSONObjectToObjectExtensionsTest
 	}
 
 	/**
-	 * Test method for {@link JSONObjectToObjectExtensions}
+	 * Test method for {@link JsonFileToObjectExtensions}
 	 */
 	@Test
 	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();
-		beanTester.testBean(JSONObjectToObjectExtensions.class);
+		beanTester.testBean(JsonFileToObjectExtensions.class);
 	}
 
 }
