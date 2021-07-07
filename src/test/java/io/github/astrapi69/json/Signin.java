@@ -22,51 +22,11 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.json;
+package io.github.astrapi69.json;
 
 public class Signin
 {
-	public static class SigninBuilder
-	{
-		private String password;
-		private String username;
-
-		SigninBuilder()
-		{
-		}
-
-		public Signin build()
-		{
-			return new Signin(password, username);
-		}
-
-		public Signin.SigninBuilder password(String password)
-		{
-			this.password = password;
-			return this;
-		}
-
-		@Override
-		public String toString()
-		{
-			return "Signin.SigninBuilder(password=" + this.password + ", username=" + this.username
-				+ ")";
-		}
-
-		public Signin.SigninBuilder username(String username)
-		{
-			this.username = username;
-			return this;
-		}
-	}
-
-	public static SigninBuilder builder()
-	{
-		return new SigninBuilder();
-	}
-
 	private String password;
-
 	private String username;
 
 	public Signin()
@@ -77,6 +37,11 @@ public class Signin
 	{
 		this.password = password;
 		this.username = username;
+	}
+
+	public static SigninBuilder builder()
+	{
+		return new SigninBuilder();
 	}
 
 	protected boolean canEqual(final Object other)
@@ -110,9 +75,19 @@ public class Signin
 		return this.password;
 	}
 
+	public void setPassword(String password)
+	{
+		this.password = password;
+	}
+
 	public String getUsername()
 	{
 		return this.username;
+	}
+
+	public void setUsername(String username)
+	{
+		this.username = username;
 	}
 
 	@Override
@@ -127,19 +102,43 @@ public class Signin
 		return result;
 	}
 
-	public void setPassword(String password)
-	{
-		this.password = password;
-	}
-
-	public void setUsername(String username)
-	{
-		this.username = username;
-	}
-
 	@Override
 	public String toString()
 	{
 		return "Signin(password=" + this.getPassword() + ", username=" + this.getUsername() + ")";
+	}
+
+	public static class SigninBuilder
+	{
+		private String password;
+		private String username;
+
+		SigninBuilder()
+		{
+		}
+
+		public Signin build()
+		{
+			return new Signin(password, username);
+		}
+
+		public Signin.SigninBuilder password(String password)
+		{
+			this.password = password;
+			return this;
+		}
+
+		@Override
+		public String toString()
+		{
+			return "Signin.SigninBuilder(password=" + this.password + ", username=" + this.username
+				+ ")";
+		}
+
+		public Signin.SigninBuilder username(String username)
+		{
+			this.username = username;
+			return this;
+		}
 	}
 }

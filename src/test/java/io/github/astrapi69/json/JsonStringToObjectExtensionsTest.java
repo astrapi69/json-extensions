@@ -22,7 +22,7 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.json;
+package io.github.astrapi69.json;
 
 import static org.testng.AssertJUnit.assertEquals;
 
@@ -43,15 +43,15 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsonorg.JsonOrgModule;
 
-import de.alpharogroup.collections.CollectionExtensions;
-import de.alpharogroup.collections.list.ListFactory;
-import de.alpharogroup.collections.map.MapFactory;
-import de.alpharogroup.collections.set.SetFactory;
-import de.alpharogroup.file.search.PathFinder;
-import de.alpharogroup.json.factory.ObjectMapperFactory;
-import de.alpharogroup.test.objects.Employee;
-import de.alpharogroup.test.objects.Person;
-import de.alpharogroup.test.objects.enums.Gender;
+import io.github.astrapi69.collections.CollectionExtensions;
+import io.github.astrapi69.collections.list.ListFactory;
+import io.github.astrapi69.collections.map.MapFactory;
+import io.github.astrapi69.collections.set.SetFactory;
+import io.github.astrapi69.json.factory.ObjectMapperFactory;
+import io.github.astrapi69.search.PathFinder;
+import io.github.astrapi69.test.objects.Employee;
+import io.github.astrapi69.test.objects.Person;
+import io.github.astrapi69.test.objects.enums.Gender;
 
 /**
  * The unit test class for the class {@link JsonStringToObjectExtensions}

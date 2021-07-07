@@ -22,35 +22,46 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.json;
+package io.github.astrapi69.json;
+
+import static org.testng.AssertJUnit.assertEquals;
 
 import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.XML;
+import org.meanbean.test.BeanTester;
+import org.testng.annotations.Test;
 
 /**
- * The class {@link JsonToXmlExtensions} helps to transform a given json string to an xml string.
+ * The unit test class for the class {@link JsonToXmlExtensions}
  */
-public final class JsonToXmlExtensions
+public class JsonToXmlExtensionsTest
 {
 
 	/**
-	 * Transform the given json as {@link String} object to an xml as {@link String} object.
-	 *
-	 * @param jsonString
-	 *            the json as {@link String} object
-	 * @return the transformed xml as {@link String} object
+	 * Test method for {@link JsonToXmlExtensions#toXml(String)}
+	 * 
 	 * @throws JSONException
-	 *             if there is a syntax error in the source string or a duplicated key.
+	 *             if there is a syntax error in the source string or a duplicated key
 	 */
-	public static String toXml(final String jsonString) throws JSONException
+	@Test
+	public void testToXmlString() throws JSONException
 	{
-		final JSONObject json = new JSONObject(jsonString);
-		return XML.toString(json);
+		String expected;
+		String actual;
+
+		expected = "<person><gender>FEMALE</gender><name>Anna</name><nickname>beast</nickname><about>Ha ha ha...</about><married>true</married></person><id>23</id>";
+		final String jsonString = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
+		actual = JsonToXmlExtensions.toXml(jsonString);
+		assertEquals(actual, expected);
 	}
 
-	private JsonToXmlExtensions()
+	/**
+	 * Test method for {@link JsonToXmlExtensions}
+	 */
+	@Test
+	public void testWithBeanTester()
 	{
+		final BeanTester beanTester = new BeanTester();
+		beanTester.testBean(JsonToXmlExtensions.class);
 	}
 
 }

@@ -22,7 +22,7 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.json;
+package io.github.astrapi69.json;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -40,6 +40,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public final class JSONObjectToObjectExtensions
 {
+
+	private JSONObjectToObjectExtensions()
+	{
+	}
 
 	/**
 	 * Transforms the given json object into a java object
@@ -95,10 +99,6 @@ public final class JSONObjectToObjectExtensions
 			result.add(JsonStringToObjectExtensions.toObject(list.get(i), elementClass));
 		}
 		return result;
-	}
-
-	private JSONObjectToObjectExtensions()
-	{
 	}
 
 }

@@ -8,6 +8,13 @@ ADDED:
 
 - new class ObjectToJsonFileExtensions for save directly an object to a json file
 
+CHANGED:
+
+- update gradle to new version 7.1
+- changed all dependencies from groupid de.alpharogroup to new groupid io.github.astrapi69
+- update gradle-plugin dependency of gradle.plugin.com.hierynomus.gradle.plugins:license-gradle-plugin to new version 0.16.1
+- changed to new package io.github.astrapi69
+
 Version 1
 -------------
 

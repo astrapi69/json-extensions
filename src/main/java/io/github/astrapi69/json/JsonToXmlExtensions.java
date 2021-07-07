@@ -22,46 +22,35 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.json;
-
-import static org.testng.AssertJUnit.assertEquals;
+package io.github.astrapi69.json;
 
 import org.json.JSONException;
-import org.meanbean.test.BeanTester;
-import org.testng.annotations.Test;
+import org.json.JSONObject;
+import org.json.XML;
 
 /**
- * The unit test class for the class {@link JsonToXmlExtensions}
+ * The class {@link JsonToXmlExtensions} helps to transform a given json string to an xml string.
  */
-public class JsonToXmlExtensionsTest
+public final class JsonToXmlExtensions
 {
 
-	/**
-	 * Test method for {@link JsonToXmlExtensions#toXml(String)}
-	 * 
-	 * @throws JSONException
-	 *             if there is a syntax error in the source string or a duplicated key
-	 */
-	@Test
-	public void testToXmlString() throws JSONException
+	private JsonToXmlExtensions()
 	{
-		String expected;
-		String actual;
-
-		expected = "<person><gender>FEMALE</gender><name>Anna</name><nickname>beast</nickname><about>Ha ha ha...</about><married>true</married></person><id>23</id>";
-		final String jsonString = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
-		actual = JsonToXmlExtensions.toXml(jsonString);
-		assertEquals(actual, expected);
 	}
 
 	/**
-	 * Test method for {@link JsonToXmlExtensions}
+	 * Transform the given json as {@link String} object to an xml as {@link String} object.
+	 *
+	 * @param jsonString
+	 *            the json as {@link String} object
+	 * @return the transformed xml as {@link String} object
+	 * @throws JSONException
+	 *             if there is a syntax error in the source string or a duplicated key.
 	 */
-	@Test
-	public void testWithBeanTester()
+	public static String toXml(final String jsonString) throws JSONException
 	{
-		final BeanTester beanTester = new BeanTester();
-		beanTester.testBean(JsonToXmlExtensions.class);
+		final JSONObject json = new JSONObject(jsonString);
+		return XML.toString(json);
 	}
 
 }

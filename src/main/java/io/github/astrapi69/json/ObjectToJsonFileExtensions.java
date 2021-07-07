@@ -22,25 +22,25 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.json;
+package io.github.astrapi69.json;
 
-import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import de.alpharogroup.json.factory.ObjectMapperFactory;
-
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import java.util.Objects;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import io.github.astrapi69.json.factory.ObjectMapperFactory;
 
 /**
  * The class {@link ObjectToJsonFileExtensions} converts java objects to json file objects.
  */
 public final class ObjectToJsonFileExtensions
 {
+
+	private ObjectToJsonFileExtensions()
+	{
+	}
 
 	/**
 	 * Creates a json {@link String} from the given argument object
@@ -77,8 +77,8 @@ public final class ObjectToJsonFileExtensions
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	public static <T> void toJsonFile(final T object, final File resultFile, final boolean newMapper)
-		throws IOException
+	public static <T> void toJsonFile(final T object, final File resultFile,
+		final boolean newMapper) throws IOException
 	{
 		Objects.requireNonNull(object);
 		Objects.requireNonNull(resultFile);
@@ -100,17 +100,13 @@ public final class ObjectToJsonFileExtensions
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	public static <T> void toJsonFile(final T object, final File resultFile, final ObjectMapper mapper)
-		throws IOException
+	public static <T> void toJsonFile(final T object, final File resultFile,
+		final ObjectMapper mapper) throws IOException
 	{
 		Objects.requireNonNull(object);
 		Objects.requireNonNull(resultFile);
 		Objects.requireNonNull(mapper);
 		mapper.writeValue(resultFile, object);
-	}
-
-	private ObjectToJsonFileExtensions()
-	{
 	}
 
 }
