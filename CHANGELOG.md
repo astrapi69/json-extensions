@@ -4,6 +4,10 @@
 Version 1.2-SNAPSHOT
 -------------
 
+ADDED:
+
+- new method for create java object from file
+
 Version 1.1
 -------------
 

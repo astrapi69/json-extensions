@@ -70,6 +70,24 @@ public class JsonFileToObjectExtensionsTest
 	 *             Signals that an I/O exception has occurred
 	 */
 	@Test
+	public void testToObjectFileClassOfT() throws IOException
+	{
+		Employee actual;
+		Employee expected;
+
+		actual = JsonFileToObjectExtensions.toObject(jsonFile, Employee.class);
+		expected = Employee.builder().person(Person.builder().gender(Gender.FEMALE).name("Anna")
+				.nickname("beast").married(true).about("Ha ha ha...").build()).id("23").build();
+		assertEquals(expected, actual);
+	}
+
+	/**
+	 * Test method for {@link JsonFileToObjectExtensions#toObject(File, Class, ObjectMapper)}
+	 *
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
+	 */
+	@Test
 	public void testToObjectFileClassOfTObjectMapper() throws IOException
 	{
 		Employee actual;
@@ -79,7 +97,7 @@ public class JsonFileToObjectExtensionsTest
 		objectMapper = ObjectMapperFactory.newObjectMapper();
 		actual = JsonFileToObjectExtensions.toObject(jsonFile, Employee.class, objectMapper);
 		expected = Employee.builder().person(Person.builder().gender(Gender.FEMALE).name("Anna")
-			.nickname("beast").married(true).about("Ha ha ha...").build()).id("23").build();
+				.nickname("beast").married(true).about("Ha ha ha...").build()).id("23").build();
 		assertEquals(expected, actual);
 	}
 

@@ -30,6 +30,7 @@ import java.util.Objects;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.github.astrapi69.json.factory.ObjectMapperFactory;
 
 /**
  * The class {@link JsonFileToObjectExtensions} converts json strings to java object and java
@@ -50,6 +51,24 @@ public final class JsonFileToObjectExtensions
 	 *            the json file
 	 * @param clazz
 	 *            the clazz
+	 * @return the t
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
+	 */
+	public static <T> T toObject(final File jsonFile, final Class<T> clazz) throws IOException
+	{
+		return toObject(jsonFile, clazz, ObjectMapperFactory.newObjectMapper());
+	}
+
+	/**
+	 * Transforms the given json file into a java object.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param jsonFile
+	 *            the json file
+	 * @param clazz
+	 *            the clazz
 	 * @param mapper
 	 *            the mapper
 	 * @return the t
@@ -57,7 +76,7 @@ public final class JsonFileToObjectExtensions
 	 *             Signals that an I/O exception has occurred
 	 */
 	public static <T> T toObject(final File jsonFile, final Class<T> clazz,
-		final ObjectMapper mapper) throws IOException
+								 final ObjectMapper mapper) throws IOException
 	{
 		Objects.requireNonNull(jsonFile);
 		Objects.requireNonNull(clazz);
