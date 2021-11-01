@@ -183,6 +183,7 @@ gradle.startParameter.excludedTaskNames += "licenseTest"
 
 dependencies {
     implementation("org.json:json:$jsonVersion")
+    implementation("com.jayway.jsonpath:json-path:$jsonPathVersion")
     implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
     testImplementation("com.fasterxml.jackson.datatype:jackson-datatype-json-org:$jacksonVersion")
     testImplementation("io.github.astrapi69:silly-collections:$sillyCollectionsVersion")

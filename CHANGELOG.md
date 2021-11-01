@@ -7,6 +7,17 @@ Version 1.2-SNAPSHOT
 ADDED:
 
 - new method for create java object from file
+- new class CustomParserFactory that derives from JsonFactory
+- new class CustomJsonNodeFactory that derives from JsonFactory
+- new dependency com.jayway.jsonpath:json-path in the version 2.6.0
+- new class JsonLineNumberResolver that resolves the line number in a json File with a json path
+
+CHANGED:
+
+- update gradle to new version 7.2
+- update of test dependency file-worker to new version 5.10
+- update of test dependency test-objects to new version 5.5
+- update of test dependency silly-collection to new version 18
 
 Version 1.1
 -------------
