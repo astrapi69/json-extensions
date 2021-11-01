@@ -39,8 +39,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.github.astrapi69.collections.CollectionExtensions;
 import io.github.astrapi69.collections.list.ListFactory;
+import io.github.astrapi69.file.search.PathFinder;
 import io.github.astrapi69.json.factory.ObjectMapperFactory;
-import io.github.astrapi69.search.PathFinder;
 import io.github.astrapi69.test.objects.Employee;
 import io.github.astrapi69.test.objects.Person;
 import io.github.astrapi69.test.objects.enums.Gender;
@@ -61,6 +61,24 @@ public class JsonFileToObjectExtensionsTest
 		jsonDir = new File(PathFinder.getSrcTestResourcesDir(), "json");
 		jsonFile = new File(jsonDir, "person.json");
 		jsonListFile = new File(jsonDir, "employees.json");
+	}
+
+	/**
+	 * Test method for {@link JsonFileToObjectExtensions#toObject(File, Class, ObjectMapper)}
+	 *
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
+	 */
+	@Test
+	public void testToObjectFileClassOfT() throws IOException
+	{
+		Employee actual;
+		Employee expected;
+
+		actual = JsonFileToObjectExtensions.toObject(jsonFile, Employee.class);
+		expected = Employee.builder().person(Person.builder().gender(Gender.FEMALE).name("Anna")
+			.nickname("beast").married(true).about("Ha ha ha...").build()).id("23").build();
+		assertEquals(expected, actual);
 	}
 
 	/**

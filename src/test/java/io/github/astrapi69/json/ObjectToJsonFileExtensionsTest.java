@@ -36,10 +36,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.github.astrapi69.collections.list.ListFactory;
 import io.github.astrapi69.collections.map.MapFactory;
-import io.github.astrapi69.delete.DeleteFileExtensions;
+import io.github.astrapi69.file.delete.DeleteFileExtensions;
+import io.github.astrapi69.file.read.ReadFileExtensions;
+import io.github.astrapi69.file.search.PathFinder;
 import io.github.astrapi69.json.factory.ObjectMapperFactory;
-import io.github.astrapi69.read.ReadFileExtensions;
-import io.github.astrapi69.search.PathFinder;
 import io.github.astrapi69.test.objects.Employee;
 import io.github.astrapi69.test.objects.Person;
 import io.github.astrapi69.test.objects.enums.Gender;

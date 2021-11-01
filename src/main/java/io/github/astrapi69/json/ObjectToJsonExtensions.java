@@ -94,9 +94,8 @@ public final class ObjectToJsonExtensions
 		final ByteArrayOutputStream out = new ByteArrayOutputStream();
 		mapper.writeValue(out, list);
 
-		final byte[] bytes = out.toByteArray();
 		out.close();
-		return new String(bytes);
+		return out.toString();
 	}
 
 	/**

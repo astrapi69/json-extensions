@@ -26,6 +26,7 @@ package io.github.astrapi69.json.factory;
 
 import java.util.Map;
 
+import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -34,9 +35,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public final class ObjectMapperFactory
 {
-	/** The constant mapper. */
-	private final static ObjectMapper OBJECT_MAPPER = newObjectMapper(true);
-
 	private ObjectMapperFactory()
 	{
 	}
@@ -69,7 +67,8 @@ public final class ObjectMapperFactory
 			return new ObjectMapper();
 		}
 		return OBJECT_MAPPER;
-	}
+	}	/** The constant mapper. */
+	private final static ObjectMapper OBJECT_MAPPER = newObjectMapper(true);
 
 	/**
 	 * Factory method for create a new {@link ObjectMapper} with the given features
@@ -85,5 +84,20 @@ public final class ObjectMapperFactory
 			.forEach(entry -> objectMapper.configure(entry.getKey(), entry.getValue()));
 		return objectMapper;
 	}
+
+	/**
+	 * Factory method for create a new {@link ObjectMapper} with the given {@link JsonFactory}
+	 *
+	 * @param jsonFactory
+	 *            the {@link JsonFactory} object
+	 * @return the new {@link ObjectMapper}
+	 */
+	public static ObjectMapper newObjectMapper(JsonFactory jsonFactory)
+	{
+		return new ObjectMapper(jsonFactory);
+	}
+
+
+
 
 }
