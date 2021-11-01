@@ -35,12 +35,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public final class ObjectMapperFactory
 {
-	/** The constant mapper. */
-	private final static ObjectMapper OBJECT_MAPPER = newObjectMapper(true);
-
 	private ObjectMapperFactory()
 	{
-	}
+	}	/** The constant mapper. */
+	private final static ObjectMapper OBJECT_MAPPER = newObjectMapper(true);
 
 	/**
 	 * Factory method for create a new {@link ObjectMapper}
@@ -98,5 +96,7 @@ public final class ObjectMapperFactory
 	{
 		return new ObjectMapper(jsonFactory);
 	}
+
+
 
 }
