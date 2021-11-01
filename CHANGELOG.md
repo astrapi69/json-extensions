@@ -15,6 +15,7 @@ ADDED:
 CHANGED:
 
 - update gradle to new version 7.2
+- update of main dependency jackson-* to new version 2.13.0
 - update of test dependency file-worker to new version 5.10
 - update of test dependency test-objects to new version 5.5
 - update of test dependency silly-collection to new version 18
