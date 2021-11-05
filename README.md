@@ -71,7 +71,7 @@ ext {
 }
 dependencies {
 			...
-implementation("io.github.astrapi69:json-extensions:$jsonExtensionsVersion")
+    implementation("io.github.astrapi69:json-extensions:$jsonExtensionsVersion")
 			...
 }
 ```

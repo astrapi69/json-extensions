@@ -46,8 +46,9 @@ import io.github.astrapi69.json.factory.ObjectMapperFactory;
  * The class {@link JsonLineNumberResolver} provides algorithms for resolve the line number in a
  * json File with a json path
  */
-public class JsonLineNumberResolver
+public final class JsonLineNumberResolver
 {
+	private JsonLineNumberResolver(){}
 
 	/**
 	 * Gets the line number from the json file of the given json path.
