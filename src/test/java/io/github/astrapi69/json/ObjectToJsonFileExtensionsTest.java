@@ -30,6 +30,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
+import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -49,6 +50,16 @@ import io.github.astrapi69.test.objects.enums.Gender;
  */
 public class ObjectToJsonFileExtensionsTest
 {
+
+	/**
+	 * Test method for {@link ObjectToJsonFileExtensions}
+	 */
+	@Test
+	public void testWithBeanTester()
+	{
+		final BeanTester beanTester = new BeanTester();
+		beanTester.testBean(ObjectToJsonFileExtensions.class);
+	}
 
 	@Test
 	public void testToJsonFile() throws IOException

@@ -29,6 +29,7 @@ import static org.testng.Assert.assertEquals;
 import java.io.File;
 import java.io.IOException;
 
+import org.meanbean.test.BeanTester;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -36,6 +37,16 @@ import io.github.astrapi69.file.search.PathFinder;
 
 public class JsonLineNumberResolverTest
 {
+
+	/**
+	 * Test method for {@link JsonLineNumberResolver}
+	 */
+	@Test
+	public void testWithBeanTester()
+	{
+		final BeanTester beanTester = new BeanTester();
+		beanTester.testBean(JsonLineNumberResolver.class);
+	}
 
 	File jsonDir;
 	File jsonFile;

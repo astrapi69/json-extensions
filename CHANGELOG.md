@@ -1,8 +1,19 @@
 ## Change log
 ----------------------
 
-Version 1.3-SNAPSHOT
+Version 2-SNAPSHOT
 -------------
+
+ADDED:
+
+- new method for create java map object from json file
+- new method for create java collection object from json file
+- new method for create java list object from json file
+
+CHANGED:
+
+- update to jdk version 11
+- update gradle to new version 7.5
 
 Version 1.2
 -------------

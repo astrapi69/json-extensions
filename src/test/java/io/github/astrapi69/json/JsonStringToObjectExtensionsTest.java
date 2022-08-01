@@ -187,17 +187,13 @@ public class JsonStringToObjectExtensionsTest
 	}
 
 	/**
-	 * Test method for {@link JsonStringToObjectExtensions#toObject(String, Class)}
+	 * Test method for {@link JsonStringToObjectExtensions#toObjectList(String, Class)}
 	 *
-	 * @throws JsonParseException
-	 *             If an error occurs when parsing the string into Object
-	 * @throws JsonMappingException
-	 *             the If an error occurs when mapping the string into Object
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
 	@Test
-	public void testToObjectList() throws JsonParseException, JsonMappingException, IOException
+	public void testToObjectList() throws IOException
 	{
 		boolean actual;
 		boolean expected;
