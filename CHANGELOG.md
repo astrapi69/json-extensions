@@ -14,6 +14,13 @@ CHANGED:
 
 - update to jdk version 11
 - update gradle to new version 7.5
+- update of com.github.ben-manes.versions.gradle.plugin to new version 0.42.0
+- update of main dependency jackson-* to new version 2.13.3
+- update of main dependency json to new version 20220320
+- update of main dependency json-path to new version 2.7.0
+- update of test dependency file-worker to new version 8.2
+- update of test dependency test-objects to new version 6.1
+- update of test dependency silly-collection to new version 18.2
 
 Version 1.2
 -------------
