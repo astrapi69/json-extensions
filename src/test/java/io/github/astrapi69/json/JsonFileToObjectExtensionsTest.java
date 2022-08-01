@@ -33,10 +33,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import io.github.astrapi69.collections.map.MapFactory;
-import io.github.astrapi69.collections.set.SetFactory;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -46,11 +42,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.github.astrapi69.collections.CollectionExtensions;
 import io.github.astrapi69.collections.list.ListFactory;
+import io.github.astrapi69.collections.map.MapFactory;
+import io.github.astrapi69.collections.set.SetFactory;
 import io.github.astrapi69.file.search.PathFinder;
 import io.github.astrapi69.json.factory.ObjectMapperFactory;
-import io.github.astrapi69.test.objects.Employee;
-import io.github.astrapi69.test.objects.Person;
-import io.github.astrapi69.test.objects.enums.Gender;
+import io.github.astrapi69.test.object.Employee;
+import io.github.astrapi69.test.object.Person;
+import io.github.astrapi69.test.object.enumtype.Gender;
 
 /**
  * The unit test class for the class {@link JsonFileToObjectExtensions}
