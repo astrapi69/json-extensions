@@ -2,7 +2,7 @@
 
 <div style="text-align: center">
 
-[![Build Status](https://api.travis-ci.com/astrapi69/json-extensions.svg?branch=master)](https://travis-ci.com/github/astrapi69/json-extensions)
+[![Java CI with Gradle](https://github.com/astrapi69/json-extensions/actions/workflows/gradle.yml/badge.svg)](https://github.com/astrapi69/json-extensions/actions/workflows/gradle.yml)
 [![Coverage Status](https://codecov.io/gh/astrapi69/json-extensions/branch/develop/graph/badge.svg)](https://codecov.io/gh/astrapi69/json-extensions)
 [![Open Issues](https://img.shields.io/github/issues/astrapi69/json-extensions.svg?style=flat)](https://github.com/astrapi69/json-extensions/issues)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/json-extensions/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/json-extensions)
@@ -160,12 +160,6 @@ Do not hesitate to contact the json-extensions developers with your questions, c
 - Feature requests, questions and bug reports can be reported at the [issues page](https://github.com/astrapi69/json-extensions/issues).
 
 ## Credits
-
-|**Travis CI**|
-|     :---:      |
-|[![Travis CI](https://travis-ci.com/images/logos/TravisCI-Full-Color.png)](https://travis-ci.com)|
-|Special thanks to [Travis CI](https://travis-ci.com) for providing a free continuous integration service for open source projects|
-|     <img width=1000/>     |
 
 |**Nexus Sonatype repositories**|
 |     :---:      |
