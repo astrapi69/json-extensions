@@ -94,8 +94,7 @@ public final class JsonLineNumberResolver
 
 	private static Configuration newLineNumberConfiguration(ObjectMapper objectMapper)
 	{
-		return Configuration.builder()
-			.mappingProvider(new JacksonMappingProvider(objectMapper))
+		return Configuration.builder().mappingProvider(new JacksonMappingProvider(objectMapper))
 			.jsonProvider(new JacksonJsonNodeJsonProvider(objectMapper))
 			.options(Option.ALWAYS_RETURN_LIST).build();
 	}

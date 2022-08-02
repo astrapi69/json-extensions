@@ -69,9 +69,6 @@ public final class ObjectMapperFactory
 		return OBJECT_MAPPER;
 	}
 
-	/** The constant mapper. */
-	private final static ObjectMapper OBJECT_MAPPER = newObjectMapper(true);
-
 	/**
 	 * Factory method for create a new {@link ObjectMapper} with the given features
 	 *
@@ -86,6 +83,9 @@ public final class ObjectMapperFactory
 			.forEach(entry -> objectMapper.configure(entry.getKey(), entry.getValue()));
 		return objectMapper;
 	}
+
+	/** The constant mapper. */
+	private final static ObjectMapper OBJECT_MAPPER = newObjectMapper(true);
 
 	/**
 	 * Factory method for create a new {@link ObjectMapper} with the given {@link JsonFactory}

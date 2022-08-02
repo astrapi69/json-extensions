@@ -38,6 +38,10 @@ import io.github.astrapi69.file.search.PathFinder;
 public class JsonLineNumberResolverTest
 {
 
+	File jsonDir;
+	File jsonFile;
+	File jsonListFile;
+
 	/**
 	 * Test method for {@link JsonLineNumberResolver}
 	 */
@@ -47,10 +51,6 @@ public class JsonLineNumberResolverTest
 		final BeanTester beanTester = new BeanTester();
 		beanTester.testBean(JsonLineNumberResolver.class);
 	}
-
-	File jsonDir;
-	File jsonFile;
-	File jsonListFile;
 
 	@BeforeMethod
 	protected void setUp()

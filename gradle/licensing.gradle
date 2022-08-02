@@ -13,6 +13,7 @@ license {
               "**/*.dtd",
               "**/*.html",
               "**/*.jsp",
+              "**/*.json",
               "**/*.jpa",
               "**/*.sql",
               "**/*.properties",
