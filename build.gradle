@@ -1,3 +1,6 @@
+group = "$groupPackage" as Object
+version = "$projectVersion" as Object
+description = "$rootProject.name"
 
 buildscript {
     repositories {
