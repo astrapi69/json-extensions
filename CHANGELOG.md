@@ -9,6 +9,10 @@ ADDED:
 - new method for create java map object from json file
 - new method for create java collection object from json file
 - new method for create java list object from json file
+- new gradle-plugin dependency of 'org.ajoberstar.grgit:grgit-gradle' in version 5.0.0 for create
+  git release tags
+- new gradle-plugin dependency of 'com.diffplug.spotless:spotless-plugin-gradle' in version 6.9.0
+  for format the source files
 
 CHANGED:
 
@@ -58,7 +62,7 @@ CHANGED:
 Version 1
 -------------
 
-ADDED: 
+ADDED:
 
 - new CHANGELOG.md file created
 - moved relevant classes from xml-extensions project

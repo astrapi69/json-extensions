@@ -67,7 +67,9 @@ public final class ObjectMapperFactory
 			return new ObjectMapper();
 		}
 		return OBJECT_MAPPER;
-	}	/** The constant mapper. */
+	}
+
+	/** The constant mapper. */
 	private final static ObjectMapper OBJECT_MAPPER = newObjectMapper(true);
 
 	/**
@@ -96,8 +98,6 @@ public final class ObjectMapperFactory
 	{
 		return new ObjectMapper(jsonFactory);
 	}
-
-
 
 
 }

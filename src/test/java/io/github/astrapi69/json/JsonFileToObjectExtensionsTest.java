@@ -96,7 +96,8 @@ public class JsonFileToObjectExtensionsTest
 	}
 
 	/**
-	 * Test method for {@link JsonFileToObjectExtensions#toMapObject(File, TypeReference, ObjectMapper)}
+	 * Test method for
+	 * {@link JsonFileToObjectExtensions#toMapObject(File, TypeReference, ObjectMapper)}
 	 *
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
@@ -139,13 +140,13 @@ public class JsonFileToObjectExtensionsTest
 		jsonList = (Set<Employee>)JsonFileToObjectExtensions.toObjectCollection(jsonCollectionFile,
 			LinkedHashSet.class, Employee.class);
 		firstExpected = Employee.builder().person(Person.builder().gender(Gender.FEMALE)
-				.name("Anna").nickname("beast").married(true).about("Ha ha ha...").build()).id("23")
+			.name("Anna").nickname("beast").married(true).about("Ha ha ha...").build()).id("23")
 			.build();
 		secondExpected = Employee.builder().person(Person.builder().gender(Gender.MALE)
-				.name("Andreas").nickname("cute").married(false).about("fine person").build()).id("24")
+			.name("Andreas").nickname("cute").married(false).about("fine person").build()).id("24")
 			.build();
 		thirdExpected = Employee.builder().person(Person.builder().gender(Gender.FEMALE)
-				.name("Tatjana").nickname("beautiful").married(false).about("Im hot").build()).id("25")
+			.name("Tatjana").nickname("beautiful").married(false).about("Im hot").build()).id("25")
 			.build();
 		objectList = SetFactory.newLinkedHashSet(firstExpected, secondExpected, thirdExpected);
 
@@ -173,13 +174,13 @@ public class JsonFileToObjectExtensionsTest
 
 		jsonList = JsonFileToObjectExtensions.toObjectList(jsonCollectionFile, Employee.class);
 		firstExpected = Employee.builder().person(Person.builder().gender(Gender.FEMALE)
-				.name("Anna").nickname("beast").married(true).about("Ha ha ha...").build()).id("23")
+			.name("Anna").nickname("beast").married(true).about("Ha ha ha...").build()).id("23")
 			.build();
 		secondExpected = Employee.builder().person(Person.builder().gender(Gender.MALE)
-				.name("Andreas").nickname("cute").married(false).about("fine person").build()).id("24")
+			.name("Andreas").nickname("cute").married(false).about("fine person").build()).id("24")
 			.build();
 		thirdExpected = Employee.builder().person(Person.builder().gender(Gender.FEMALE)
-				.name("Tatjana").nickname("beautiful").married(false).about("Im hot").build()).id("25")
+			.name("Tatjana").nickname("beautiful").married(false).about("Im hot").build()).id("25")
 			.build();
 		objectList = ListFactory.newArrayList(firstExpected, secondExpected, thirdExpected);
 

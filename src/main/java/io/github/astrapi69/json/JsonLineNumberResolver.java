@@ -48,7 +48,9 @@ import io.github.astrapi69.json.factory.ObjectMapperFactory;
  */
 public final class JsonLineNumberResolver
 {
-	private JsonLineNumberResolver(){}
+	private JsonLineNumberResolver()
+	{
+	}
 
 	/**
 	 * Gets the line number from the json file of the given json path.
@@ -92,11 +94,10 @@ public final class JsonLineNumberResolver
 
 	private static Configuration newLineNumberConfiguration(ObjectMapper objectMapper)
 	{
-		Configuration configuration = Configuration.builder()
+		return Configuration.builder()
 			.mappingProvider(new JacksonMappingProvider(objectMapper))
 			.jsonProvider(new JacksonJsonNodeJsonProvider(objectMapper))
 			.options(Option.ALWAYS_RETURN_LIST).build();
-		return configuration;
 	}
 
 }
