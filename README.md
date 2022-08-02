@@ -35,7 +35,7 @@ Than you can add the dependency to your dependencies:
     <properties>
             ...
         <!-- JSON-EXTENSIONS version -->
-        <json-extensions.version>1.2</json-extensions.version>
+        <json-extensions.version>2</json-extensions.version>
             ...
     </properties>
             ...
@@ -58,7 +58,7 @@ your project `build.gradle` if you want to import the core functionality of json
 
 define version in file gradle.properties
 ```
-jsonExtensionsVersion=1.2
+jsonExtensionsVersion=2
 ```
 
 or in build.gradle ext area
@@ -66,7 +66,7 @@ or in build.gradle ext area
 ```
 ext {
             ...
-    jsonExtensionsVersion = "1.2"
+    jsonExtensionsVersion = "2"
             ...
 }
 dependencies {
