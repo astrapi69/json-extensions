@@ -1,6 +1,31 @@
 ## Change log
 ----------------------
 
+Version 2
+-------------
+
+ADDED:
+
+- new method for create java map object from json file
+- new method for create java collection object from json file
+- new method for create java list object from json file
+- new gradle-plugin dependency of 'org.ajoberstar.grgit:grgit-gradle' in version 5.0.0 for create
+  git release tags
+- new gradle-plugin dependency of 'com.diffplug.spotless:spotless-plugin-gradle' in version 6.9.0
+  for format the source files
+
+CHANGED:
+
+- update to jdk version 11
+- update gradle to new version 7.5
+- update of com.github.ben-manes.versions.gradle.plugin to new version 0.42.0
+- update of main dependency jackson-* to new version 2.13.3
+- update of main dependency json to new version 20220320
+- update of main dependency json-path to new version 2.7.0
+- update of test dependency file-worker to new version 8.2
+- update of test dependency test-objects to new version 6.1
+- update of test dependency silly-collection to new version 18.2
+
 Version 1.2
 -------------
 
@@ -37,7 +62,7 @@ CHANGED:
 Version 1
 -------------
 
-ADDED: 
+ADDED:
 
 - new CHANGELOG.md file created
 - moved relevant classes from xml-extensions project

@@ -49,9 +49,9 @@ import io.github.astrapi69.collections.map.MapFactory;
 import io.github.astrapi69.collections.set.SetFactory;
 import io.github.astrapi69.file.search.PathFinder;
 import io.github.astrapi69.json.factory.ObjectMapperFactory;
-import io.github.astrapi69.test.objects.Employee;
-import io.github.astrapi69.test.objects.Person;
-import io.github.astrapi69.test.objects.enums.Gender;
+import io.github.astrapi69.test.object.Employee;
+import io.github.astrapi69.test.object.Person;
+import io.github.astrapi69.test.object.enumtype.Gender;
 
 /**
  * The unit test class for the class {@link JsonStringToObjectExtensions}
@@ -187,17 +187,13 @@ public class JsonStringToObjectExtensionsTest
 	}
 
 	/**
-	 * Test method for {@link JsonStringToObjectExtensions#toObject(String, Class)}
+	 * Test method for {@link JsonStringToObjectExtensions#toObjectList(String, Class)}
 	 *
-	 * @throws JsonParseException
-	 *             If an error occurs when parsing the string into Object
-	 * @throws JsonMappingException
-	 *             the If an error occurs when mapping the string into Object
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
 	@Test
-	public void testToObjectList() throws JsonParseException, JsonMappingException, IOException
+	public void testToObjectList() throws IOException
 	{
 		boolean actual;
 		boolean expected;

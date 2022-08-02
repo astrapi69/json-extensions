@@ -2,7 +2,7 @@
 
 <div style="text-align: center">
 
-[![Build Status](https://api.travis-ci.com/astrapi69/json-extensions.svg?branch=master)](https://travis-ci.com/github/astrapi69/json-extensions)
+[![Java CI with Gradle](https://github.com/astrapi69/json-extensions/actions/workflows/gradle.yml/badge.svg)](https://github.com/astrapi69/json-extensions/actions/workflows/gradle.yml)
 [![Coverage Status](https://codecov.io/gh/astrapi69/json-extensions/branch/develop/graph/badge.svg)](https://codecov.io/gh/astrapi69/json-extensions)
 [![Open Issues](https://img.shields.io/github/issues/astrapi69/json-extensions.svg?style=flat)](https://github.com/astrapi69/json-extensions/issues)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/json-extensions/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/json-extensions)
@@ -32,47 +32,47 @@ Add the following maven dependency to your project `pom.xml` if you want to impo
 
 Than you can add the dependency to your dependencies:
 
-	<properties>
-			...
-		<!-- JSON-EXTENSIONS version -->
-		<json-extensions.version>1.2</json-extensions.version>
-			...
-	</properties>
-			...
-		<dependencies>
-			...
+    <properties>
+            ...
+        <!-- JSON-EXTENSIONS version -->
+        <json-extensions.version>2</json-extensions.version>
+            ...
+    </properties>
+            ...
+        <dependencies>
+            ...
             <!-- JSON-EXTENSIONS DEPENDENCY -->
-			<dependency>
-				<groupId>io.github.astrapi69</groupId>
-				<artifactId>json-extensions</artifactId>
-				<version>${json-extensions.version}</version>
-			</dependency>
-			...
-		</dependencies>
+            <dependency>
+                <groupId>io.github.astrapi69</groupId>
+                <artifactId>json-extensions</artifactId>
+                <version>${json-extensions.version}</version>
+            </dependency>
+            ...
+        </dependencies>
 
-			
+
 ## gradle dependency
 
-You can first define the version in the ext section and add than the following gradle dependency to 
+You can first define the version in the ext section and add than the following gradle dependency to
 your project `build.gradle` if you want to import the core functionality of json-extensions:
 
 define version in file gradle.properties
 ```
-jsonExtensionsVersion=1.2
+jsonExtensionsVersion=2
 ```
 
 or in build.gradle ext area
 
 ```
 ext {
-			...
-    jsonExtensionsVersion = "1.2"
-			...
+            ...
+    jsonExtensionsVersion = "2"
+            ...
 }
 dependencies {
-			...
-implementation("io.github.astrapi69:json-extensions:$jsonExtensionsVersion")
-			...
+            ...
+    implementation("io.github.astrapi69:json-extensions:$jsonExtensionsVersion")
+            ...
 }
 ```
 
@@ -143,7 +143,7 @@ Release version numbers will be incremented in the following format:
 `<major>.<minor>.<patch>`
 
 For detailed information on versioning you can visit the [wiki page](https://github.com/lightblueseas/mvn-parent-projects/wiki/Semantic-Versioning).
-		
+
 ## Want to Help and improve it? ###
 
 The source code for json-extensions are on GitHub. Please feel free to fork and send pull requests!
@@ -160,12 +160,6 @@ Do not hesitate to contact the json-extensions developers with your questions, c
 - Feature requests, questions and bug reports can be reported at the [issues page](https://github.com/astrapi69/json-extensions/issues).
 
 ## Credits
-
-|**Travis CI**|
-|     :---:      |
-|[![Travis CI](https://travis-ci.com/images/logos/TravisCI-Full-Color.png)](https://travis-ci.com)|
-|Special thanks to [Travis CI](https://travis-ci.com) for providing a free continuous integration service for open source projects|
-|     <img width=1000/>     |
 
 |**Nexus Sonatype repositories**|
 |     :---:      |
@@ -184,5 +178,3 @@ Do not hesitate to contact the json-extensions developers with your questions, c
 |[![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/json-extensions.svg)](http://www.javadoc.io/doc/io.github.astrapi69/json-extensions)|
 |Special thanks to [javadoc.io](http://www.javadoc.io) for providing a free javadoc documentation for open source projects|
 |     <img width=1000/>     |
-
-
