@@ -1,38 +1,38 @@
 [
-	{
-		"id": "23",
-		"person": {
-			"name": "Anna",
-			"nickname": "beast",
-			"gender": "FEMALE",
-			"about": "Ha ha ha...",
-			"married": true
-		},
-		"subOrdinates": [
-		]
-	},
-	{
-		"id": "24",
-		"person": {
-			"name": "Andreas",
-			"nickname": "cute",
-			"gender": "MALE",
-			"about": "fine person",
-			"married": false
-		},
-		"subOrdinates": [
-		]
-	},
-	{
-		"id": "25",
-		"person": {
-			"name": "Tatjana",
-			"nickname": "beautiful",
-			"gender": "FEMALE",
-			"about": "Im hot",
-			"married": false
-		},
-		"subOrdinates": [
-		]
-	}
+  {
+    "id": "23",
+    "person": {
+      "name": "Anna",
+      "nickname": "beast",
+      "gender": "FEMALE",
+      "about": "Ha ha ha...",
+      "married": true
+    },
+    "subOrdinates": [
+    ]
+  },
+  {
+    "id": "24",
+    "person": {
+      "name": "Andreas",
+      "nickname": "cute",
+      "gender": "MALE",
+      "about": "fine person",
+      "married": false
+    },
+    "subOrdinates": [
+    ]
+  },
+  {
+    "id": "25",
+    "person": {
+      "name": "Tatjana",
+      "nickname": "beautiful",
+      "gender": "FEMALE",
+      "about": "Im hot",
+      "married": false
+    },
+    "subOrdinates": [
+    ]
+  }
 ]

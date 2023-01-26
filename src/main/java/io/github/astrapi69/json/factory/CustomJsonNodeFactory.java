@@ -1,8 +1,8 @@
 /**
  * The MIT License
- *
+ * <p>
  * Copyright (C) 2015 Asterios Raptis
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
  * "Software"), to deal in the Software without restriction, including
@@ -10,10 +10,10 @@
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be
  * included in all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -26,9 +26,9 @@ package io.github.astrapi69.json.factory;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.AbstractMap.SimpleEntry;
 import java.util.Map.Entry;
 
 import com.fasterxml.jackson.core.JsonLocation;
@@ -47,7 +47,7 @@ import com.fasterxml.jackson.databind.util.RawValue;
 /**
  * Used to store references between nodes and JsonLocations. Otherwise, delegates to actual
  * JsonNodeFactory
- * 
+ *
  * @author csmith
  *
  *         see <a href=
@@ -82,7 +82,7 @@ public class CustomJsonNodeFactory extends JsonNodeFactory
 
 	/**
 	 * Given a node, find its location, or null if it wasn't found
-	 * 
+	 *
 	 * @param jsonNode
 	 *            the node to search for
 	 * @return the location of the node or null if not found
@@ -95,7 +95,7 @@ public class CustomJsonNodeFactory extends JsonNodeFactory
 
 	/**
 	 * Simple interceptor to mark the node in the lookup list and return it back
-	 * 
+	 *
 	 * @param <T>
 	 *            the type of the JsonNode
 	 * @param node
