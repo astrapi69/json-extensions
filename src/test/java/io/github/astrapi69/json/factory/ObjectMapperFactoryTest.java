@@ -36,7 +36,7 @@ import org.testng.annotations.Test;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import io.github.astrapi69.collections.map.MapFactory;
+import io.github.astrapi69.collection.map.MapFactory;
 
 /**
  * The unit test class for the class {@link ObjectMapperFactory}

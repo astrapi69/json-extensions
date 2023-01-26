@@ -28,6 +28,7 @@ import static org.testng.AssertJUnit.assertEquals;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -40,10 +41,10 @@ import org.testng.annotations.Test;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import io.github.astrapi69.collections.CollectionExtensions;
-import io.github.astrapi69.collections.list.ListFactory;
-import io.github.astrapi69.collections.map.MapFactory;
-import io.github.astrapi69.collections.set.SetFactory;
+import io.github.astrapi69.collection.CollectionExtensions;
+import io.github.astrapi69.collection.list.ListFactory;
+import io.github.astrapi69.collection.map.MapFactory;
+import io.github.astrapi69.collection.set.SetFactory;
 import io.github.astrapi69.file.search.PathFinder;
 import io.github.astrapi69.json.factory.ObjectMapperFactory;
 import io.github.astrapi69.test.object.Employee;
@@ -202,8 +203,10 @@ public class JsonFileToObjectExtensionsTest
 		Employee expected;
 
 		actual = JsonFileToObjectExtensions.toObject(jsonFile, Employee.class);
-		expected = Employee.builder().person(Person.builder().gender(Gender.FEMALE).name("Anna")
-			.nickname("beast").married(true).about("Ha ha ha...").build()).id("23").build();
+		expected = Employee
+			.builder().subOrdinates(new ArrayList<>()).person(Person.builder().gender(Gender.FEMALE)
+				.name("Anna").nickname("beast").married(true).about("Ha ha ha...").build())
+			.id("23").build();
 		assertEquals(expected, actual);
 	}
 

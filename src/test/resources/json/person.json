@@ -1,4 +1,5 @@
 {
+	"id": "23",
 	"person": {
 		"name": "Anna",
 		"nickname": "beast",
@@ -6,5 +7,6 @@
 		"about": "Ha ha ha...",
 		"married": true
 	},
-	"id": "23"
+	"subOrdinates": [
+	]
 }
