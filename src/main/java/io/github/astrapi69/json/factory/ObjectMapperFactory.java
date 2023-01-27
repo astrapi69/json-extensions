@@ -84,9 +84,6 @@ public final class ObjectMapperFactory
 		return objectMapper;
 	}
 
-	/** The constant mapper. */
-	private final static ObjectMapper OBJECT_MAPPER = newObjectMapper(true);
-
 	/**
 	 * Factory method for create a new {@link ObjectMapper} with the given {@link JsonFactory}
 	 *
@@ -98,6 +95,9 @@ public final class ObjectMapperFactory
 	{
 		return new ObjectMapper(jsonFactory);
 	}
+
+	/** The constant mapper. */
+	private final static ObjectMapper OBJECT_MAPPER = newObjectMapper(true);
 
 
 }

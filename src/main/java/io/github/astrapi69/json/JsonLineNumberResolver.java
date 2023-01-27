@@ -54,7 +54,7 @@ public final class JsonLineNumberResolver
 
 	/**
 	 * Gets the line number from the json file of the given json path.
-	 * 
+	 *
 	 * @param jsonFile
 	 *            the json file
 	 * @param jsonPath

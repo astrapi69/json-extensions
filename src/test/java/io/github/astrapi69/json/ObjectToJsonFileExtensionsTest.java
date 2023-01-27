@@ -35,8 +35,8 @@ import org.testng.annotations.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import io.github.astrapi69.collections.list.ListFactory;
-import io.github.astrapi69.collections.map.MapFactory;
+import io.github.astrapi69.collection.list.ListFactory;
+import io.github.astrapi69.collection.map.MapFactory;
 import io.github.astrapi69.file.delete.DeleteFileExtensions;
 import io.github.astrapi69.file.read.ReadFileExtensions;
 import io.github.astrapi69.file.search.PathFinder;
@@ -73,16 +73,16 @@ public class ObjectToJsonFileExtensionsTest
 		employee = Employee.builder().person(Person.builder().gender(Gender.FEMALE).name("Anna")
 			.married(true).about("Ha ha ha...").nickname("beast").build()).id("23").build();
 		// new scenario: try to convert a Employee object to json
-		expected = "{\"id\":\"23\",\"person\":{\"about\":\"Ha ha ha...\",\"gender\":\"FEMALE\",\"married\":true,\"name\":\"Anna\",\"nickname\":\"beast\"}}";
+		expected = "{\"id\":\"23\",\"person\":{\"about\":\"Ha ha ha...\",\"gender\":\"FEMALE\",\"married\":true,\"name\":\"Anna\",\"nickname\":\"beast\"},\"subOrdinates\":[]}";
 		jsonFile = new File(PathFinder.getSrcTestResourcesDir(), "tmp.json");
 		ObjectToJsonFileExtensions.toJsonFile(employee, jsonFile);
-		actual = ReadFileExtensions.readFromFile(jsonFile);
+		actual = ReadFileExtensions.fromFile(jsonFile);
 		assertEquals(expected, actual);
 		// new scenario: try to convert a integer map to json
 		numberCounterMap = MapFactory.newCounterMap(ListFactory.newRangeList(1, 5));
 		expected = "{\"1\":0,\"2\":0,\"3\":0,\"4\":0,\"5\":0}";
 		ObjectToJsonFileExtensions.toJsonFile(numberCounterMap, jsonFile);
-		actual = ReadFileExtensions.readFromFile(jsonFile);
+		actual = ReadFileExtensions.fromFile(jsonFile);
 		assertEquals(expected, actual);
 		// clean up
 		DeleteFileExtensions.delete(jsonFile);
@@ -100,16 +100,16 @@ public class ObjectToJsonFileExtensionsTest
 		employee = Employee.builder().person(Person.builder().gender(Gender.FEMALE).name("Anna")
 			.married(true).about("Ha ha ha...").nickname("beast").build()).id("23").build();
 		// new scenario: try to convert a Employee object to json
-		expected = "{\"id\":\"23\",\"person\":{\"about\":\"Ha ha ha...\",\"gender\":\"FEMALE\",\"married\":true,\"name\":\"Anna\",\"nickname\":\"beast\"}}";
+		expected = "{\"id\":\"23\",\"person\":{\"about\":\"Ha ha ha...\",\"gender\":\"FEMALE\",\"married\":true,\"name\":\"Anna\",\"nickname\":\"beast\"},\"subOrdinates\":[]}";
 		jsonFile = new File(PathFinder.getSrcTestResourcesDir(), "tmp.json");
 		ObjectToJsonFileExtensions.toJsonFile(employee, jsonFile, false);
-		actual = ReadFileExtensions.readFromFile(jsonFile);
+		actual = ReadFileExtensions.fromFile(jsonFile);
 		assertEquals(expected, actual);
 		// new scenario: try to convert a integer map to json
 		numberCounterMap = MapFactory.newCounterMap(ListFactory.newRangeList(1, 5));
 		expected = "{\"1\":0,\"2\":0,\"3\":0,\"4\":0,\"5\":0}";
 		ObjectToJsonFileExtensions.toJsonFile(numberCounterMap, jsonFile, false);
-		actual = ReadFileExtensions.readFromFile(jsonFile);
+		actual = ReadFileExtensions.fromFile(jsonFile);
 		assertEquals(expected, actual);
 		// clean up
 		DeleteFileExtensions.delete(jsonFile);
@@ -129,16 +129,16 @@ public class ObjectToJsonFileExtensionsTest
 		employee = Employee.builder().person(Person.builder().gender(Gender.FEMALE).name("Anna")
 			.married(true).about("Ha ha ha...").nickname("beast").build()).id("23").build();
 		// new scenario: try to convert a Employee object to json
-		expected = "{\"id\":\"23\",\"person\":{\"about\":\"Ha ha ha...\",\"gender\":\"FEMALE\",\"married\":true,\"name\":\"Anna\",\"nickname\":\"beast\"}}";
+		expected = "{\"id\":\"23\",\"person\":{\"about\":\"Ha ha ha...\",\"gender\":\"FEMALE\",\"married\":true,\"name\":\"Anna\",\"nickname\":\"beast\"},\"subOrdinates\":[]}";
 		jsonFile = new File(PathFinder.getSrcTestResourcesDir(), "tmp.json");
 		ObjectToJsonFileExtensions.toJsonFile(employee, jsonFile, mapper);
-		actual = ReadFileExtensions.readFromFile(jsonFile);
+		actual = ReadFileExtensions.fromFile(jsonFile);
 		assertEquals(expected, actual);
 		// new scenario: try to convert a integer map to json
 		numberCounterMap = MapFactory.newCounterMap(ListFactory.newRangeList(1, 5));
 		expected = "{\"1\":0,\"2\":0,\"3\":0,\"4\":0,\"5\":0}";
 		ObjectToJsonFileExtensions.toJsonFile(numberCounterMap, jsonFile, mapper);
-		actual = ReadFileExtensions.readFromFile(jsonFile);
+		actual = ReadFileExtensions.fromFile(jsonFile);
 		assertEquals(expected, actual);
 		// clean up
 		DeleteFileExtensions.delete(jsonFile);

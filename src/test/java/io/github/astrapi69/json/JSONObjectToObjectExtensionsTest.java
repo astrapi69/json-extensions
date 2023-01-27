@@ -36,8 +36,8 @@ import org.testng.annotations.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import io.github.astrapi69.collections.CollectionExtensions;
-import io.github.astrapi69.collections.list.ListFactory;
+import io.github.astrapi69.collection.CollectionExtensions;
+import io.github.astrapi69.collection.list.ListFactory;
 import io.github.astrapi69.json.factory.ObjectMapperFactory;
 import io.github.astrapi69.test.object.Employee;
 import io.github.astrapi69.test.object.Person;
@@ -52,7 +52,7 @@ public class JSONObjectToObjectExtensionsTest
 	/**
 	 * Test method for
 	 * {@link JSONObjectToObjectExtensions#toObject(JSONObject, Class, ObjectMapper)}
-	 * 
+	 *
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred
 	 */
@@ -74,7 +74,7 @@ public class JSONObjectToObjectExtensionsTest
 
 	/**
 	 * Test method for {@link JSONObjectToObjectExtensions#toObjectList(JSONArray, Class)}
-	 * 
+	 *
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred
 	 */

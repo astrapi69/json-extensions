@@ -26,7 +26,8 @@ The source code comes under the liberal MIT License, making json-extensions grea
 ## Maven dependency
 
 Maven dependency is now on sonatype.
-Check out [sonatype repository](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~json-extensions~~~) for latest snapshots and releases.
+Check out [sonatype repository](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~json-extensions~~~) for latest snapshots and
+releases.
 
 Add the following maven dependency to your project `pom.xml` if you want to import the core functionality of json-extensions:
 
@@ -35,7 +36,7 @@ Than you can add the dependency to your dependencies:
     <properties>
             ...
         <!-- JSON-EXTENSIONS version -->
-        <json-extensions.version>2</json-extensions.version>
+        <json-extensions.version>2.1</json-extensions.version>
             ...
     </properties>
             ...
@@ -50,15 +51,15 @@ Than you can add the dependency to your dependencies:
             ...
         </dependencies>
 
-
 ## gradle dependency
 
 You can first define the version in the ext section and add than the following gradle dependency to
 your project `build.gradle` if you want to import the core functionality of json-extensions:
 
 define version in file gradle.properties
+
 ```
-jsonExtensionsVersion=2
+jsonExtensionsVersion=2.1
 ```
 
 or in build.gradle ext area
@@ -66,7 +67,7 @@ or in build.gradle ext area
 ```
 ext {
             ...
-    jsonExtensionsVersion = "2"
+    jsonExtensionsVersion = "2.1"
             ...
 }
 dependencies {
@@ -125,7 +126,8 @@ or over Monero(XMR) with:
 
 49bqeRQ7Bf49oJFVC72pqpe5hFbb62pfXDYPdLsadGGF81KZW2ZfrPZ8PbAVu5X2v1TYAspeczMya3cYQysNS4usRRPQHVw
 
-<img src="https://github.com/astrapi69/jgeohash/blob/master/src/main/resources/img/49bqeRQ7Bf49oJFVC72pqpe5hFbb62pfXDYPdLsadGGF81KZW2ZfrPZ8PbAVu5X2v1TYAspeczMya3cYQysNS4usRRPQHVw.png"
+<img
+src="https://github.com/astrapi69/jgeohash/blob/master/src/main/resources/img/49bqeRQ7Bf49oJFVC72pqpe5hFbb62pfXDYPdLsadGGF81KZW2ZfrPZ8PbAVu5X2v1TYAspeczMya3cYQysNS4usRRPQHVw.png"
 alt="Donation Monero Wallet" width="250"/>
 
 or over flattr:
@@ -157,24 +159,25 @@ Don't forget to add new units tests on your changes.
 ## Contacting the Developers
 
 Do not hesitate to contact the json-extensions developers with your questions, concerns, comments, bug reports, or feature requests.
+
 - Feature requests, questions and bug reports can be reported at the [issues page](https://github.com/astrapi69/json-extensions/issues).
 
 ## Credits
 
-|**Nexus Sonatype repositories**|
-|     :---:      |
-|[![sonatype repository](https://img.shields.io/nexus/r/https/oss.sonatype.org/io.github.astrapi69/json-extensions.svg?style=for-the-badge)](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~json-extensions~~~)|
-|Special thanks to [sonatype repository](https://www.sonatype.com) for providing a free maven repository service for open source projects|
-|     <img width=1000/>     |
+|                                                                                                     **Nexus Sonatype repositories**                                                                                                      |
+|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| [![sonatype repository](https://img.shields.io/nexus/r/https/oss.sonatype.org/io.github.astrapi69/json-extensions.svg?style=for-the-badge)](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~json-extensions~~~) |
+|                                                 Special thanks to [sonatype repository](https://www.sonatype.com) for providing a free maven repository service for open source projects                                                 |
+|                                                                                                            <img width=1000/>                                                                                                             |
 
-|**codecov.io**|
-|     :---:      |
-|[![Coverage Status](https://codecov.io/gh/astrapi69/json-extensions/branch/develop/graph/badge.svg)](https://codecov.io/gh/astrapi69/json-extensions)|
-|Special thanks to [codecov.io](https://codecov.io) for providing a free code coverage for open source projects|
-|     <img width=1000/>     |
+|                                                                    **codecov.io**                                                                     |
+|:-----------------------------------------------------------------------------------------------------------------------------------------------------:|
+| [![Coverage Status](https://codecov.io/gh/astrapi69/json-extensions/branch/develop/graph/badge.svg)](https://codecov.io/gh/astrapi69/json-extensions) |
+|                    Special thanks to [codecov.io](https://codecov.io) for providing a free code coverage for open source projects                     |
+|                                                                   <img width=1000/>                                                                   |
 
-|**javadoc.io**|
-|     :---:      |
-|[![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/json-extensions.svg)](http://www.javadoc.io/doc/io.github.astrapi69/json-extensions)|
-|Special thanks to [javadoc.io](http://www.javadoc.io) for providing a free javadoc documentation for open source projects|
-|     <img width=1000/>     |
+|                                                                  **javadoc.io**                                                                   |
+|:-------------------------------------------------------------------------------------------------------------------------------------------------:|
+| [![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/json-extensions.svg)](http://www.javadoc.io/doc/io.github.astrapi69/json-extensions) |
+|             Special thanks to [javadoc.io](http://www.javadoc.io) for providing a free javadoc documentation for open source projects             |
+|                                                                 <img width=1000/>                                                                 |

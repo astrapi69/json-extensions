@@ -70,25 +70,25 @@ public class JsonLineNumberResolverTest
 		// new scenario
 		path = "$.person.name";
 		actual = JsonLineNumberResolver.getLineNumber(jsonFile, path);
-		expected = 3;
+		expected = 4;
 		assertEquals(actual, expected);
 
 		// new scenario
 		path = "$[0].person.name";
 		actual = JsonLineNumberResolver.getLineNumber(jsonListFile, path);
-		expected = 4;
+		expected = 5;
 		assertEquals(actual, expected);
 
 		// new scenario
 		path = "$[1].person.name";
 		actual = JsonLineNumberResolver.getLineNumber(jsonListFile, path);
-		expected = 14;
+		expected = 17;
 		assertEquals(actual, expected);
 
 		// new scenario
 		path = "$[2].person.name";
 		actual = JsonLineNumberResolver.getLineNumber(jsonListFile, path);
-		expected = 24;
+		expected = 29;
 		assertEquals(actual, expected);
 	}
 }

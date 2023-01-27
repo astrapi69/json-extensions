@@ -24,18 +24,65 @@
  */
 package io.github.astrapi69.json.factory;
 
-import static org.testng.Assert.assertNotNull;
+import static org.testng.AssertJUnit.assertNotNull;
 
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
+import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
-public class CustomParserFactoryTest
+
+/**
+ * The unit test class for the class {@link ObjectMapperFactory}
+ */
+public class YAMLMapperFactoryTest
 {
 
+	/**
+	 * Test method for {@link YAMLMapperFactory#newYAMLMapper()}
+	 */
 	@Test
-	public void testConstructor()
+	public void testNewYAMLMapper()
 	{
-		CustomParserFactory customParserFactory = new CustomParserFactory();
-		assertNotNull(customParserFactory);
+		YAMLMapper actual;
+
+		actual = YAMLMapperFactory.newYAMLMapper();
+		assertNotNull(actual);
+	}
+
+	/**
+	 * Test method for {@link YAMLMapperFactory#newYAMLMapper(YAMLFactory)}
+	 */
+	@Test
+	public void testNewYAMLMapperWithYAMLFactory()
+	{
+		YAMLMapper actual;
+
+		actual = YAMLMapperFactory.newYAMLMapper(new YAMLFactory());
+		assertNotNull(actual);
+	}
+
+
+	/**
+	 * Test method for {@link YAMLMapperFactory#newYAMLMapper(YAMLMapper)}
+	 */
+	@Test
+	public void testNewYAMLMapperWithYAMLMapper()
+	{
+		YAMLMapper actual;
+
+		actual = YAMLMapperFactory.newYAMLMapper(new YAMLMapper());
+		assertNotNull(actual);
+	}
+
+	/**
+	 * Test method for {@link YAMLMapperFactory}
+	 */
+	@Test
+	public void testWithBeanTester()
+	{
+		final BeanTester beanTester = new BeanTester();
+		beanTester.testBean(YAMLMapperFactory.class);
 	}
 
 }

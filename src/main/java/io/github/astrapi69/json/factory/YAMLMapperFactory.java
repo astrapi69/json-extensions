@@ -24,18 +24,53 @@
  */
 package io.github.astrapi69.json.factory;
 
-import static org.testng.Assert.assertNotNull;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 
-import org.testng.annotations.Test;
-
-public class CustomParserFactoryTest
+/**
+ * The factory class {@link YAMLMapperFactory} for creating {@link YAMLMapper} objects
+ */
+public final class YAMLMapperFactory
 {
-
-	@Test
-	public void testConstructor()
+	private YAMLMapperFactory()
 	{
-		CustomParserFactory customParserFactory = new CustomParserFactory();
-		assertNotNull(customParserFactory);
 	}
+
+	/**
+	 * Factory method for create a new {@link YAMLMapper}
+	 *
+	 * @return the new {@link YAMLMapper}
+	 */
+	public static YAMLMapper newYAMLMapper()
+	{
+		return new YAMLMapper();
+	}
+
+	/**
+	 * Factory method for create a new {@link YAMLMapper}
+	 *
+	 * @param yamlFactory
+	 *            the {@link YAMLFactory} object
+	 *
+	 * @return the new {@link YAMLMapper}
+	 */
+	public static YAMLMapper newYAMLMapper(YAMLFactory yamlFactory)
+	{
+		return new YAMLMapper(yamlFactory);
+	}
+
+	/**
+	 * Factory method for create a new {@link YAMLMapper}
+	 *
+	 * @param yamlMapper
+	 *            the {@link YAMLMapper} object
+	 *
+	 * @return the new {@link YAMLMapper}
+	 */
+	public static YAMLMapper newYAMLMapper(YAMLMapper yamlMapper)
+	{
+		return new YAMLMapper(yamlMapper);
+	}
+
 
 }

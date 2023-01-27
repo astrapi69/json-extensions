@@ -38,7 +38,7 @@ public class JsonToXmlExtensionsTest
 
 	/**
 	 * Test method for {@link JsonToXmlExtensions#toXml(String)}
-	 * 
+	 *
 	 * @throws JSONException
 	 *             if there is a syntax error in the source string or a duplicated key
 	 */

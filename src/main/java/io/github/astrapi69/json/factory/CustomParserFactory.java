@@ -43,7 +43,7 @@ public class CustomParserFactory extends JsonFactory
 
 	/**
 	 * Gets the parser of this factory
-	 * 
+	 *
 	 * @return the parser
 	 */
 	public JsonParser getParser()
