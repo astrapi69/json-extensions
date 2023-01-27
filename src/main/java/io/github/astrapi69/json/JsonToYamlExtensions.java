@@ -26,9 +26,13 @@ package io.github.astrapi69.json;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 
 import io.github.astrapi69.json.factory.ObjectMapperFactory;
+import io.github.astrapi69.json.factory.YAMLMapperFactory;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * The class {@link JsonToYamlExtensions} helps to transform a given json string to a yaml string
@@ -52,8 +56,51 @@ public final class JsonToYamlExtensions
 	public static String toYaml(final String jsonString) throws JsonProcessingException
 	{
 		JsonNode jsonNode = ObjectMapperFactory.newObjectMapper().readTree(jsonString);
-		final String yamlString = new YAMLMapper().writeValueAsString(jsonNode);
+		final String yamlString = YAMLMapperFactory.newYAMLMapper().writeValueAsString(jsonNode);
 		return yamlString;
+	}
+
+
+	/**
+	 * Transforms the given json file into a yaml as {@link String} object
+	 *
+	 * @param jsonFile
+	 *            the json file
+	 * @return the transformed yaml as {@link String} object
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
+	 */
+	public static String toYaml(final File jsonFile) throws IOException
+	{
+		JsonNode jsonNode = YAMLMapperFactory.newYAMLMapper().readTree(jsonFile);
+		final String yamlString = YAMLMapperFactory.newYAMLMapper().writeValueAsString(jsonNode);
+		return yamlString;
+	}
+
+	/**
+	 * Transforms the given json file into a yaml as {@link File} object
+	 *
+	 * @param jsonFile
+	 *            the json file
+	 * @param resultYamlFile
+	 *            the result file in yaml format
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
+	 */
+	public static void toYaml(final File jsonFile, File resultYamlFile) throws IOException
+	{
+		if (!resultYamlFile.exists())
+		{
+			resultYamlFile.createNewFile();
+		}
+		if (resultYamlFile.exists())
+		{
+			final String yaml = toYaml(jsonFile);
+			try (PrintWriter out = new PrintWriter(resultYamlFile))
+			{
+				out.println(yaml);
+			}
+		}
 	}
 
 }

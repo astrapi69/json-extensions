@@ -7,6 +7,9 @@ Version 2.1-SNAPSHOT
 ADDED:
 
 - new converter class JsonToYamlExtensions that can convert a json string to yaml string
+- new converter class JsonToYamlExtensions that can convert a json file to yaml string
+- new converter class JsonToYamlExtensions that can write a json file to a new or existing yaml file
+- new factory class YAMLMapperFactory for create YAMLMapper objects
 - new main dependency com.fasterxml.jackson.dataformat:jackson-dataformat-yaml for convert json to yaml
 
 CHANGED:

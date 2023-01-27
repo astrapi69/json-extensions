@@ -29,12 +29,17 @@ import static org.testng.AssertJUnit.assertEquals;
 import java.io.File;
 import java.io.IOException;
 
+import org.json.JSONException;
+import org.meanbean.test.BeanTester;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import io.github.astrapi69.file.read.ReadFileExtensions;
 import io.github.astrapi69.file.search.PathFinder;
 
+/**
+ * The unit test class for the class {@link JsonToYamlExtensions}
+ */
 public class JsonToYamlExtensionsTest
 {
 
@@ -43,18 +48,141 @@ public class JsonToYamlExtensionsTest
 
 	File jsonMapFile;
 	File jsonListFile;
+	File yamlFile;
+	File yamlCollectionFile;
+
+	File yamlMapFile;
+	File yamlListFile;
 
 	@BeforeMethod
 	protected void setUp()
 	{
 		File jsonDir;
+		File yamlDir;
 		jsonDir = new File(PathFinder.getSrcTestResourcesDir(), "json");
+		yamlDir = new File(PathFinder.getSrcTestResourcesDir(), "yaml");
 		jsonFile = new File(jsonDir, "person.json");
 		jsonListFile = new File(jsonDir, "employees.json");
 		jsonMapFile = new File(jsonDir, "map.json");
 		jsonCollectionFile = new File(jsonDir, "collection.json");
+
+		yamlFile = new File(yamlDir, "person.yaml");
+		yamlListFile = new File(yamlDir, "employees.yaml");
+		yamlMapFile = new File(yamlDir, "map.yaml");
+		yamlCollectionFile = new File(yamlDir, "collection.yaml");
+
 	}
 
+	/**
+	 * Test method for {@link JsonToYamlExtensions#toYaml(File, File)} 
+	 *
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
+	 */
+	@Test
+	public void testToYamlWithJsonFileToYamlFile() throws IOException
+	{
+		String expected;
+		String actual;
+
+		JsonToYamlExtensions.toYaml(jsonFile, yamlFile);
+		expected = "---\n" + "id: \"23\"\n" + "person:\n" + "  name: \"Anna\"\n"
+			+ "  nickname: \"beast\"\n" + "  gender: \"FEMALE\"\n" + "  about: \"Ha ha ha...\"\n"
+			+ "  married: true\n" + "subOrdinates: []\n" + "\n";
+		actual = ReadFileExtensions.fromFile(yamlFile);
+		expected = expected.replace("\n", "").replace("\r", "").replace(" ", "");
+		actual = actual.replace("\n", "").replace("\r", "").replace(" ", "");
+		assertEquals(expected, actual);
+
+		JsonToYamlExtensions.toYaml(jsonListFile, yamlListFile);
+		expected = "---\n" + "- id: \"23\"\n" + "  person:\n" + "    name: \"Anna\"\n"
+			+ "    nickname: \"beast\"\n" + "    gender: \"FEMALE\"\n"
+			+ "    about: \"Ha ha ha...\"\n" + "    married: true\n" + "  subOrdinates: []\n"
+			+ "- id: \"24\"\n" + "  person:\n" + "    name: \"Andreas\"\n"
+			+ "    nickname: \"cute\"\n" + "    gender: \"MALE\"\n" + "    about: \"fine person\"\n"
+			+ "    married: false\n" + "  subOrdinates: []\n" + "- id: \"25\"\n" + "  person:\n"
+			+ "    name: \"Tatjana\"\n" + "    nickname: \"beautiful\"\n"
+			+ "    gender: \"FEMALE\"\n" + "    about: \"Im hot\"\n" + "    married: false\n"
+			+ "  subOrdinates: []\n";
+		actual = ReadFileExtensions.fromFile(yamlListFile);
+		expected = expected.replace("\n", "").replace("\r", "").replace(" ", "");
+		actual = actual.replace("\n", "").replace("\r", "").replace(" ", "");
+		assertEquals(expected, actual);
+
+		JsonToYamlExtensions.toYaml(jsonMapFile, yamlMapFile);
+		expected = "---\n" + "\"1\": 0\n" + "\"2\": 0\n" + "\"3\": 0\n" + "\"4\": 0\n"
+			+ "\"5\": 0\n";
+		actual = ReadFileExtensions.fromFile(yamlMapFile);
+		expected = expected.replace("\n", "").replace("\r", "").replace(" ", "");
+		actual = actual.replace("\n", "").replace("\r", "").replace(" ", "");
+		assertEquals(expected, actual);
+
+		JsonToYamlExtensions.toYaml(jsonCollectionFile, yamlCollectionFile);
+		expected = "---\n" + "- person:\n" + "    name: \"Anna\"\n" + "    nickname: \"beast\"\n"
+			+ "    gender: \"FEMALE\"\n" + "    about: \"Ha ha ha...\"\n" + "    married: true\n"
+			+ "  id: \"23\"\n" + "- person:\n" + "    name: \"Andreas\"\n"
+			+ "    nickname: \"cute\"\n" + "    gender: \"MALE\"\n" + "    about: \"fine person\"\n"
+			+ "    married: false\n" + "  id: \"24\"\n" + "- person:\n" + "    name: \"Tatjana\"\n"
+			+ "    nickname: \"beautiful\"\n" + "    gender: \"FEMALE\"\n"
+			+ "    about: \"Im hot\"\n" + "    married: false\n" + "  id: \"25\"\n";
+		actual = ReadFileExtensions.fromFile(yamlCollectionFile);
+		expected = expected.replace("\n", "").replace("\r", "").replace(" ", "");
+		actual = actual.replace("\n", "").replace("\r", "").replace(" ", "");
+		assertEquals(expected, actual);
+	}
+
+	/**
+	 * Test method for {@link JsonToYamlExtensions#toYaml(File)}
+	 *
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
+	 */
+	@Test
+	public void testToYamlWithJsonFile() throws IOException
+	{
+		String expected;
+		String actual;
+
+		actual = JsonToYamlExtensions.toYaml(jsonFile);
+		expected = "---\n" + "id: \"23\"\n" + "person:\n" + "  name: \"Anna\"\n"
+			+ "  nickname: \"beast\"\n" + "  gender: \"FEMALE\"\n" + "  about: \"Ha ha ha...\"\n"
+			+ "  married: true\n" + "subOrdinates: []\n";
+		assertEquals(expected, actual);
+
+		actual = JsonToYamlExtensions.toYaml(jsonListFile);
+		expected = "---\n" + "- id: \"23\"\n" + "  person:\n" + "    name: \"Anna\"\n"
+			+ "    nickname: \"beast\"\n" + "    gender: \"FEMALE\"\n"
+			+ "    about: \"Ha ha ha...\"\n" + "    married: true\n" + "  subOrdinates: []\n"
+			+ "- id: \"24\"\n" + "  person:\n" + "    name: \"Andreas\"\n"
+			+ "    nickname: \"cute\"\n" + "    gender: \"MALE\"\n" + "    about: \"fine person\"\n"
+			+ "    married: false\n" + "  subOrdinates: []\n" + "- id: \"25\"\n" + "  person:\n"
+			+ "    name: \"Tatjana\"\n" + "    nickname: \"beautiful\"\n"
+			+ "    gender: \"FEMALE\"\n" + "    about: \"Im hot\"\n" + "    married: false\n"
+			+ "  subOrdinates: []\n";
+		assertEquals(expected, actual);
+
+		actual = JsonToYamlExtensions.toYaml(jsonMapFile);
+		expected = "---\n" + "\"1\": 0\n" + "\"2\": 0\n" + "\"3\": 0\n" + "\"4\": 0\n"
+			+ "\"5\": 0\n";
+		assertEquals(expected, actual);
+
+		actual = JsonToYamlExtensions.toYaml(jsonCollectionFile);
+		expected = "---\n" + "- person:\n" + "    name: \"Anna\"\n" + "    nickname: \"beast\"\n"
+			+ "    gender: \"FEMALE\"\n" + "    about: \"Ha ha ha...\"\n" + "    married: true\n"
+			+ "  id: \"23\"\n" + "- person:\n" + "    name: \"Andreas\"\n"
+			+ "    nickname: \"cute\"\n" + "    gender: \"MALE\"\n" + "    about: \"fine person\"\n"
+			+ "    married: false\n" + "  id: \"24\"\n" + "- person:\n" + "    name: \"Tatjana\"\n"
+			+ "    nickname: \"beautiful\"\n" + "    gender: \"FEMALE\"\n"
+			+ "    about: \"Im hot\"\n" + "    married: false\n" + "  id: \"25\"\n";
+		assertEquals(expected, actual);
+	}
+
+	/**
+	 * Test method for {@link JsonToYamlExtensions#toYaml(String)}
+	 *
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
+	 */
 	@Test
 	public void testToYaml() throws IOException
 	{
@@ -94,6 +222,15 @@ public class JsonToYamlExtensionsTest
 			+ "    nickname: \"beautiful\"\n" + "    gender: \"FEMALE\"\n"
 			+ "    about: \"Im hot\"\n" + "    married: false\n" + "  id: \"25\"\n";
 		assertEquals(expected, actual);
+	}
 
+	/**
+	 * Test method for {@link JsonToYamlExtensions}
+	 */
+	@Test
+	public void testWithBeanTester()
+	{
+		final BeanTester beanTester = new BeanTester();
+		beanTester.testBean(JsonToYamlExtensions.class);
 	}
 }
