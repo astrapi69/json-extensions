@@ -74,7 +74,7 @@ public class JsonToYamlExtensionsTest
 	}
 
 	/**
-	 * Test method for {@link JsonToYamlExtensions#toYaml(File, File)} 
+	 * Test method for {@link JsonToYamlExtensions#toYaml(File, File)}
 	 *
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred
