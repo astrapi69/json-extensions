@@ -1,7 +1,7 @@
 ## Change log
 ----------------------
 
-Version 2.1-SNAPSHOT
+Version 2.1
 -------------
 
 ADDED:
@@ -15,7 +15,7 @@ ADDED:
 CHANGED:
 
 - update gradle to new version 7.6
-- new gradle-plugin dependency of 'com.diffplug.spotless:spotless-plugin-gradle' in version 6.13.0
+- new gradle-plugin dependency of 'com.diffplug.spotless:spotless-plugin-gradle' in version 6.14.0
 - update of com.github.ben-manes.versions.gradle.plugin to new version 0.44.0
 - update of main dependency jackson-* to new version 2.14.1
 - update of main dependency json to new version 20220924
