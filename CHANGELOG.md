@@ -12,9 +12,9 @@ ADDED:
 
 CHANGED:
 
-- new gradle-plugin dependency of 'com.diffplug.spotless:spotless-plugin-gradle' in version 6.13.0
-- update of com.github.ben-manes.versions.gradle.plugin to new version 0.44.0
-- update of main dependency jackson-* to new version 2.14.1
+- new gradle-plugin dependency of 'com.diffplug.spotless:spotless-plugin-gradle' in version 6.14.1
+- update of com.github.ben-manes.versions.gradle.plugin to new version 0.45.0
+- update of main dependency jackson-* to new version 2.14.2
 
 Version 2.1
 -------------
