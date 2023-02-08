@@ -26,6 +26,8 @@ license {
               "**/*.map",
               "**/*.js.map",
               "**/*.tmpl",
+              "**/*.yml",
+              "**/*.yaml",
               "**/*.js.tmpl",
               "**/*.editorconfig",
               "src/test/resources/**",

@@ -3,6 +3,8 @@ dependencies {
     implementation("com.jayway.jsonpath:json-path:$jsonPathVersion")
     implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$jacksonVersion")
+    implementation("com.fasterxml.jackson.module:jackson-module-jaxb-annotations:$jacksonVersion")
+
     testImplementation("com.fasterxml.jackson.datatype:jackson-datatype-json-org:$jacksonVersion")
     testImplementation("io.github.astrapi69:silly-collection:$sillyCollectionVersion")
     testImplementation("io.github.astrapi69:silly-bean:$sillyBeanVersion")
