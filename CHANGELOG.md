@@ -13,9 +13,12 @@ ADDED:
 
 CHANGED:
 
-- new gradle-plugin dependency of 'com.diffplug.spotless:spotless-plugin-gradle' in version 6.14.1
-- update of com.github.ben-manes.versions.gradle.plugin to new version 0.45.0
+- update gradle to new version 8.0.1
+- update of com.github.ben-manes.versions.gradle.plugin to new version 0.46.0
+- new gradle-plugin dependency of 'com.diffplug.spotless:spotless-plugin-gradle' in version 6.16.0
+- update of main dependency json to new version 20230227
 - update of main dependency jackson-* to new version 2.14.2
+- update of test dependency silly-collection to new version 21
 
 Version 2.1
 -------------
