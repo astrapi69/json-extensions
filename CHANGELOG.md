@@ -9,6 +9,7 @@ ADDED:
 - new factory method that created an object mapper with a jaxb annotation introspector
 - new converter class ClassToJsonSchemaExtensions that can convert a class object to a json schema
 - new dependency jackson-module-jaxb-annotations for processing jaxb annotations
+- new converter class XmlToJsonExtensions that converts xml string to json string
 
 CHANGED:
 
