@@ -34,6 +34,10 @@ import org.json.XML;
 public class XmlToJsonExtensions
 {
 
+	private XmlToJsonExtensions()
+	{
+	}
+
 	/**
 	 * Creates from the given xml string and class a json string
 	 *

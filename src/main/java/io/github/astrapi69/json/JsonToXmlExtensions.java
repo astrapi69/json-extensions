@@ -24,6 +24,7 @@
  */
 package io.github.astrapi69.json;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.XML;
@@ -39,7 +40,7 @@ public final class JsonToXmlExtensions
 	}
 
 	/**
-	 * Transform the given json as {@link String} object to an xml as {@link String} object.
+	 * Transform the given json as {@link String} object to a xml as {@link String} object.
 	 *
 	 * @param jsonString
 	 *            the json as {@link String} object
@@ -49,8 +50,16 @@ public final class JsonToXmlExtensions
 	 */
 	public static String toXml(final String jsonString) throws JSONException
 	{
-		final JSONObject json = new JSONObject(jsonString);
-		return XML.toString(json);
+		if (jsonString.startsWith("["))
+		{
+			JSONArray objects = new JSONArray(jsonString);
+			return XML.toString(objects);
+		}
+		else
+		{
+			final JSONObject json = new JSONObject(jsonString);
+			return XML.toString(json);
+		}
 	}
 
 }

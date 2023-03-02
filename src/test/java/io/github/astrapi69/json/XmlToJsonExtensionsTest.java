@@ -66,7 +66,51 @@ public class XmlToJsonExtensionsTest
 		xmlString = ReadFileExtensions.fromFile(xmlFile);
 
 		actual = XmlToJsonExtensions.toJson(xmlString);
-		expected = "{\"Employee\":{\"person\":{\"gender\":\"FEMALE\",\"about\":\"\",\"name\":\"Anna\",\"nickname\":\"\",\"married\":\"\"},\"id\":23,\"subOrdinates\":\"\"}}";
+		expected = // language=json
+			"{\"Employee\":{\"person\":{\"gender\":\"FEMALE\",\"about\":\"\",\"name\":\"Anna\",\"nickname\":\"\",\"married\":\"\"},\"id\":23,\"subOrdinates\":\"\"}}";
+		assertEquals(expected, actual);
+
+		xmlString = "<person><gender>FEMALE</gender><name>Anna</name><nickname>beast</nickname><about>Ha ha ha...</about><married>true</married></person><id>23</id>";
+
+		actual = XmlToJsonExtensions.toJson(xmlString);
+		expected = // language=json
+			"{\"person\":{\"gender\":\"FEMALE\",\"name\":\"Anna\",\"nickname\":\"beast\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":23}";
+		assertEquals(expected, actual);
+
+		actual = JsonToXmlExtensions.toXml(actual);
+		expected = xmlString;
+		assertEquals(expected, actual);
+
+		xmlString = "<array><person><gender>FEMALE</gender><name>Anna</name><nickname>beast</nickname><about>Ha ha ha...</about><married>true</married></person><id>23</id></array><array><person><gender>MALE</gender><name>Andreas</name><nickname>cute</nickname><about>fine person</about><married>false</married></person><id>24</id></array><array><person><gender>FEMALE</gender><name>Tatjana</name><nickname>beautiful</nickname><about>Im hot</about><married>false</married></person><id>25</id></array>";
+		actual = XmlToJsonExtensions.toJson(xmlString);
+
+		expected = // language=json
+			"{\"array\":[{\"person\":{\"gender\":\"FEMALE\",\"name\":\"Anna\",\"nickname\":\"beast\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":23},{\"person\":{\"gender\":\"MALE\",\"name\":\"Andreas\",\"nickname\":\"cute\",\"about\":\"fine person\",\"married\":false},\"id\":24},{\"person\":{\"gender\":\"FEMALE\",\"name\":\"Tatjana\",\"nickname\":\"beautiful\",\"about\":\"Im hot\",\"married\":false},\"id\":25}]}";
+		assertEquals(expected, actual);
+
+		actual = JsonToXmlExtensions.toXml(actual);
+		expected = xmlString;
+		assertEquals(expected, actual);
+
+		xmlString = "<1>0</1><2>0</2><3>0</3><4>0</4><5>0</5>";
+		actual = XmlToJsonExtensions.toJson(xmlString);
+		expected = // language=json
+			"{\"1\":0,\"2\":0,\"3\":0,\"4\":0,\"5\":0}";
+		assertEquals(expected, actual);
+
+		actual = JsonToXmlExtensions.toXml(actual);
+		expected = xmlString;
+		assertEquals(expected, actual);
+
+
+		xmlString = "<array><person><gender>FEMALE</gender><name>Anna</name><nickname>beast</nickname><about>Ha ha ha...</about><married>true</married></person><id>23</id></array><array><person><gender>MALE</gender><name>Andreas</name><nickname>cute</nickname><about>fine person</about><married>false</married></person><id>24</id></array><array><person><gender>FEMALE</gender><name>Tatjana</name><nickname>beautiful</nickname><about>Im hot</about><married>false</married></person><id>25</id></array>";
+		actual = XmlToJsonExtensions.toJson(xmlString);
+		expected = // language=json
+			"{\"array\":[{\"person\":{\"gender\":\"FEMALE\",\"name\":\"Anna\",\"nickname\":\"beast\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":23},{\"person\":{\"gender\":\"MALE\",\"name\":\"Andreas\",\"nickname\":\"cute\",\"about\":\"fine person\",\"married\":false},\"id\":24},{\"person\":{\"gender\":\"FEMALE\",\"name\":\"Tatjana\",\"nickname\":\"beautiful\",\"about\":\"Im hot\",\"married\":false},\"id\":25}]}";
+		assertEquals(expected, actual);
+
+		actual = JsonToXmlExtensions.toXml(actual);
+		expected = xmlString;
 		assertEquals(expected, actual);
 	}
 }

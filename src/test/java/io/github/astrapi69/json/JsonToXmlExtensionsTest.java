@@ -26,9 +26,15 @@ package io.github.astrapi69.json;
 
 import static org.testng.AssertJUnit.assertEquals;
 
+import io.github.astrapi69.file.read.ReadFileExtensions;
+import io.github.astrapi69.file.search.PathFinder;
 import org.json.JSONException;
 import org.meanbean.test.BeanTester;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
  * The unit test class for the class {@link JsonToXmlExtensions}
@@ -36,21 +42,61 @@ import org.testng.annotations.Test;
 public class JsonToXmlExtensionsTest
 {
 
+
+	File jsonDir;
+	File jsonFile;
+	File jsonCollectionFile;
+
+	File jsonMapFile;
+	File jsonListFile;
+
+	@BeforeMethod
+	protected void setUp()
+	{
+		jsonDir = new File(PathFinder.getSrcTestResourcesDir(), "json");
+		jsonFile = new File(jsonDir, "person.json");
+		jsonListFile = new File(jsonDir, "employees.json");
+		jsonMapFile = new File(jsonDir, "map.json");
+		jsonCollectionFile = new File(jsonDir, "collection.json");
+	}
+
 	/**
 	 * Test method for {@link JsonToXmlExtensions#toXml(String)}
 	 *
 	 * @throws JSONException
 	 *             if there is a syntax error in the source string or a duplicated key
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
 	 */
 	@Test
-	public void testToXmlString() throws JSONException
+	public void testToXmlString() throws JSONException, IOException
 	{
 		String expected;
 		String actual;
+		String jsonString;
 
-		expected = "<person><gender>FEMALE</gender><name>Anna</name><nickname>beast</nickname><about>Ha ha ha...</about><married>true</married></person><id>23</id>";
-		final String jsonString = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
+		jsonString = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
 		actual = JsonToXmlExtensions.toXml(jsonString);
+		expected = "<person><gender>FEMALE</gender><name>Anna</name><nickname>beast</nickname><about>Ha ha ha...</about><married>true</married></person><id>23</id>";
+		assertEquals(actual, expected);
+
+		jsonString = ReadFileExtensions.fromFile(jsonFile);
+		actual = JsonToXmlExtensions.toXml(jsonString);
+		assertEquals(actual, expected);
+
+		jsonString = ReadFileExtensions.fromFile(jsonListFile);
+		actual = JsonToXmlExtensions.toXml(jsonString);
+		expected = "<array><person><gender>FEMALE</gender><name>Anna</name><nickname>beast</nickname><about>Ha ha ha...</about><married>true</married></person><id>23</id></array><array><person><gender>MALE</gender><name>Andreas</name><nickname>cute</nickname><about>fine person</about><married>false</married></person><id>24</id></array><array><person><gender>FEMALE</gender><name>Tatjana</name><nickname>beautiful</nickname><about>Im hot</about><married>false</married></person><id>25</id></array>";
+		assertEquals(actual, expected);
+
+		jsonString = ReadFileExtensions.fromFile(jsonMapFile);
+		actual = JsonToXmlExtensions.toXml(jsonString);
+		expected = "<1>0</1><2>0</2><3>0</3><4>0</4><5>0</5>";
+		assertEquals(actual, expected);
+
+		jsonString = ReadFileExtensions.fromFile(jsonCollectionFile);
+		actual = JsonToXmlExtensions.toXml(jsonString);
+		expected = "<array><person><gender>FEMALE</gender><name>Anna</name><nickname>beast</nickname><about>Ha ha ha...</about><married>true</married></person><id>23</id></array><array><person><gender>MALE</gender><name>Andreas</name><nickname>cute</nickname><about>fine person</about><married>false</married></person><id>24</id></array><array><person><gender>FEMALE</gender><name>Tatjana</name><nickname>beautiful</nickname><about>Im hot</about><married>false</married></person><id>25</id></array>";
 		assertEquals(actual, expected);
 	}
 
