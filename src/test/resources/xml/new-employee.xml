@@ -1,0 +1,11 @@
+<Employee>
+  <id>23</id>
+  <person>
+    <about></about>
+    <gender>FEMALE</gender>
+    <married/>
+    <name>Anna</name>
+    <nickname></nickname>
+  </person>
+  <subOrdinates/>
+</Employee>

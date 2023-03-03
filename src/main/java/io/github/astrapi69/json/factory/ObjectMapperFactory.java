@@ -28,7 +28,10 @@ import java.util.Map;
 
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.AnnotationIntrospector;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.TypeFactory;
+import com.fasterxml.jackson.module.jaxb.JaxbAnnotationIntrospector;
 
 /**
  * The factory class {@link ObjectMapperFactory} for creating {@link ObjectMapper} objects
@@ -94,6 +97,22 @@ public final class ObjectMapperFactory
 	public static ObjectMapper newObjectMapper(JsonFactory jsonFactory)
 	{
 		return new ObjectMapper(jsonFactory);
+	}
+
+	/**
+	 * Factory method for create a new {@link ObjectMapper} with a JAXB introspector and the default
+	 * instance of {@link TypeFactory}
+	 *
+	 * @return the new {@link ObjectMapper}
+	 */
+	public static ObjectMapper newJaxbObjectMapper()
+	{
+		final AnnotationIntrospector annotationIntrospector = new JaxbAnnotationIntrospector(
+			TypeFactory.defaultInstance());
+		final ObjectMapper mapper = newObjectMapper();
+		mapper.getDeserializationConfig().with(annotationIntrospector);
+		mapper.getSerializationConfig().with(annotationIntrospector);
+		return mapper;
 	}
 
 	/** The constant mapper. */

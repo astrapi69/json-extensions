@@ -22,44 +22,27 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package io.github.astrapi69.json;
+package io.github.astrapi69.json.factory;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.XML;
+import org.meanbean.test.BeanTester;
+import org.testng.annotations.Test;
+
+import static org.testng.Assert.assertNotNull;
 
 /**
- * The class {@link JsonToXmlExtensions} helps to transform a given json string to an xml string.
+ * The unit test class for the class {@link CustomJsonNodeFactory}
  */
-public final class JsonToXmlExtensions
+public class CustomJsonNodeFactoryTest
 {
 
-	private JsonToXmlExtensions()
-	{
-	}
-
 	/**
-	 * Transform the given json as {@link String} object to a xml as {@link String} object.
-	 *
-	 * @param jsonString
-	 *            the json as {@link String} object
-	 * @return the transformed xml as {@link String} object
-	 * @throws JSONException
-	 *             if there is a syntax error in the source string or a duplicated key.
+	 * Test method for {@link CustomJsonNodeFactory}
 	 */
-	public static String toXml(final String jsonString) throws JSONException
+	@Test(enabled = false)
+	public void testWithBeanTester()
 	{
-		if (jsonString.startsWith("["))
-		{
-			JSONArray objects = new JSONArray(jsonString);
-			return XML.toString(objects);
-		}
-		else
-		{
-			final JSONObject json = new JSONObject(jsonString);
-			return XML.toString(json);
-		}
+		final BeanTester beanTester = new BeanTester();
+		beanTester.testBean(CustomJsonNodeFactory.class);
 	}
 
 }

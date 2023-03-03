@@ -24,42 +24,30 @@
  */
 package io.github.astrapi69.json;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.XML;
 
 /**
- * The class {@link JsonToXmlExtensions} helps to transform a given json string to an xml string.
+ * The class {@link XmlToJsonExtensions} provides methods for convert xml string objects to json
+ * string
  */
-public final class JsonToXmlExtensions
+public class XmlToJsonExtensions
 {
 
-	private JsonToXmlExtensions()
+	private XmlToJsonExtensions()
 	{
 	}
 
 	/**
-	 * Transform the given json as {@link String} object to a xml as {@link String} object.
+	 * Creates from the given xml string and class a json string
 	 *
-	 * @param jsonString
-	 *            the json as {@link String} object
-	 * @return the transformed xml as {@link String} object
-	 * @throws JSONException
-	 *             if there is a syntax error in the source string or a duplicated key.
+	 * @param xmlString
+	 *            the xml string
+	 * @return the json string
 	 */
-	public static String toXml(final String jsonString) throws JSONException
+	public static String toJson(final String xmlString)
 	{
-		if (jsonString.startsWith("["))
-		{
-			JSONArray objects = new JSONArray(jsonString);
-			return XML.toString(objects);
-		}
-		else
-		{
-			final JSONObject json = new JSONObject(jsonString);
-			return XML.toString(json);
-		}
+		final JSONObject json = XML.toJSONObject(xmlString);
+		return json.toString();
 	}
-
 }
