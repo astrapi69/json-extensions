@@ -26,6 +26,7 @@ package io.github.astrapi69.json;
 
 import io.github.astrapi69.file.read.ReadFileExtensions;
 import io.github.astrapi69.file.search.PathFinder;
+import org.meanbean.test.BeanTester;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -39,6 +40,16 @@ import static org.testng.AssertJUnit.assertEquals;
  */
 public class XmlToJsonExtensionsTest
 {
+
+	/**
+	 * Test method for {@link XmlToJsonExtensions}
+	 */
+	@Test
+	public void testWithBeanTester()
+	{
+		final BeanTester beanTester = new BeanTester();
+		beanTester.testBean(XmlToJsonExtensions.class);
+	}
 
 	File xmlDir;
 	File xmlFile;

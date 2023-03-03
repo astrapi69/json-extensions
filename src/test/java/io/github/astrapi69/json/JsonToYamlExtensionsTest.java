@@ -29,6 +29,7 @@ import static org.testng.AssertJUnit.assertEquals;
 import java.io.File;
 import java.io.IOException;
 
+import io.github.astrapi69.file.delete.DeleteFileExtensions;
 import org.json.JSONException;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.BeforeMethod;
@@ -43,6 +44,8 @@ import io.github.astrapi69.file.search.PathFinder;
 public class JsonToYamlExtensionsTest
 {
 
+	File jsonDir;
+	File yamlDir;
 	File jsonFile;
 	File jsonCollectionFile;
 
@@ -57,8 +60,6 @@ public class JsonToYamlExtensionsTest
 	@BeforeMethod
 	protected void setUp()
 	{
-		File jsonDir;
-		File yamlDir;
 		jsonDir = new File(PathFinder.getSrcTestResourcesDir(), "json");
 		yamlDir = new File(PathFinder.getSrcTestResourcesDir(), "yaml");
 		jsonFile = new File(jsonDir, "person.json");
@@ -129,6 +130,20 @@ public class JsonToYamlExtensionsTest
 		expected = expected.replace("\n", "").replace("\r", "").replace(" ", "");
 		actual = actual.replace("\n", "").replace("\r", "").replace(" ", "");
 		assertEquals(expected, actual);
+		File newFile = new File(yamlDir, "new-collection-file.yaml");
+		JsonToYamlExtensions.toYaml(jsonCollectionFile, newFile);
+		expected = "---\n" + "- person:\n" + "    name: \"Anna\"\n" + "    nickname: \"beast\"\n"
+			+ "    gender: \"FEMALE\"\n" + "    about: \"Ha ha ha...\"\n" + "    married: true\n"
+			+ "  id: \"23\"\n" + "- person:\n" + "    name: \"Andreas\"\n"
+			+ "    nickname: \"cute\"\n" + "    gender: \"MALE\"\n" + "    about: \"fine person\"\n"
+			+ "    married: false\n" + "  id: \"24\"\n" + "- person:\n" + "    name: \"Tatjana\"\n"
+			+ "    nickname: \"beautiful\"\n" + "    gender: \"FEMALE\"\n"
+			+ "    about: \"Im hot\"\n" + "    married: false\n" + "  id: \"25\"\n";
+		actual = ReadFileExtensions.fromFile(yamlCollectionFile);
+		expected = expected.replace("\n", "").replace("\r", "").replace(" ", "");
+		actual = actual.replace("\n", "").replace("\r", "").replace(" ", "");
+		assertEquals(expected, actual);
+		DeleteFileExtensions.delete(newFile);
 	}
 
 	/**

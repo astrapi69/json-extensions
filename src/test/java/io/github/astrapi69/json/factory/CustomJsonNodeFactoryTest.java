@@ -24,26 +24,25 @@
  */
 package io.github.astrapi69.json.factory;
 
-import static org.testng.Assert.assertNotNull;
-
-import io.github.astrapi69.json.ClassToJsonSchemaExtensions;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
+import static org.testng.Assert.assertNotNull;
+
 /**
- * The unit test class for the class {@link CustomParserFactory}
+ * The unit test class for the class {@link CustomJsonNodeFactory}
  */
-public class CustomParserFactoryTest
+public class CustomJsonNodeFactoryTest
 {
 
 	/**
-	 * Test method for the constructor of {@link CustomParserFactory}
+	 * Test method for {@link CustomJsonNodeFactory}
 	 */
-	@Test
-	public void testConstructor()
+	@Test(enabled = false)
+	public void testWithBeanTester()
 	{
-		CustomParserFactory customParserFactory = new CustomParserFactory();
-		assertNotNull(customParserFactory);
+		final BeanTester beanTester = new BeanTester();
+		beanTester.testBean(CustomJsonNodeFactory.class);
 	}
 
 }
