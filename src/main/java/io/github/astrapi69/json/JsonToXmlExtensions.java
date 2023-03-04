@@ -40,7 +40,7 @@ public final class JsonToXmlExtensions
 	}
 
 	/**
-	 * Transform the given json as {@link String} object to a xml as {@link String} object.
+	 * Transform the given json as {@link String} object to a xml as {@link String} object
 	 *
 	 * @param jsonString
 	 *            the json as {@link String} object
