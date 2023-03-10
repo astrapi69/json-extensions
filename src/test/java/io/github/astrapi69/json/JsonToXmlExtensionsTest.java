@@ -120,8 +120,7 @@ public class JsonToXmlExtensionsTest
 	 * @throws JSONException
 	 *             if there is a syntax error in the source string or a duplicated key.
 	 */
-	public static String toXml(final String jsonString)
-		throws XMLStreamException, IOException
+	public static String toXml(final String jsonString) throws XMLStreamException, IOException
 	{
 		InputStream json = new ByteArrayInputStream(jsonString.getBytes(StandardCharsets.UTF_8));
 		ByteArrayOutputStream xml = new ByteArrayOutputStream();
@@ -130,7 +129,7 @@ public class JsonToXmlExtensionsTest
 		{
 			new JsonStreamXMLWriter(reader,
 				new BufferedWriter(new OutputStreamWriter(xml, StandardCharsets.UTF_8)))
-				.convert(StandardCharsets.UTF_8.name(), "1.0");
+					.convert(StandardCharsets.UTF_8.name(), "1.0");
 			String xmlString = xml.toString(StandardCharsets.UTF_8.name());
 			return xmlString;
 		}
