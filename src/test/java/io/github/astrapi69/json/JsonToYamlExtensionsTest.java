@@ -29,12 +29,11 @@ import static org.testng.AssertJUnit.assertEquals;
 import java.io.File;
 import java.io.IOException;
 
-import io.github.astrapi69.file.delete.DeleteFileExtensions;
-import org.json.JSONException;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import io.github.astrapi69.file.delete.DeleteFileExtensions;
 import io.github.astrapi69.file.read.ReadFileExtensions;
 import io.github.astrapi69.file.search.PathFinder;
 

@@ -26,8 +26,6 @@ package io.github.astrapi69.json.factory;
 
 import static org.testng.Assert.assertNotNull;
 
-import io.github.astrapi69.json.ClassToJsonSchemaExtensions;
-import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
 /**

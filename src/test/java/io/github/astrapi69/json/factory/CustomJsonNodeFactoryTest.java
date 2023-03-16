@@ -27,8 +27,6 @@ package io.github.astrapi69.json.factory;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertNotNull;
-
 /**
  * The unit test class for the class {@link CustomJsonNodeFactory}
  */

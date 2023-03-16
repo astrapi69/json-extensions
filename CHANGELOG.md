@@ -1,6 +1,22 @@
 ## Change log
 ----------------------
 
+Version 2.3
+-------------
+
+ADDED:
+
+- new dependency com.fasterxml.jackson.module:jackson-module-jsonSchema in same version like the main jackson version
+  2.14.2
+- new test dependency throwable in version 2.3
+- new test dependency xml-extensions in version 8.2
+
+CHANGED:
+
+- update gradle to new version 8.0.2
+- update of gradle-plugin dependency of com.diffplug.spotless:spotless-plugin-gradle in version 6.17.0
+- removed dependency com.fasterxml.jackson.module:jackson-module-jaxb-annotations
+
 Version 2.2
 -------------
 
@@ -15,7 +31,7 @@ CHANGED:
 
 - update gradle to new version 8.0.1
 - update of com.github.ben-manes.versions.gradle.plugin to new version 0.46.0
-- new gradle-plugin dependency of com.diffplug.spotless:spotless-plugin-gradle in version 6.16.0
+- update of gradle-plugin dependency of com.diffplug.spotless:spotless-plugin-gradle in version 6.16.0
 - update of main dependency json to new version 20230227
 - update of main dependency jackson-* to new version 2.14.2
 - update of test dependency silly-collection to new version 21
@@ -34,7 +50,7 @@ ADDED:
 CHANGED:
 
 - update gradle to new version 7.6
-- new gradle-plugin dependency of 'com.diffplug.spotless:spotless-plugin-gradle' in version 6.13.0
+- update of gradle-plugin dependency of 'com.diffplug.spotless:spotless-plugin-gradle' in version 6.13.0
 - update of com.github.ben-manes.versions.gradle.plugin to new version 0.44.0
 - update of main dependency jackson-* to new version 2.14.1
 - update of main dependency json to new version 20220924
@@ -100,7 +116,8 @@ CHANGED:
 
 - update gradle to new version 7.1
 - changed all dependencies from groupid de.alpharogroup to new groupid io.github.astrapi69
-- update gradle-plugin dependency of gradle.plugin.com.hierynomus.gradle.plugins:license-gradle-plugin to new version 0.16.1
+- update gradle-plugin dependency of gradle.plugin.com.hierynomus.gradle.plugins:license-gradle-plugin to new version
+  0.16.1
 - changed to new package io.github.astrapi69
 
 Version 1
