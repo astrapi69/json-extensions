@@ -27,6 +27,7 @@ package io.github.astrapi69.json;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.jsonschema.JsonSchema;
+
 import io.github.astrapi69.json.factory.ObjectMapperFactory;
 
 /**

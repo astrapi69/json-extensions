@@ -24,15 +24,17 @@
  */
 package io.github.astrapi69.json;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.jsonschema.JsonSchema;
-import io.github.astrapi69.test.object.Employee;
-import org.meanbean.test.BeanTester;
-import org.testng.annotations.Test;
+import static org.testng.Assert.*;
 
 import java.io.IOException;
 
-import static org.testng.Assert.*;
+import org.meanbean.test.BeanTester;
+import org.testng.annotations.Test;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.jsonschema.JsonSchema;
+
+import io.github.astrapi69.test.object.Employee;
 
 /**
  * The unit test class for the class {@link ClassToJsonSchemaExtensions}

@@ -5,6 +5,8 @@ dependencies {
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$jacksonVersion")
     implementation("com.fasterxml.jackson.module:jackson-module-jaxb-annotations:$jacksonVersion")
 
+    testImplementation("io.github.astrapi69:throwable:$throwableVersion")
+    testImplementation("io.github.astrapi69:xml-extensions:$xmlExtensionsVersion")
     testImplementation("io.github.astrapi69:json2xml:$json2xmlVersion")
     testImplementation("javax.json:javax.json-api:$javaxJsonApiVersion")
     testImplementation("org.glassfish:javax.json:$javaxJsonVersion")

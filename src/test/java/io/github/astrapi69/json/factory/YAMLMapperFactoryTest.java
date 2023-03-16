@@ -26,10 +26,11 @@ package io.github.astrapi69.json.factory;
 
 import static org.testng.AssertJUnit.assertNotNull;
 
-import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
-import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
+
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 
 
 /**
