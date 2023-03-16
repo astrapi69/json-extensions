@@ -6,6 +6,7 @@ Version 2.3-SNAPSHOT
 
 ADDED:
 
+- new dependency com.fasterxml.jackson.module:jackson-module-jsonSchema in same version like the main jackson version 2.14.2
 - new test dependency throwable in version 2.3
 - new test dependency xml-extensions in version 8.2
 
@@ -13,6 +14,7 @@ CHANGED:
 
 - update gradle to new version 8.0.2
 - update of gradle-plugin dependency of com.diffplug.spotless:spotless-plugin-gradle in version 6.17.0
+- removed dependency com.fasterxml.jackson.module:jackson-module-jaxb-annotations
 
 Version 2.2
 -------------

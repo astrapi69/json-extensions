@@ -24,17 +24,18 @@
  */
 package io.github.astrapi69.json;
 
-import io.github.astrapi69.file.read.ReadFileExtensions;
-import io.github.astrapi69.file.search.PathFinder;
+import static org.testng.AssertJUnit.assertEquals;
+
+import java.io.File;
+import java.io.IOException;
+
 import org.json.JSONException;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.io.File;
-import java.io.IOException;
-
-import static org.testng.AssertJUnit.assertEquals;
+import io.github.astrapi69.file.read.ReadFileExtensions;
+import io.github.astrapi69.file.search.PathFinder;
 
 /**
  * The unit test class for the class {@link JsonToXmlExtensions}
@@ -97,6 +98,74 @@ public class JsonToXmlExtensionsTest
 		jsonString = ReadFileExtensions.fromFile(jsonCollectionFile);
 		actual = JsonToXmlExtensions.toXml(jsonString);
 		expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><array><person><gender>FEMALE</gender><name>Anna</name><nickname>beast</nickname><about>Ha ha ha...</about><married>true</married></person><id>23</id></array><array><person><gender>MALE</gender><name>Andreas</name><nickname>cute</nickname><about>fine person</about><married>false</married></person><id>24</id></array><array><person><gender>FEMALE</gender><name>Tatjana</name><nickname>beautiful</nickname><about>Im hot</about><married>false</married></person><id>25</id></array>";
+		assertEquals(actual, expected);
+	}
+
+	/**
+	 * Test method for {@link JsonToXmlExtensions#toXml(String, int)}
+	 *
+	 * @throws JSONException
+	 *             if there is a syntax error in the source string or a duplicated key
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
+	 */
+	@Test
+	public void testToXmlStringWithIndent() throws JSONException, IOException
+	{
+		String expected;
+		String actual;
+		String jsonString;
+
+		jsonString = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
+		actual = JsonToXmlExtensions.toXml(jsonString, 4);
+		expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + System.lineSeparator()
+			+ "<person>\n" + "    <gender>FEMALE</gender>\n" + "    <name>Anna</name>\n"
+			+ "    <nickname>beast</nickname>\n" + "    <about>Ha ha ha...</about>\n"
+			+ "    <married>true</married>\n" + "</person>\n" + "<id>23</id>\n";
+		assertEquals(actual, expected);
+
+		jsonString = ReadFileExtensions.fromFile(jsonFile);
+		actual = JsonToXmlExtensions.toXml(jsonString, 4);
+		assertEquals(actual, expected);
+
+		jsonString = ReadFileExtensions.fromFile(jsonListFile);
+		actual = JsonToXmlExtensions.toXml(jsonString, 4);
+		expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + System.lineSeparator()
+			+ "<array>\n" + "    <person>\n" + "        <gender>FEMALE</gender>\n"
+			+ "        <name>Anna</name>\n" + "        <nickname>beast</nickname>\n"
+			+ "        <about>Ha ha ha...</about>\n" + "        <married>true</married>\n"
+			+ "    </person>\n" + "    <id>23</id>\n" + "</array>\n" + "<array>\n"
+			+ "    <person>\n" + "        <gender>MALE</gender>\n"
+			+ "        <name>Andreas</name>\n" + "        <nickname>cute</nickname>\n"
+			+ "        <about>fine person</about>\n" + "        <married>false</married>\n"
+			+ "    </person>\n" + "    <id>24</id>\n" + "</array>\n" + "<array>\n"
+			+ "    <person>\n" + "        <gender>FEMALE</gender>\n"
+			+ "        <name>Tatjana</name>\n" + "        <nickname>beautiful</nickname>\n"
+			+ "        <about>Im hot</about>\n" + "        <married>false</married>\n"
+			+ "    </person>\n" + "    <id>25</id>\n" + "</array>\n";
+		assertEquals(actual, expected);
+
+		jsonString = ReadFileExtensions.fromFile(jsonMapFile);
+		actual = JsonToXmlExtensions.toXml(jsonString, 4);
+		expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + System.lineSeparator()
+			+ "<1>0</1>\n" + "<2>0</2>\n" + "<3>0</3>\n" + "<4>0</4>\n" + "<5>0</5>\n";
+		assertEquals(actual, expected);
+
+		jsonString = ReadFileExtensions.fromFile(jsonCollectionFile);
+		actual = JsonToXmlExtensions.toXml(jsonString, 4);
+		expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + System.lineSeparator()
+			+ "<array>\n" + "    <person>\n" + "        <gender>FEMALE</gender>\n"
+			+ "        <name>Anna</name>\n" + "        <nickname>beast</nickname>\n"
+			+ "        <about>Ha ha ha...</about>\n" + "        <married>true</married>\n"
+			+ "    </person>\n" + "    <id>23</id>\n" + "</array>\n" + "<array>\n"
+			+ "    <person>\n" + "        <gender>MALE</gender>\n"
+			+ "        <name>Andreas</name>\n" + "        <nickname>cute</nickname>\n"
+			+ "        <about>fine person</about>\n" + "        <married>false</married>\n"
+			+ "    </person>\n" + "    <id>24</id>\n" + "</array>\n" + "<array>\n"
+			+ "    <person>\n" + "        <gender>FEMALE</gender>\n"
+			+ "        <name>Tatjana</name>\n" + "        <nickname>beautiful</nickname>\n"
+			+ "        <about>Im hot</about>\n" + "        <married>false</married>\n"
+			+ "    </person>\n" + "    <id>25</id>\n" + "</array>\n";
 		assertEquals(actual, expected);
 	}
 

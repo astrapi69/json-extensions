@@ -26,7 +26,8 @@ package io.github.astrapi69.json;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.jsonschema.JsonSchema;
+import com.fasterxml.jackson.module.jsonSchema.JsonSchema;
+import com.fasterxml.jackson.module.jsonSchema.JsonSchemaGenerator;
 
 import io.github.astrapi69.json.factory.ObjectMapperFactory;
 
@@ -40,32 +41,53 @@ public class ClassToJsonSchemaExtensions
 	/**
 	 * Transforms the given java class object to json schema as string
 	 *
+	 * @param schema
+	 *            the {@link JsonSchema} object
+	 * @return the json schema as string
+	 * @throws JsonProcessingException
+	 *             If an error occurs when converting object to String
+	 */
+	public static String toString(JsonSchema schema) throws JsonProcessingException
+	{
+		ObjectMapper objectMapper = ObjectMapperFactory.newObjectMapper();
+		return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(schema);
+	}
+
+	/**
+	 * Transforms the given java class object to json schema as string
+	 *
+	 * @param <T>
+	 *            the generic type
 	 * @param clazz
 	 *            the clazz
 	 * @return the json schema as string
 	 * @throws JsonProcessingException
 	 *             If an error occurs when converting object to String
 	 */
-	public static String toJsonSchemaAsString(Class clazz) throws JsonProcessingException
+	public static <T> String toJsonSchemaAsString(Class<T> clazz) throws JsonProcessingException
 	{
-		ObjectMapper objectMapper = ObjectMapperFactory.newJaxbObjectMapper();
-		final JsonSchema jsonSchema = objectMapper.generateJsonSchema(clazz);
-		return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonSchema);
+		ObjectMapper objectMapper = ObjectMapperFactory.newObjectMapper();
+		JsonSchemaGenerator schemaGenerator = new JsonSchemaGenerator(objectMapper);
+		JsonSchema schema = schemaGenerator.generateSchema(clazz);
+		return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(schema);
 	}
 
 
 	/**
 	 * Transforms the given java class object to json schema
 	 *
+	 * @param <T>
+	 *            the generic type
 	 * @param clazz
 	 *            the clazz
 	 * @return the json schema
 	 * @throws JsonProcessingException
 	 *             If an error occurs when converting object to String
 	 */
-	public static JsonSchema toJsonSchema(Class clazz) throws JsonProcessingException
+	public static <T> JsonSchema toJsonSchema(Class<T> clazz) throws JsonProcessingException
 	{
-		ObjectMapper objectMapper = ObjectMapperFactory.newJaxbObjectMapper();
-		return objectMapper.generateJsonSchema(clazz);
+		ObjectMapper objectMapper = ObjectMapperFactory.newObjectMapper();
+		JsonSchemaGenerator schemaGenerator = new JsonSchemaGenerator(objectMapper);
+		return schemaGenerator.generateSchema(clazz);
 	}
 }

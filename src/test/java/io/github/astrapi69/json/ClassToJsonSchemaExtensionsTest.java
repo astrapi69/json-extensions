@@ -26,13 +26,11 @@ package io.github.astrapi69.json;
 
 import static org.testng.Assert.*;
 
-import java.io.IOException;
-
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.jsonschema.JsonSchema;
+import com.fasterxml.jackson.module.jsonSchema.JsonSchema;
 
 import io.github.astrapi69.test.object.Employee;
 
@@ -67,18 +65,27 @@ public class ClassToJsonSchemaExtensionsTest
 		actual = ClassToJsonSchemaExtensions.toJsonSchemaAsString(Employee.class);
 		assertNotNull(actual);
 		expected = // language=json
-			"{\n" + "  \"type\" : \"object\",\n" + "  \"properties\" : {\n" + "    \"id\" : {\n"
-				+ "      \"type\" : \"string\"\n" + "    },\n" + "    \"person\" : {\n"
-				+ "      \"type\" : \"object\",\n" + "      \"properties\" : {\n"
-				+ "        \"about\" : {\n" + "          \"type\" : \"string\"\n" + "        },\n"
-				+ "        \"gender\" : {\n" + "          \"type\" : \"string\",\n"
+			"{\n" + "  \"type\" : \"object\",\n"
+				+ "  \"id\" : \"urn:jsonschema:io:github:astrapi69:test:object:Employee\",\n"
+				+ "  \"properties\" : {\n" + "    \"id\" : {\n" + "      \"type\" : \"string\"\n"
+				+ "    },\n" + "    \"person\" : {\n" + "      \"type\" : \"object\",\n"
+				+ "      \"id\" : \"urn:jsonschema:io:github:astrapi69:test:object:Person\",\n"
+				+ "      \"properties\" : {\n" + "        \"about\" : {\n"
+				+ "          \"type\" : \"string\"\n" + "        },\n" + "        \"gender\" : {\n"
+				+ "          \"type\" : \"string\",\n"
 				+ "          \"enum\" : [ \"FEMALE\", \"MALE\", \"UNDEFINED\" ]\n" + "        },\n"
 				+ "        \"married\" : {\n" + "          \"type\" : \"boolean\"\n"
 				+ "        },\n" + "        \"name\" : {\n" + "          \"type\" : \"string\"\n"
 				+ "        },\n" + "        \"nickname\" : {\n"
 				+ "          \"type\" : \"string\"\n" + "        }\n" + "      }\n" + "    },\n"
-				+ "    \"subOrdinates\" : {\n" + "      \"type\" : \"array\"\n" + "    }\n"
-				+ "  }\n" + "}";
+				+ "    \"subOrdinates\" : {\n" + "      \"type\" : \"array\",\n"
+				+ "      \"items\" : {\n" + "        \"type\" : \"object\",\n"
+				+ "        \"$ref\" : \"urn:jsonschema:io:github:astrapi69:test:object:Employee\"\n"
+				+ "      }\n" + "    }\n" + "  }\n" + "}";
+		// remove new line characters for compare only content
+		actual = actual.replace("\r", "");
+		actual = actual.replace("\n", "");
+		expected = expected.replace("\n", "");
 		assertEquals(actual, expected);
 	}
 
@@ -98,8 +105,27 @@ public class ClassToJsonSchemaExtensionsTest
 
 		jsonSchema = ClassToJsonSchemaExtensions.toJsonSchema(Employee.class);
 		assertNotNull(jsonSchema);
-		expected = "{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"string\"},\"person\":{\"type\":\"object\",\"properties\":{\"about\":{\"type\":\"string\"},\"gender\":{\"type\":\"string\",\"enum\":[\"FEMALE\",\"MALE\",\"UNDEFINED\"]},\"married\":{\"type\":\"boolean\"},\"name\":{\"type\":\"string\"},\"nickname\":{\"type\":\"string\"}}},\"subOrdinates\":{\"type\":\"array\"}}}";
-		actual = jsonSchema.toString();
+		expected = "{\n" + "  \"type\" : \"object\",\n"
+			+ "  \"id\" : \"urn:jsonschema:io:github:astrapi69:test:object:Employee\",\n"
+			+ "  \"properties\" : {\n" + "    \"id\" : {\n" + "      \"type\" : \"string\"\n"
+			+ "    },\n" + "    \"person\" : {\n" + "      \"type\" : \"object\",\n"
+			+ "      \"id\" : \"urn:jsonschema:io:github:astrapi69:test:object:Person\",\n"
+			+ "      \"properties\" : {\n" + "        \"about\" : {\n"
+			+ "          \"type\" : \"string\"\n" + "        },\n" + "        \"gender\" : {\n"
+			+ "          \"type\" : \"string\",\n"
+			+ "          \"enum\" : [ \"FEMALE\", \"MALE\", \"UNDEFINED\" ]\n" + "        },\n"
+			+ "        \"married\" : {\n" + "          \"type\" : \"boolean\"\n" + "        },\n"
+			+ "        \"name\" : {\n" + "          \"type\" : \"string\"\n" + "        },\n"
+			+ "        \"nickname\" : {\n" + "          \"type\" : \"string\"\n" + "        }\n"
+			+ "      }\n" + "    },\n" + "    \"subOrdinates\" : {\n"
+			+ "      \"type\" : \"array\",\n" + "      \"items\" : {\n"
+			+ "        \"type\" : \"object\",\n"
+			+ "        \"$ref\" : \"urn:jsonschema:io:github:astrapi69:test:object:Employee\"\n"
+			+ "      }\n" + "    }\n" + "  }\n" + "}";
+		actual = ClassToJsonSchemaExtensions.toString(jsonSchema);
+		actual = actual.replace("\r", "");
+		actual = actual.replace("\n", "");
+		expected = expected.replace("\n", "");
 		assertEquals(actual, expected);
 	}
 }

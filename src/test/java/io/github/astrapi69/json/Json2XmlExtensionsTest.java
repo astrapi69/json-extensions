@@ -20,15 +20,8 @@
  */
 package io.github.astrapi69.json;
 
-import io.github.astrapi69.file.read.ReadFileExtensions;
-import io.github.astrapi69.file.search.PathFinder;
-import io.github.astrapi69.json.to.xml.JsonStreamXMLWriter;
-import org.json.JSONException;
-import org.meanbean.test.BeanTester;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import static org.testng.AssertJUnit.assertEquals;
 
-import javax.xml.stream.XMLStreamException;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
@@ -41,7 +34,16 @@ import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 
-import static org.testng.AssertJUnit.assertEquals;
+import javax.xml.stream.XMLStreamException;
+
+import org.json.JSONException;
+import org.meanbean.test.BeanTester;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import io.github.astrapi69.file.read.ReadFileExtensions;
+import io.github.astrapi69.file.search.PathFinder;
+import io.github.astrapi69.json.to.xml.JsonStreamXMLWriter;
 
 /**
  * The unit test class for the class {@link JsonToXmlExtensions}
@@ -70,12 +72,12 @@ public class Json2XmlExtensionsTest
 	{
 		InputStream json = new ByteArrayInputStream(jsonString.getBytes(StandardCharsets.UTF_8));
 		ByteArrayOutputStream xml = new ByteArrayOutputStream();
-		try (Reader reader = new BufferedReader(
-			new InputStreamReader(json, StandardCharsets.UTF_8)))
+		try (
+			Reader reader = new BufferedReader(new InputStreamReader(json, StandardCharsets.UTF_8)))
 		{
 			new JsonStreamXMLWriter(reader,
-				new BufferedWriter(new OutputStreamWriter(xml, StandardCharsets.UTF_8))).convert(
-				StandardCharsets.UTF_8.name(), "1.0");
+				new BufferedWriter(new OutputStreamWriter(xml, StandardCharsets.UTF_8)))
+					.convert(StandardCharsets.UTF_8.name(), "1.0");
 			return xml.toString(StandardCharsets.UTF_8);
 		}
 	}
