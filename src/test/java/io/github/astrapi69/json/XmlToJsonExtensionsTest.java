@@ -42,6 +42,9 @@ import io.github.astrapi69.file.search.PathFinder;
 public class XmlToJsonExtensionsTest
 {
 
+	File xmlDir;
+	File xmlFile;
+
 	/**
 	 * Test method for {@link XmlToJsonExtensions}
 	 */
@@ -51,9 +54,6 @@ public class XmlToJsonExtensionsTest
 		final BeanTester beanTester = new BeanTester();
 		beanTester.testBean(XmlToJsonExtensions.class);
 	}
-
-	File xmlDir;
-	File xmlFile;
 
 	@BeforeMethod
 	protected void setUp()

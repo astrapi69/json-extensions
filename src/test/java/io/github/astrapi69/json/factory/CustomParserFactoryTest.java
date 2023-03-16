@@ -26,10 +26,7 @@ package io.github.astrapi69.json.factory;
 
 import static org.testng.Assert.assertNotNull;
 
-import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
-
-import io.github.astrapi69.json.ClassToJsonSchemaExtensions;
 
 /**
  * The unit test class for the class {@link CustomParserFactory}

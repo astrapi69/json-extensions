@@ -6,7 +6,8 @@ Version 2.3-SNAPSHOT
 
 ADDED:
 
-- new dependency com.fasterxml.jackson.module:jackson-module-jsonSchema in same version like the main jackson version 2.14.2
+- new dependency com.fasterxml.jackson.module:jackson-module-jsonSchema in same version like the main jackson version
+  2.14.2
 - new test dependency throwable in version 2.3
 - new test dependency xml-extensions in version 8.2
 
@@ -115,7 +116,8 @@ CHANGED:
 
 - update gradle to new version 7.1
 - changed all dependencies from groupid de.alpharogroup to new groupid io.github.astrapi69
-- update gradle-plugin dependency of gradle.plugin.com.hierynomus.gradle.plugins:license-gradle-plugin to new version 0.16.1
+- update gradle-plugin dependency of gradle.plugin.com.hierynomus.gradle.plugins:license-gradle-plugin to new version
+  0.16.1
 - changed to new package io.github.astrapi69
 
 Version 1

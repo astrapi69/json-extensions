@@ -24,7 +24,8 @@
  */
 package io.github.astrapi69.json;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
 
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;

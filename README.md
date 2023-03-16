@@ -26,10 +26,13 @@ The source code comes under the liberal MIT License, making json-extensions grea
 ## Maven dependency
 
 Maven dependency is now on sonatype.
-Check out [sonatype repository](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~json-extensions~~~) for latest snapshots and
+Check
+out [sonatype repository](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~json-extensions~~~)
+for latest snapshots and
 releases.
 
-Add the following maven dependency to your project `pom.xml` if you want to import the core functionality of json-extensions:
+Add the following maven dependency to your project `pom.xml` if you want to import the core functionality of
+json-extensions:
 
 Than you can add the dependency to your dependencies:
 
@@ -91,35 +94,40 @@ or over bitcoin(BTC) with this address:
 
 bc1ql2y99q7e8psndhcc3gferk03esw3qqf677rhjy
 
-<img src="https://github.com/astrapi69/jgeohash/blob/master/src/main/resources/img/bc1ql2y99q7e8psndhcc3gferk03esw3qqf677rhjy.png"
+<img
+src="https://github.com/astrapi69/jgeohash/blob/master/src/main/resources/img/bc1ql2y99q7e8psndhcc3gferk03esw3qqf677rhjy.png"
 alt="Donation Bitcoin Wallet" width="250"/>
 
 or over FIO with this address:
 
 FIO7tFMUVAA9cHiPPqKMfMXiSxHrbpiFyRYqTketNuM67aULuwjop
 
-<img src="https://github.com/astrapi69/jgeohash/blob/master/src/main/resources/img/FIO7tFMUVAA9cHiPPqKMfMXiSxHrbpiFyRYqTketNuM67aULuwjop.png"
+<img
+src="https://github.com/astrapi69/jgeohash/blob/master/src/main/resources/img/FIO7tFMUVAA9cHiPPqKMfMXiSxHrbpiFyRYqTketNuM67aULuwjop.png"
 alt="Donation FIO Wallet" width="250"/>
 
 or over Ethereum(ETH) with:
 
 0xc057D159D3C8f3311E73568b334FF6fE82EB2b7D
 
-<img src="https://github.com/astrapi69/jgeohash/blob/master/src/main/resources/img/0xc057D159D3C8f3311E73568b334FF6fE82EB2b7D.png"
+<img
+src="https://github.com/astrapi69/jgeohash/blob/master/src/main/resources/img/0xc057D159D3C8f3311E73568b334FF6fE82EB2b7D.png"
 alt="Donation Ethereum Wallet" width="250"/>
 
 or over Ethereum Classic(ETC) with:
 
 0xF708cA86D86C246B69c3F4BAe431eBbe0c2bfddD
 
-<img src="https://github.com/astrapi69/jgeohash/blob/master/src/main/resources/img/0xF708cA86D86C246B69c3F4BAe431eBbe0c2bfddD.png"
+<img
+src="https://github.com/astrapi69/jgeohash/blob/master/src/main/resources/img/0xF708cA86D86C246B69c3F4BAe431eBbe0c2bfddD.png"
 alt="Donation Ethereum Classic Wallet" width="250"/>
 
 or over Dogecoin(DOGE) with:
 
 D5yi4Um8cpakd6yPRm2hGWuQ5nrVzhSSW1
 
-<img src="https://github.com/astrapi69/jgeohash/blob/master/src/main/resources/img/D5yi4Um8cpakd6yPRm2hGWuQ5nrVzhSSW1.png"
+<img
+src="https://github.com/astrapi69/jgeohash/blob/master/src/main/resources/img/D5yi4Um8cpakd6yPRm2hGWuQ5nrVzhSSW1.png"
 alt="Donation Dogecoin Wallet" width="250"/>
 
 or over Monero(XMR) with:
@@ -144,7 +152,8 @@ Release version numbers will be incremented in the following format:
 
 `<major>.<minor>.<patch>`
 
-For detailed information on versioning you can visit the [wiki page](https://github.com/lightblueseas/mvn-parent-projects/wiki/Semantic-Versioning).
+For detailed information on versioning you can visit
+the [wiki page](https://github.com/lightblueseas/mvn-parent-projects/wiki/Semantic-Versioning).
 
 ## Want to Help and improve it? ###
 
@@ -158,9 +167,11 @@ Don't forget to add new units tests on your changes.
 
 ## Contacting the Developers
 
-Do not hesitate to contact the json-extensions developers with your questions, concerns, comments, bug reports, or feature requests.
+Do not hesitate to contact the json-extensions developers with your questions, concerns, comments, bug reports, or
+feature requests.
 
-- Feature requests, questions and bug reports can be reported at the [issues page](https://github.com/astrapi69/json-extensions/issues).
+- Feature requests, questions and bug reports can be reported at
+  the [issues page](https://github.com/astrapi69/json-extensions/issues).
 
 ## Credits
 
