@@ -34,6 +34,7 @@ import org.json.XML;
  */
 public final class JsonToXmlExtensions
 {
+	private static final String XML_HEADER = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
 
 	private JsonToXmlExtensions()
 	{
@@ -53,12 +54,39 @@ public final class JsonToXmlExtensions
 		if (jsonString.startsWith("["))
 		{
 			JSONArray objects = new JSONArray(jsonString);
-			return XML.toString(objects);
+			String xml = XML_HEADER + XML.toString(objects);
+			return xml;
 		}
 		else
 		{
 			final JSONObject json = new JSONObject(jsonString);
-			return XML.toString(json);
+			String xml = XML_HEADER + XML.toString(json);
+			return xml;
+		}
+	}
+
+	/**
+	 * Transform the given json as {@link String} object to a xml as {@link String} object
+	 *
+	 * @param jsonString
+	 * 	the json as {@link String} object
+	 * @return the transformed xml as {@link String} object
+	 * @throws JSONException
+	 * 	if there is a syntax error in the source string or a duplicated key.
+	 */
+	public static String toXml(final String jsonString, int indent) throws JSONException
+	{
+		if (jsonString.startsWith("["))
+		{
+			JSONArray objects = new JSONArray(jsonString);
+			String xml = XML_HEADER + XML.toString(objects, indent);
+			return xml;
+		}
+		else
+		{
+			final JSONObject json = new JSONObject(jsonString);
+			String xml = XML_HEADER + XML.toString(json, indent);
+			return xml;
 		}
 	}
 

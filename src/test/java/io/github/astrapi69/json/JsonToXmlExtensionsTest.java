@@ -24,30 +24,17 @@
  */
 package io.github.astrapi69.json;
 
-import static org.testng.AssertJUnit.assertEquals;
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.Reader;
-import java.nio.charset.StandardCharsets;
-
-import javax.xml.stream.XMLStreamException;
-
+import io.github.astrapi69.file.read.ReadFileExtensions;
+import io.github.astrapi69.file.search.PathFinder;
 import org.json.JSONException;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import io.github.astrapi69.file.read.ReadFileExtensions;
-import io.github.astrapi69.file.search.PathFinder;
-import io.github.astrapi69.json.to.xml.JsonStreamXMLWriter;
+import java.io.File;
+import java.io.IOException;
+
+import static org.testng.AssertJUnit.assertEquals;
 
 /**
  * The unit test class for the class {@link JsonToXmlExtensions}
@@ -90,7 +77,7 @@ public class JsonToXmlExtensionsTest
 
 		jsonString = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
 		actual = JsonToXmlExtensions.toXml(jsonString);
-		expected = "<person><gender>FEMALE</gender><name>Anna</name><nickname>beast</nickname><about>Ha ha ha...</about><married>true</married></person><id>23</id>";
+		expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><person><gender>FEMALE</gender><name>Anna</name><nickname>beast</nickname><about>Ha ha ha...</about><married>true</married></person><id>23</id>";
 		assertEquals(actual, expected);
 
 		jsonString = ReadFileExtensions.fromFile(jsonFile);
@@ -99,82 +86,17 @@ public class JsonToXmlExtensionsTest
 
 		jsonString = ReadFileExtensions.fromFile(jsonListFile);
 		actual = JsonToXmlExtensions.toXml(jsonString);
-		expected = "<array><person><gender>FEMALE</gender><name>Anna</name><nickname>beast</nickname><about>Ha ha ha...</about><married>true</married></person><id>23</id></array><array><person><gender>MALE</gender><name>Andreas</name><nickname>cute</nickname><about>fine person</about><married>false</married></person><id>24</id></array><array><person><gender>FEMALE</gender><name>Tatjana</name><nickname>beautiful</nickname><about>Im hot</about><married>false</married></person><id>25</id></array>";
+		expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><array><person><gender>FEMALE</gender><name>Anna</name><nickname>beast</nickname><about>Ha ha ha...</about><married>true</married></person><id>23</id></array><array><person><gender>MALE</gender><name>Andreas</name><nickname>cute</nickname><about>fine person</about><married>false</married></person><id>24</id></array><array><person><gender>FEMALE</gender><name>Tatjana</name><nickname>beautiful</nickname><about>Im hot</about><married>false</married></person><id>25</id></array>";
 		assertEquals(actual, expected);
 
 		jsonString = ReadFileExtensions.fromFile(jsonMapFile);
 		actual = JsonToXmlExtensions.toXml(jsonString);
-		expected = "<1>0</1><2>0</2><3>0</3><4>0</4><5>0</5>";
+		expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><1>0</1><2>0</2><3>0</3><4>0</4><5>0</5>";
 		assertEquals(actual, expected);
 
 		jsonString = ReadFileExtensions.fromFile(jsonCollectionFile);
 		actual = JsonToXmlExtensions.toXml(jsonString);
-		expected = "<array><person><gender>FEMALE</gender><name>Anna</name><nickname>beast</nickname><about>Ha ha ha...</about><married>true</married></person><id>23</id></array><array><person><gender>MALE</gender><name>Andreas</name><nickname>cute</nickname><about>fine person</about><married>false</married></person><id>24</id></array><array><person><gender>FEMALE</gender><name>Tatjana</name><nickname>beautiful</nickname><about>Im hot</about><married>false</married></person><id>25</id></array>";
-		assertEquals(actual, expected);
-	}
-
-	/**
-	 * Transform the given json as {@link String} object to a xml as {@link String} object
-	 *
-	 * @param jsonString
-	 *            the json as {@link String} object
-	 * @return the transformed xml as {@link String} object
-	 * @throws JSONException
-	 *             if there is a syntax error in the source string or a duplicated key.
-	 */
-	public static String toXml(final String jsonString) throws XMLStreamException, IOException
-	{
-		InputStream json = new ByteArrayInputStream(jsonString.getBytes(StandardCharsets.UTF_8));
-		ByteArrayOutputStream xml = new ByteArrayOutputStream();
-		try (
-			Reader reader = new BufferedReader(new InputStreamReader(json, StandardCharsets.UTF_8)))
-		{
-			new JsonStreamXMLWriter(reader,
-				new BufferedWriter(new OutputStreamWriter(xml, StandardCharsets.UTF_8)))
-					.convert(StandardCharsets.UTF_8.name(), "1.0");
-			String xmlString = xml.toString(StandardCharsets.UTF_8.name());
-			return xmlString;
-		}
-	}
-
-	/**
-	 * Test method for {@link JsonToXmlExtensions#toXml(String)}
-	 *
-	 * @throws JSONException
-	 *             if there is a syntax error in the source string or a duplicated key
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred
-	 */
-	@Test
-	public void testToXmlStringWithJson2Xml() throws XMLStreamException, IOException
-	{
-		String expected;
-		String actual;
-		String jsonString;
-
-		jsonString = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
-		actual = toXml(jsonString);
-		expected = "<?xml version='1.0' encoding='UTF-8'?><map xmlns=\"http://www.w3.org/2005/xpath-functions\"><map key=\"person\"><string key=\"name\">Anna</string><string key=\"nickname\">beast</string><string key=\"gender\">FEMALE</string><string key=\"about\">Ha ha ha...</string><boolean key=\"married\">true</boolean></map><string key=\"id\">23</string></map>";
-		assertEquals(actual, expected);
-
-		jsonString = ReadFileExtensions.fromFile(jsonFile);
-		actual = toXml(jsonString);
-		expected = "<?xml version='1.0' encoding='UTF-8'?><map xmlns=\"http://www.w3.org/2005/xpath-functions\"><string key=\"id\">23</string><map key=\"person\"><string key=\"name\">Anna</string><string key=\"nickname\">beast</string><string key=\"gender\">FEMALE</string><string key=\"about\">Ha ha ha...</string><boolean key=\"married\">true</boolean></map><array key=\"subOrdinates\"/></map>";
-		assertEquals(actual, expected);
-
-		jsonString = ReadFileExtensions.fromFile(jsonListFile);
-		actual = toXml(jsonString);
-		expected = "<?xml version='1.0' encoding='UTF-8'?><array xmlns=\"http://www.w3.org/2005/xpath-functions\"><map><string key=\"id\">23</string><map key=\"person\"><string key=\"name\">Anna</string><string key=\"nickname\">beast</string><string key=\"gender\">FEMALE</string><string key=\"about\">Ha ha ha...</string><boolean key=\"married\">true</boolean></map><array key=\"subOrdinates\"/></map><map><string key=\"id\">24</string><map key=\"person\"><string key=\"name\">Andreas</string><string key=\"nickname\">cute</string><string key=\"gender\">MALE</string><string key=\"about\">fine person</string><boolean key=\"married\">false</boolean></map><array key=\"subOrdinates\"/></map><map><string key=\"id\">25</string><map key=\"person\"><string key=\"name\">Tatjana</string><string key=\"nickname\">beautiful</string><string key=\"gender\">FEMALE</string><string key=\"about\">Im hot</string><boolean key=\"married\">false</boolean></map><array key=\"subOrdinates\"/></map></array>";
-		assertEquals(actual, expected);
-
-		jsonString = ReadFileExtensions.fromFile(jsonMapFile);
-		actual = toXml(jsonString);
-		expected = "<?xml version='1.0' encoding='UTF-8'?><map xmlns=\"http://www.w3.org/2005/xpath-functions\"><number key=\"1\">0</number><number key=\"2\">0</number><number key=\"3\">0</number><number key=\"4\">0</number><number key=\"5\">0</number></map>";
-		assertEquals(actual, expected);
-
-		jsonString = ReadFileExtensions.fromFile(jsonCollectionFile);
-		actual = toXml(jsonString);
-		expected = "<?xml version='1.0' encoding='UTF-8'?><array xmlns=\"http://www.w3.org/2005/xpath-functions\"><map><map key=\"person\"><string key=\"name\">Anna</string><string key=\"nickname\">beast</string><string key=\"gender\">FEMALE</string><string key=\"about\">Ha ha ha...</string><boolean key=\"married\">true</boolean></map><string key=\"id\">23</string></map><map><map key=\"person\"><string key=\"name\">Andreas</string><string key=\"nickname\">cute</string><string key=\"gender\">MALE</string><string key=\"about\">fine person</string><boolean key=\"married\">false</boolean></map><string key=\"id\">24</string></map><map><map key=\"person\"><string key=\"name\">Tatjana</string><string key=\"nickname\">beautiful</string><string key=\"gender\">FEMALE</string><string key=\"about\">Im hot</string><boolean key=\"married\">false</boolean></map><string key=\"id\">25</string></map></array>";
+		expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><array><person><gender>FEMALE</gender><name>Anna</name><nickname>beast</nickname><about>Ha ha ha...</about><married>true</married></person><id>23</id></array><array><person><gender>MALE</gender><name>Andreas</name><nickname>cute</nickname><about>fine person</about><married>false</married></person><id>24</id></array><array><person><gender>FEMALE</gender><name>Tatjana</name><nickname>beautiful</nickname><about>Im hot</about><married>false</married></person><id>25</id></array>";
 		assertEquals(actual, expected);
 	}
 

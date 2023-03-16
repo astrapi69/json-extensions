@@ -24,17 +24,16 @@
  */
 package io.github.astrapi69.json;
 
-import static org.testng.AssertJUnit.assertEquals;
-
-import java.io.File;
-import java.io.IOException;
-
+import io.github.astrapi69.file.read.ReadFileExtensions;
+import io.github.astrapi69.file.search.PathFinder;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import io.github.astrapi69.file.read.ReadFileExtensions;
-import io.github.astrapi69.file.search.PathFinder;
+import java.io.File;
+import java.io.IOException;
+
+import static org.testng.AssertJUnit.assertEquals;
 
 /**
  * The unit test class for the class {@link XmlToJsonExtensions}
@@ -90,7 +89,7 @@ public class XmlToJsonExtensionsTest
 		assertEquals(expected, actual);
 
 		actual = JsonToXmlExtensions.toXml(actual);
-		expected = xmlString;
+		expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><person><gender>FEMALE</gender><name>Anna</name><nickname>beast</nickname><about>Ha ha ha...</about><married>true</married></person><id>23</id>";
 		assertEquals(expected, actual);
 
 		xmlString = "<array><person><gender>FEMALE</gender><name>Anna</name><nickname>beast</nickname><about>Ha ha ha...</about><married>true</married></person><id>23</id></array><array><person><gender>MALE</gender><name>Andreas</name><nickname>cute</nickname><about>fine person</about><married>false</married></person><id>24</id></array><array><person><gender>FEMALE</gender><name>Tatjana</name><nickname>beautiful</nickname><about>Im hot</about><married>false</married></person><id>25</id></array>";
@@ -101,7 +100,7 @@ public class XmlToJsonExtensionsTest
 		assertEquals(expected, actual);
 
 		actual = JsonToXmlExtensions.toXml(actual);
-		expected = xmlString;
+		expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><array><person><gender>FEMALE</gender><name>Anna</name><nickname>beast</nickname><about>Ha ha ha...</about><married>true</married></person><id>23</id></array><array><person><gender>MALE</gender><name>Andreas</name><nickname>cute</nickname><about>fine person</about><married>false</married></person><id>24</id></array><array><person><gender>FEMALE</gender><name>Tatjana</name><nickname>beautiful</nickname><about>Im hot</about><married>false</married></person><id>25</id></array>";
 		assertEquals(expected, actual);
 
 		xmlString = "<1>0</1><2>0</2><3>0</3><4>0</4><5>0</5>";
@@ -111,7 +110,7 @@ public class XmlToJsonExtensionsTest
 		assertEquals(expected, actual);
 
 		actual = JsonToXmlExtensions.toXml(actual);
-		expected = xmlString;
+		expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><1>0</1><2>0</2><3>0</3><4>0</4><5>0</5>";
 		assertEquals(expected, actual);
 
 
@@ -122,7 +121,7 @@ public class XmlToJsonExtensionsTest
 		assertEquals(expected, actual);
 
 		actual = JsonToXmlExtensions.toXml(actual);
-		expected = xmlString;
+		expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><array><person><gender>FEMALE</gender><name>Anna</name><nickname>beast</nickname><about>Ha ha ha...</about><married>true</married></person><id>23</id></array><array><person><gender>MALE</gender><name>Andreas</name><nickname>cute</nickname><about>fine person</about><married>false</married></person><id>24</id></array><array><person><gender>FEMALE</gender><name>Tatjana</name><nickname>beautiful</nickname><about>Im hot</about><married>false</married></person><id>25</id></array>";
 		assertEquals(expected, actual);
 	}
 }
