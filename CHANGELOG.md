@@ -4,7 +4,9 @@
 Version 2.4-SNAPSHOT
 -------------
 
+ADDED:
 
+- new test dependency xml-jackson-extensions in version 1.1
 
 Version 2.3
 -------------
