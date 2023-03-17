@@ -118,8 +118,7 @@ public class JsonToXmlExtensionsTest
 
 		jsonString = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
 		actual = JsonToXmlExtensions.toXml(jsonString, 4);
-		expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + System.lineSeparator()
-			+ "<person>\n" + "    <gender>FEMALE</gender>\n" + "    <name>Anna</name>\n"
+		expected = "<person>\n" + "    <gender>FEMALE</gender>\n" + "    <name>Anna</name>\n"
 			+ "    <nickname>beast</nickname>\n" + "    <about>Ha ha ha...</about>\n"
 			+ "    <married>true</married>\n" + "</person>\n" + "<id>23</id>\n";
 		assertEquals(actual, expected);
@@ -130,6 +129,72 @@ public class JsonToXmlExtensionsTest
 
 		jsonString = ReadFileExtensions.fromFile(jsonListFile);
 		actual = JsonToXmlExtensions.toXml(jsonString, 4);
+		expected = "<array>\n" + "    <person>\n" + "        <gender>FEMALE</gender>\n"
+			+ "        <name>Anna</name>\n" + "        <nickname>beast</nickname>\n"
+			+ "        <about>Ha ha ha...</about>\n" + "        <married>true</married>\n"
+			+ "    </person>\n" + "    <id>23</id>\n" + "</array>\n" + "<array>\n"
+			+ "    <person>\n" + "        <gender>MALE</gender>\n"
+			+ "        <name>Andreas</name>\n" + "        <nickname>cute</nickname>\n"
+			+ "        <about>fine person</about>\n" + "        <married>false</married>\n"
+			+ "    </person>\n" + "    <id>24</id>\n" + "</array>\n" + "<array>\n"
+			+ "    <person>\n" + "        <gender>FEMALE</gender>\n"
+			+ "        <name>Tatjana</name>\n" + "        <nickname>beautiful</nickname>\n"
+			+ "        <about>Im hot</about>\n" + "        <married>false</married>\n"
+			+ "    </person>\n" + "    <id>25</id>\n" + "</array>\n";
+		assertEquals(actual, expected);
+
+		jsonString = ReadFileExtensions.fromFile(jsonMapFile);
+		actual = JsonToXmlExtensions.toXml(jsonString, 4);
+		expected = "<1>0</1>\n" + "<2>0</2>\n" + "<3>0</3>\n" + "<4>0</4>\n" + "<5>0</5>\n";
+		assertEquals(actual, expected);
+
+		jsonString = ReadFileExtensions.fromFile(jsonCollectionFile);
+		actual = JsonToXmlExtensions.toXml(jsonString, 4);
+		expected = "<array>\n" + "    <person>\n" + "        <gender>FEMALE</gender>\n"
+			+ "        <name>Anna</name>\n" + "        <nickname>beast</nickname>\n"
+			+ "        <about>Ha ha ha...</about>\n" + "        <married>true</married>\n"
+			+ "    </person>\n" + "    <id>23</id>\n" + "</array>\n" + "<array>\n"
+			+ "    <person>\n" + "        <gender>MALE</gender>\n"
+			+ "        <name>Andreas</name>\n" + "        <nickname>cute</nickname>\n"
+			+ "        <about>fine person</about>\n" + "        <married>false</married>\n"
+			+ "    </person>\n" + "    <id>24</id>\n" + "</array>\n" + "<array>\n"
+			+ "    <person>\n" + "        <gender>FEMALE</gender>\n"
+			+ "        <name>Tatjana</name>\n" + "        <nickname>beautiful</nickname>\n"
+			+ "        <about>Im hot</about>\n" + "        <married>false</married>\n"
+			+ "    </person>\n" + "    <id>25</id>\n" + "</array>\n";
+		assertEquals(actual, expected);
+	}
+
+
+	/**
+	 * Test method for {@link JsonToXmlExtensions#toXml(String, int)}
+	 *
+	 * @throws JSONException
+	 *             if there is a syntax error in the source string or a duplicated key
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
+	 */
+	@Test
+	public void testToXmlStringWithIndentWithHeader() throws JSONException, IOException
+	{
+		String expected;
+		String actual;
+		String jsonString;
+
+		jsonString = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
+		actual = JsonToXmlExtensions.toXml(jsonString, 4, true);
+		expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + System.lineSeparator()
+			+ "<person>\n" + "    <gender>FEMALE</gender>\n" + "    <name>Anna</name>\n"
+			+ "    <nickname>beast</nickname>\n" + "    <about>Ha ha ha...</about>\n"
+			+ "    <married>true</married>\n" + "</person>\n" + "<id>23</id>\n";
+		assertEquals(actual, expected);
+
+		jsonString = ReadFileExtensions.fromFile(jsonFile);
+		actual = JsonToXmlExtensions.toXml(jsonString, 4, true);
+		assertEquals(actual, expected);
+
+		jsonString = ReadFileExtensions.fromFile(jsonListFile);
+		actual = JsonToXmlExtensions.toXml(jsonString, 4, true);
 		expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + System.lineSeparator()
 			+ "<array>\n" + "    <person>\n" + "        <gender>FEMALE</gender>\n"
 			+ "        <name>Anna</name>\n" + "        <nickname>beast</nickname>\n"
@@ -146,13 +211,13 @@ public class JsonToXmlExtensionsTest
 		assertEquals(actual, expected);
 
 		jsonString = ReadFileExtensions.fromFile(jsonMapFile);
-		actual = JsonToXmlExtensions.toXml(jsonString, 4);
+		actual = JsonToXmlExtensions.toXml(jsonString, 4, true);
 		expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + System.lineSeparator()
 			+ "<1>0</1>\n" + "<2>0</2>\n" + "<3>0</3>\n" + "<4>0</4>\n" + "<5>0</5>\n";
 		assertEquals(actual, expected);
 
 		jsonString = ReadFileExtensions.fromFile(jsonCollectionFile);
-		actual = JsonToXmlExtensions.toXml(jsonString, 4);
+		actual = JsonToXmlExtensions.toXml(jsonString, 4, true);
 		expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + System.lineSeparator()
 			+ "<array>\n" + "    <person>\n" + "        <gender>FEMALE</gender>\n"
 			+ "        <name>Anna</name>\n" + "        <nickname>beast</nickname>\n"

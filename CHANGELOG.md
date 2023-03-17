@@ -7,6 +7,7 @@ Version 2.4-SNAPSHOT
 ADDED:
 
 - new test dependency xml-jackson-extensions in version 1.1
+- new method that takes a flag that indicates if an xml header should be added
 
 Version 2.3
 -------------

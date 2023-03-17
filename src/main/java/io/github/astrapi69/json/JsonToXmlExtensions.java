@@ -76,15 +76,38 @@ public final class JsonToXmlExtensions
 	 */
 	public static String toXml(final String jsonString, int indent) throws JSONException
 	{
+		return toXml(jsonString, indent, false);
+	}
+
+	/**
+	 * Transform the given json as {@link String} object to a xml as {@link String} object
+	 *
+	 * @param jsonString
+	 *            the json as {@link String} object
+	 * @param indent
+	 *            the indent is the number of spaces to add to each level of indentation
+	 * @param withHeader
+	 *            the flag that indicates if an xml header should be added
+	 * @return the transformed xml as {@link String} object
+	 * @throws JSONException
+	 *             if there is a syntax error in the source string or a duplicated key.
+	 */
+	public static String toXml(final String jsonString, int indent, boolean withHeader)
+		throws JSONException
+	{
 		if (jsonString.startsWith("["))
 		{
 			JSONArray objects = new JSONArray(jsonString);
-			return XML_HEADER + System.lineSeparator() + XML.toString(objects, indent);
+			return withHeader
+				? XML_HEADER + System.lineSeparator() + XML.toString(objects, indent)
+				: XML.toString(objects, indent);
 		}
 		else
 		{
 			final JSONObject json = new JSONObject(jsonString);
-			return XML_HEADER + System.lineSeparator() + XML.toString(json, indent);
+			return withHeader
+				? XML_HEADER + System.lineSeparator() + XML.toString(json, indent)
+				: XML.toString(json, indent);
 		}
 	}
 
