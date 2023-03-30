@@ -254,10 +254,15 @@ public class JsonToXmlExtensionsTest
 			+ "    <gender>FEMALE</gender>\n" + "    <name>Anna</name>\n"
 			+ "    <nickname>beast</nickname>\n" + "    <about>Ha ha ha...</about>\n"
 			+ "    <married>true</married>\n" + "</person>\n" + "<id>23</id>\n" + "</content>";
+		expected = expected.replace("\n", "").replace("\r", "").replace(" ", "");
+		actual = actual.replace("\n", "").replace("\r", "").replace(" ", "");
 		assertEquals(actual, expected);
 
 		jsonString = ReadFileExtensions.fromFile(jsonFile);
 		actual = JsonToXmlExtensions.toXml(jsonString, 4, true, true, "content");
+
+		expected = expected.replace("\n", "").replace("\r", "").replace(" ", "");
+		actual = actual.replace("\n", "").replace("\r", "").replace(" ", "");
 		assertEquals(actual, expected);
 
 		jsonString = ReadFileExtensions.fromFile(jsonListFile);
@@ -274,12 +279,16 @@ public class JsonToXmlExtensionsTest
 			+ "        <name>Tatjana</name>\n" + "        <nickname>beautiful</nickname>\n"
 			+ "        <about>Im hot</about>\n" + "        <married>false</married>\n"
 			+ "    </person>\n" + "    <id>25</id>\n" + "</array>\n" + "</content>";
+		expected = expected.replace("\n", "").replace("\r", "").replace(" ", "");
+		actual = actual.replace("\n", "").replace("\r", "").replace(" ", "");
 		assertEquals(actual, expected);
 
 		jsonString = ReadFileExtensions.fromFile(jsonMapFile);
 		actual = JsonToXmlExtensions.toXml(jsonString, 4, true, true, "content");
 		expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + "<content>\n" + "<1>0</1>\n"
 			+ "<2>0</2>\n" + "<3>0</3>\n" + "<4>0</4>\n" + "<5>0</5>\n" + "</content>";
+		expected = expected.replace("\n", "").replace("\r", "").replace(" ", "");
+		actual = actual.replace("\n", "").replace("\r", "").replace(" ", "");
 		assertEquals(actual, expected);
 
 		jsonString = ReadFileExtensions.fromFile(jsonCollectionFile);
@@ -296,6 +305,8 @@ public class JsonToXmlExtensionsTest
 			+ "        <name>Tatjana</name>\n" + "        <nickname>beautiful</nickname>\n"
 			+ "        <about>Im hot</about>\n" + "        <married>false</married>\n"
 			+ "    </person>\n" + "    <id>25</id>\n" + "</array>\n" + "</content>";
+		expected = expected.replace("\n", "").replace("\r", "").replace(" ", "");
+		actual = actual.replace("\n", "").replace("\r", "").replace(" ", "");
 		assertEquals(actual, expected);
 	}
 

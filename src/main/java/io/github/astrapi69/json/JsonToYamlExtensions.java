@@ -32,7 +32,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import io.github.astrapi69.json.factory.ObjectMapperFactory;
-import io.github.astrapi69.json.factory.YAMLMapperFactory;
+import io.github.astrapi69.yaml.factory.YAMLMapperFactory;
 
 /**
  * The class {@link JsonToYamlExtensions} helps to transform a given json string to a yaml string

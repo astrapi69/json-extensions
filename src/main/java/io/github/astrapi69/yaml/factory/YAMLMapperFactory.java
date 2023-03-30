@@ -22,68 +22,55 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package io.github.astrapi69.json.factory;
-
-import static org.testng.AssertJUnit.assertNotNull;
-
-import org.meanbean.test.BeanTester;
-import org.testng.annotations.Test;
+package io.github.astrapi69.yaml.factory;
 
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 
-
 /**
- * The unit test class for the class {@link ObjectMapperFactory}
+ * The factory class {@link YAMLMapperFactory} for creating {@link YAMLMapper} objects
  */
-public class YAMLMapperFactoryTest
+public final class YAMLMapperFactory
 {
-
-	/**
-	 * Test method for {@link YAMLMapperFactory#newYAMLMapper()}
-	 */
-	@Test
-	public void testNewYAMLMapper()
+	private YAMLMapperFactory()
 	{
-		YAMLMapper actual;
-
-		actual = YAMLMapperFactory.newYAMLMapper();
-		assertNotNull(actual);
 	}
 
 	/**
-	 * Test method for {@link YAMLMapperFactory#newYAMLMapper(YAMLFactory)}
+	 * Factory method for create a new {@link YAMLMapper}
+	 *
+	 * @return the new {@link YAMLMapper}
 	 */
-	@Test
-	public void testNewYAMLMapperWithYAMLFactory()
+	public static YAMLMapper newYAMLMapper()
 	{
-		YAMLMapper actual;
-
-		actual = YAMLMapperFactory.newYAMLMapper(new YAMLFactory());
-		assertNotNull(actual);
-	}
-
-
-	/**
-	 * Test method for {@link YAMLMapperFactory#newYAMLMapper(YAMLMapper)}
-	 */
-	@Test
-	public void testNewYAMLMapperWithYAMLMapper()
-	{
-		YAMLMapper actual;
-
-		actual = YAMLMapperFactory.newYAMLMapper(new YAMLMapper());
-		assertNotNull(actual);
+		return new YAMLMapper();
 	}
 
 	/**
-	 * Test method for {@link YAMLMapperFactory}
+	 * Factory method for create a new {@link YAMLMapper}
+	 *
+	 * @param yamlFactory
+	 *            the {@link YAMLFactory} object
+	 *
+	 * @return the new {@link YAMLMapper}
 	 */
-	@Test
-	public void testWithBeanTester()
+	public static YAMLMapper newYAMLMapper(YAMLFactory yamlFactory)
 	{
-		final BeanTester beanTester = new BeanTester();
-		beanTester.testBean(YAMLMapperFactory.class);
+		return new YAMLMapper(yamlFactory);
 	}
+
+	/**
+	 * Factory method for create a new {@link YAMLMapper}
+	 *
+	 * @param yamlMapper
+	 *            the {@link YAMLMapper} object
+	 *
+	 * @return the new {@link YAMLMapper}
+	 */
+	public static YAMLMapper newYAMLMapper(YAMLMapper yamlMapper)
+	{
+		return new YAMLMapper(yamlMapper);
+	}
+
 
 }
