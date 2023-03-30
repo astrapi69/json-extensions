@@ -12,6 +12,8 @@ ADDED:
 - new extension class YamlFileToObjectExtensions
 - new extension class YamlStringToObjectExtensions
 - new extension class YamlToJsonExtensions
+- new extension class ObjectToYamlExtensions
+- new extension class ObjectToYamlFileExtensions
 
 CHANGED:
 

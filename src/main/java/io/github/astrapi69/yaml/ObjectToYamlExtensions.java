@@ -22,55 +22,48 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package io.github.astrapi69.json;
+package io.github.astrapi69.yaml;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
-import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 
-import io.github.astrapi69.json.factory.ObjectMapperFactory;
+import io.github.astrapi69.yaml.factory.YAMLMapperFactory;
 
 /**
- * The class {@link ObjectToJsonExtensions} converts java objects to json string objects.
+ * The class {@link ObjectToYamlExtensions} converts java objects to yaml string objects
  */
-public final class ObjectToJsonExtensions
+public final class ObjectToYamlExtensions
 {
 
-	private ObjectToJsonExtensions()
+	private ObjectToYamlExtensions()
 	{
 	}
 
 	/**
-	 * Creates from the given {@link List} a json string
+	 * Creates from the given {@link List} a yaml string
 	 *
 	 * @param <T>
 	 *            the generic type
 	 * @param list
 	 *            the list
-	 * @return the json string.
-	 * @throws JsonGenerationException
-	 *             If an error occurs by writing json string
-	 * @throws JsonMappingException
-	 *             the If an error occurs when mapping the string into Object
+	 * @return the yaml string.
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	public static <T> String toJson(final List<T> list)
-		throws JsonGenerationException, JsonMappingException, IOException
+	public static <T> String toYaml(final List<T> list) throws IOException
 	{
 		Objects.requireNonNull(list);
-		final ObjectMapper mapper = ObjectMapperFactory.newObjectMapper();
-		return toJson(list, mapper);
+		final YAMLMapper mapper = YAMLMapperFactory.newYAMLMapper();
+		return toYaml(list, mapper);
 	}
 
 	/**
-	 * Creates from the given {@link List} a json string
+	 * Creates from the given {@link List} a yaml string
 	 *
 	 * @param <T>
 	 *            the generic type
@@ -78,24 +71,23 @@ public final class ObjectToJsonExtensions
 	 *            the list
 	 * @param mapper
 	 *            the object mapper
-	 * @return the string
+	 * @return the yaml string
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred
 	 */
-	public static <T> String toJson(final List<T> list, final ObjectMapper mapper)
-		throws IOException
+	public static <T> String toYaml(final List<T> list, final YAMLMapper mapper) throws IOException
 	{
 		Objects.requireNonNull(list);
 		Objects.requireNonNull(mapper);
-		final ByteArrayOutputStream out = new ByteArrayOutputStream();
-		mapper.writeValue(out, list);
-
-		out.close();
-		return out.toString();
+		try (final ByteArrayOutputStream out = new ByteArrayOutputStream())
+		{
+			mapper.writeValue(out, list);
+			return out.toString();
+		}
 	}
 
 	/**
-	 * Creates a json {@link String} from the given argument object
+	 * Creates a yaml {@link String} from the given argument object
 	 *
 	 * @param <T>
 	 *            the generic type of the given argument object
@@ -105,14 +97,14 @@ public final class ObjectToJsonExtensions
 	 * @throws JsonProcessingException
 	 *             If an error occurs when converting object to String
 	 */
-	public static <T> String toJson(final T object) throws JsonProcessingException
+	public static <T> String toYaml(final T object) throws JsonProcessingException
 	{
 		Objects.requireNonNull(object);
-		return toJson(object, false);
+		return toYaml(object, false);
 	}
 
 	/**
-	 * Creates a json {@link String} from the given Object
+	 * Creates a yaml {@link String} from the given Object
 	 *
 	 * @param <T>
 	 *            the generic type
@@ -126,16 +118,16 @@ public final class ObjectToJsonExtensions
 	 * @throws JsonProcessingException
 	 *             If an error occurs when converting object to String
 	 */
-	public static <T> String toJson(final T object, final boolean newMapper)
+	public static <T> String toYaml(final T object, final boolean newMapper)
 		throws JsonProcessingException
 	{
 		Objects.requireNonNull(object);
-		final ObjectMapper mapper = ObjectMapperFactory.newObjectMapper(newMapper);
-		return toJson(object, mapper);
+		final YAMLMapper mapper = YAMLMapperFactory.newYAMLMapper(newMapper);
+		return toYaml(object, mapper);
 	}
 
 	/**
-	 * Creates a json {@link String} from the given Object and the given object mapper
+	 * Creates a yaml {@link String} from the given Object and the given object mapper
 	 *
 	 * @param <T>
 	 *            the generic type
@@ -147,7 +139,7 @@ public final class ObjectToJsonExtensions
 	 * @throws JsonProcessingException
 	 *             If an error occurs when converting object to String
 	 */
-	public static <T> String toJson(final T object, final ObjectMapper mapper)
+	public static <T> String toYaml(final T object, final YAMLMapper mapper)
 		throws JsonProcessingException
 	{
 		Objects.requireNonNull(object);

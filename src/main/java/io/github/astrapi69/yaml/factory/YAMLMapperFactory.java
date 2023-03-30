@@ -36,6 +36,28 @@ public final class YAMLMapperFactory
 	{
 	}
 
+	/** The constant mapper. */
+	private final static YAMLMapper YAML_MAPPER = newYAMLMapper(true);
+
+	/**
+	 * Factory method for create a new {@link YAMLMapper}. If the given flag is true a new
+	 * {@link YAMLMapper} will be created otherwise the default {@link YAMLMapper} will be taken.
+	 *
+	 * @param newMapper
+	 *            flag that indicates if a new {@link YAMLMapper} should be created, if true a new
+	 *            {@link YAMLMapper} will be created otherwise the default {@link YAMLMapper} from
+	 *            this class will be returned.
+	 * @return the new {@link YAMLMapper}
+	 */
+	public static YAMLMapper newYAMLMapper(final boolean newMapper)
+	{
+		if (newMapper)
+		{
+			return new YAMLMapper();
+		}
+		return YAML_MAPPER;
+	}
+
 	/**
 	 * Factory method for create a new {@link YAMLMapper}
 	 *
