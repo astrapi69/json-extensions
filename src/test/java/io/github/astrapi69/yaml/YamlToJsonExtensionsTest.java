@@ -30,6 +30,7 @@ import java.io.File;
 import java.io.IOException;
 
 import org.meanbean.test.BeanTester;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -63,17 +64,27 @@ public class YamlToJsonExtensionsTest
 	{
 		jsonDir = new File(PathFinder.getSrcTestResourcesDir(), "json");
 		yamlDir = new File(PathFinder.getSrcTestResourcesDir(), "yaml");
-		jsonFile = new File(jsonDir, "person.json");
-		jsonSigninFile = new File(jsonDir, "signin.json");
-		jsonListFile = new File(jsonDir, "employees.json");
-		jsonMapFile = new File(jsonDir, "map.json");
-		jsonCollectionFile = new File(jsonDir, "collection.json");
+		jsonFile = new File(jsonDir, "new-person.json");
+		jsonSigninFile = new File(jsonDir, "new-signin.json");
+		jsonListFile = new File(jsonDir, "new-employees.json");
+		jsonMapFile = new File(jsonDir, "new-map.json");
+		jsonCollectionFile = new File(jsonDir, "new-collection.json");
 
 		yamlFile = new File(yamlDir, "person.yaml");
 		yamlSigninFile = new File(yamlDir, "signin.yaml");
 		yamlListFile = new File(yamlDir, "employees.yaml");
 		yamlMapFile = new File(yamlDir, "map.yaml");
 		yamlCollectionFile = new File(yamlDir, "collection.yaml");
+	}
+
+	@AfterTest
+	public void cleanUp() throws IOException
+	{
+		DeleteFileExtensions.delete(jsonFile);
+		DeleteFileExtensions.delete(jsonSigninFile);
+		DeleteFileExtensions.delete(jsonListFile);
+		DeleteFileExtensions.delete(jsonMapFile);
+		DeleteFileExtensions.delete(jsonCollectionFile);
 	}
 
 	/**

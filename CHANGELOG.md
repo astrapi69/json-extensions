@@ -9,6 +9,15 @@ ADDED:
 - new test dependency xml-jackson-extensions in version 1.1
 - new method that takes a flag that indicates if a xml header should be added
 - new method that takes a flag that indicates if a xml root tag with name should be added
+- new extension class YamlFileToObjectExtensions
+- new extension class YamlStringToObjectExtensions
+- new extension class YamlToJsonExtensions
+
+CHANGED:
+
+- update gradle to new version 8.1-rc-2
+- update of main dependency jackson-* to new version 2.15.0-rc2
+- update of main dependency json-path to new version 2.8.0
 
 Version 2.3
 -------------

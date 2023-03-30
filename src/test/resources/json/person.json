@@ -1,1 +1,12 @@
-{"id":"23","person":{"name":"Anna","nickname":"beast","gender":"FEMALE","about":"Ha ha ha...","married":true},"subOrdinates":[]}
+{
+  "id": "23",
+  "person": {
+    "name": "Anna",
+    "nickname": "beast",
+    "gender": "FEMALE",
+    "about": "Ha ha ha...",
+    "married": true
+  },
+  "subOrdinates": [
+  ]
+}

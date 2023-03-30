@@ -30,6 +30,7 @@ import java.io.PrintWriter;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 
 import io.github.astrapi69.json.factory.ObjectMapperFactory;
@@ -59,6 +60,30 @@ public final class YamlToJsonExtensions
 		final YAMLMapper yamlMapper = YAMLMapperFactory.newYAMLMapper();
 		Object value = yamlMapper.readValue(yamlString, Object.class);
 		final ObjectMapper objectMapper = ObjectMapperFactory.newObjectMapper();
+		return toJson(yamlString, false);
+	}
+
+	/**
+	 * Transform the given yaml as {@link String} object to a json as {@link String} object
+	 *
+	 * @param yamlString
+	 *            the yaml as {@link String} object
+	 * @param prettyPrint
+	 *            the flag that indicates if the output json string should be pretty formatted
+	 * @return the transformed json as {@link String} object
+	 * @throws JsonProcessingException
+	 *             If an error occurs when converting object to String
+	 */
+	public static String toJson(final String yamlString, boolean prettyPrint)
+		throws JsonProcessingException
+	{
+		final YAMLMapper yamlMapper = YAMLMapperFactory.newYAMLMapper();
+		Object value = yamlMapper.readValue(yamlString, Object.class);
+		final ObjectMapper objectMapper = ObjectMapperFactory.newObjectMapper();
+		if (prettyPrint)
+		{
+			objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+		}
 		return objectMapper.writeValueAsString(value);
 	}
 
@@ -77,6 +102,29 @@ public final class YamlToJsonExtensions
 		final YAMLMapper yamlMapper = YAMLMapperFactory.newYAMLMapper();
 		Object value = yamlMapper.readValue(yamlFile, Object.class);
 		final ObjectMapper objectMapper = ObjectMapperFactory.newObjectMapper();
+		return objectMapper.writeValueAsString(value);
+	}
+
+	/**
+	 * Transforms the given yaml file into a json as {@link String} object
+	 *
+	 * @param yamlFile
+	 *            the yaml file
+	 * @param prettyPrint
+	 *            the flag that indicates if the output json string should be pretty formatted
+	 * @return the transformed json as {@link String} object
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
+	 */
+	public static String toJson(final File yamlFile, boolean prettyPrint) throws IOException
+	{
+		final YAMLMapper yamlMapper = YAMLMapperFactory.newYAMLMapper();
+		Object value = yamlMapper.readValue(yamlFile, Object.class);
+		final ObjectMapper objectMapper = ObjectMapperFactory.newObjectMapper();
+		if (prettyPrint)
+		{
+			objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+		}
 		return objectMapper.writeValueAsString(value);
 	}
 
