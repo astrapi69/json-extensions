@@ -5,7 +5,6 @@ dependencies {
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$jacksonVersion")
     implementation("com.fasterxml.jackson.module:jackson-module-jsonSchema:$jacksonVersion")
 
-
     testImplementation("io.github.astrapi69:xml-jackson-extensions:$xmlJacksonExtensionsVersion")
     testImplementation("io.github.astrapi69:throwable:$throwableVersion")
     testImplementation("io.github.astrapi69:xml-extensions:$xmlExtensionsVersion")
