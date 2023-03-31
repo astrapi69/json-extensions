@@ -19,8 +19,6 @@ ADDED:
 
 CHANGED:
 
-- update gradle to new version 8.1-rc-2
-- update of main dependency jackson-* to new version 2.15.0-rc2
 - update of main dependency json-path to new version 2.8.0
 
 Version 2.3
