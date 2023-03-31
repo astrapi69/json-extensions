@@ -39,9 +39,6 @@ public final class ObjectMapperFactory
 	{
 	}
 
-	/** The constant mapper. */
-	private final static ObjectMapper OBJECT_MAPPER = newObjectMapper(true);
-
 	/**
 	 * Factory method for create a new {@link ObjectMapper}
 	 *
@@ -51,6 +48,9 @@ public final class ObjectMapperFactory
 	{
 		return newObjectMapper(false);
 	}
+
+	/** The constant mapper. */
+	private final static ObjectMapper OBJECT_MAPPER = newObjectMapper(true);
 
 	/**
 	 * Factory method for create a new {@link ObjectMapper}. If the given flag is true a new
@@ -97,5 +97,6 @@ public final class ObjectMapperFactory
 	{
 		return new ObjectMapper(jsonFactory);
 	}
+
 
 }

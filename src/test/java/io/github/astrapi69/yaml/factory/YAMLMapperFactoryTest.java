@@ -33,7 +33,6 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 
 import io.github.astrapi69.json.factory.ObjectMapperFactory;
-import io.github.astrapi69.yaml.factory.YAMLMapperFactory;
 
 
 /**

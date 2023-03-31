@@ -49,7 +49,6 @@ import io.github.astrapi69.file.search.PathFinder;
 import io.github.astrapi69.test.object.Employee;
 import io.github.astrapi69.test.object.Person;
 import io.github.astrapi69.test.object.enumtype.Gender;
-import io.github.astrapi69.yaml.YamlFileToObjectExtensions;
 import io.github.astrapi69.yaml.factory.YAMLMapperFactory;
 
 /**
@@ -89,7 +88,7 @@ public class YamlFileToObjectExtensionsTest
 		TypeReference<Map<Integer, Integer>> typeReference;
 
 		// new scenario: try to convert yaml to integer map
-		typeReference = new TypeReference<Map<Integer, Integer>>()
+		typeReference = new TypeReference<>()
 		{
 		};
 		actual = YamlFileToObjectExtensions.toMapObject(yamlMapFile, typeReference);
@@ -112,7 +111,7 @@ public class YamlFileToObjectExtensionsTest
 		TypeReference<Map<Integer, Integer>> typeReference;
 
 		// new scenario: try to convert yaml to integer map
-		typeReference = new TypeReference<Map<Integer, Integer>>()
+		typeReference = new TypeReference<>()
 		{
 		};
 		actual = YamlFileToObjectExtensions.toMapObject(yamlMapFile, typeReference,
@@ -250,10 +249,9 @@ public class YamlFileToObjectExtensionsTest
 		ObjectMapper objectMapper;
 
 		objectMapper = YAMLMapperFactory.newYAMLMapper();
-		yamlList = YamlFileToObjectExtensions.toObject(yamlListFile,
-			new TypeReference<List<Employee>>()
-			{
-			}, objectMapper);
+		yamlList = YamlFileToObjectExtensions.toObject(yamlListFile, new TypeReference<>()
+		{
+		}, objectMapper);
 		firstExpected = Employee.builder().person(Person.builder().gender(Gender.FEMALE)
 			.name("Anna").nickname("beast").married(true).about("Ha ha ha...").build()).id("23")
 			.build();
