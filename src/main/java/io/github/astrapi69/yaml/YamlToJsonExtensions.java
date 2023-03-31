@@ -57,9 +57,6 @@ public final class YamlToJsonExtensions
 	 */
 	public static String toJson(final String yamlString) throws JsonProcessingException
 	{
-		final YAMLMapper yamlMapper = YAMLMapperFactory.newYAMLMapper();
-		Object value = yamlMapper.readValue(yamlString, Object.class);
-		final ObjectMapper objectMapper = ObjectMapperFactory.newObjectMapper();
 		return toJson(yamlString, false);
 	}
 
@@ -99,10 +96,7 @@ public final class YamlToJsonExtensions
 	 */
 	public static String toJson(final File yamlFile) throws IOException
 	{
-		final YAMLMapper yamlMapper = YAMLMapperFactory.newYAMLMapper();
-		Object value = yamlMapper.readValue(yamlFile, Object.class);
-		final ObjectMapper objectMapper = ObjectMapperFactory.newObjectMapper();
-		return objectMapper.writeValueAsString(value);
+		return toJson(yamlFile, true);
 	}
 
 	/**

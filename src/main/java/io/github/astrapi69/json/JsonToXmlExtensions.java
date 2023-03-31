@@ -47,7 +47,7 @@ public final class JsonToXmlExtensions
 	 *            the json as {@link String} object
 	 * @return the transformed xml as {@link String} object
 	 * @throws JSONException
-	 *             if there is a syntax error in the source string or a duplicated key.
+	 *             if there is a syntax error in the source string or a duplicated key
 	 */
 	public static String toXml(final String jsonString) throws JSONException
 	{
@@ -72,7 +72,7 @@ public final class JsonToXmlExtensions
 	 *            the indent is the number of spaces to add to each level of indentation
 	 * @return the transformed xml as {@link String} object
 	 * @throws JSONException
-	 *             if there is a syntax error in the source string or a duplicated key.
+	 *             if there is a syntax error in the source string or a duplicated key
 	 */
 	public static String toXml(final String jsonString, int indent) throws JSONException
 	{
@@ -90,7 +90,7 @@ public final class JsonToXmlExtensions
 	 *            the flag that indicates if an xml header should be added
 	 * @return the transformed xml as {@link String} object
 	 * @throws JSONException
-	 *             if there is a syntax error in the source string or a duplicated key.
+	 *             if there is a syntax error in the source string or a duplicated key
 	 */
 	public static String toXml(final String jsonString, int indent, boolean withHeader)
 		throws JSONException
@@ -126,7 +126,7 @@ public final class JsonToXmlExtensions
 	 *            the name of the root tag
 	 * @return the transformed xml as {@link String} object
 	 * @throws JSONException
-	 *             if there is a syntax error in the source string or a duplicated key.
+	 *             if there is a syntax error in the source string or a duplicated key
 	 */
 	public static String toXml(final String jsonString, int indent, boolean withHeader,
 		boolean withRootTag, String rootTagName) throws JSONException
@@ -135,18 +135,18 @@ public final class JsonToXmlExtensions
 		{
 			JSONArray jsonArray = new JSONArray(jsonString);
 			return getXmlString(withHeader, withRootTag, rootTagName,
-				XML.toString(jsonArray, indent), indent);
+				XML.toString(jsonArray, indent));
 		}
 		else
 		{
 			final JSONObject jsonObject = new JSONObject(jsonString);
 			return getXmlString(withHeader, withRootTag, rootTagName,
-				XML.toString(jsonObject, indent), indent);
+				XML.toString(jsonObject, indent));
 		}
 	}
 
 	private static String getXmlString(boolean withHeader, boolean withRootTag, String rootTagName,
-		String xmlString, int indent)
+		String xmlString)
 	{
 		StringBuilder sb = new StringBuilder();
 		if (withHeader)

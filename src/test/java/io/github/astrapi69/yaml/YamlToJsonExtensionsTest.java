@@ -94,13 +94,14 @@ public class YamlToJsonExtensionsTest
 	 *             Signals that an I/O exception has occurred
 	 */
 	@Test
-	public void testToYamlWithJsonFileToYamlFile() throws IOException
+	public void testToJsonWithYamlFileToJsonFile() throws IOException
 	{
 		String expected;
 		String actual;
 
 		YamlToJsonExtensions.toJson(yamlFile, jsonFile);
-		expected = "{\"id\":\"23\",\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"subOrdinates\":[]}\n";
+		expected = "{\"id\":\"23\",\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\","
+			+ "\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"subOrdinates\":[]}\n";
 		actual = ReadFileExtensions.fromFile(jsonFile);
 		expected = expected.replace("\n", "").replace("\r", "").replace(" ", "");
 		actual = actual.replace("\n", "").replace("\r", "").replace(" ", "");
@@ -114,7 +115,12 @@ public class YamlToJsonExtensionsTest
 		assertEquals(expected, actual);
 
 		YamlToJsonExtensions.toJson(yamlListFile, jsonListFile);
-		expected = "[{\"id\":\"23\",\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"subOrdinates\":[]},{\"id\":\"24\",\"person\":{\"name\":\"Andreas\",\"nickname\":\"cute\",\"gender\":\"MALE\",\"about\":\"fine person\",\"married\":false},\"subOrdinates\":[]},{\"id\":\"25\",\"person\":{\"name\":\"Tatjana\",\"nickname\":\"beautiful\",\"gender\":\"FEMALE\",\"about\":\"Im hot\",\"married\":false},\"subOrdinates\":[]}]\n";
+		expected = "[{\"id\":\"23\",\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\","
+			+ "\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"subOrdinates\":[]},"
+			+ "{\"id\":\"24\",\"person\":{\"name\":\"Andreas\",\"nickname\":\"cute\","
+			+ "\"gender\":\"MALE\",\"about\":\"fine person\",\"married\":false},\"subOrdinates\":[]},"
+			+ "{\"id\":\"25\",\"person\":{\"name\":\"Tatjana\",\"nickname\":\"beautiful\","
+			+ "\"gender\":\"FEMALE\",\"about\":\"Im hot\",\"married\":false},\"subOrdinates\":[]}]\n";
 		actual = ReadFileExtensions.fromFile(jsonListFile);
 		expected = expected.replace("\n", "").replace("\r", "").replace(" ", "");
 		actual = actual.replace("\n", "").replace("\r", "").replace(" ", "");
@@ -128,14 +134,24 @@ public class YamlToJsonExtensionsTest
 		assertEquals(expected, actual);
 
 		YamlToJsonExtensions.toJson(yamlCollectionFile, jsonCollectionFile);
-		expected = "[{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"},{\"person\":{\"name\":\"Andreas\",\"nickname\":\"cute\",\"gender\":\"MALE\",\"about\":\"fine person\",\"married\":false},\"id\":\"24\"},{\"person\":{\"name\":\"Tatjana\",\"nickname\":\"beautiful\",\"gender\":\"FEMALE\",\"about\":\"Im hot\",\"married\":false},\"id\":\"25\"}]\n";
+		expected = "[{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\","
+			+ "\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"},"
+			+ "{\"person\":{\"name\":\"Andreas\",\"nickname\":\"cute\","
+			+ "\"gender\":\"MALE\",\"about\":\"fine person\",\"married\":false},\"id\":\"24\"},"
+			+ "{\"person\":{\"name\":\"Tatjana\",\"nickname\":\"beautiful\","
+			+ "\"gender\":\"FEMALE\",\"about\":\"Im hot\",\"married\":false},\"id\":\"25\"}]\n";
 		actual = ReadFileExtensions.fromFile(jsonCollectionFile);
 		expected = expected.replace("\n", "").replace("\r", "").replace(" ", "");
 		actual = actual.replace("\n", "").replace("\r", "").replace(" ", "");
 		assertEquals(expected, actual);
 		File newFile = new File(jsonDir, "new-collection-file.json");
 		YamlToJsonExtensions.toJson(yamlCollectionFile, newFile);
-		expected = "[{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"},{\"person\":{\"name\":\"Andreas\",\"nickname\":\"cute\",\"gender\":\"MALE\",\"about\":\"fine person\",\"married\":false},\"id\":\"24\"},{\"person\":{\"name\":\"Tatjana\",\"nickname\":\"beautiful\",\"gender\":\"FEMALE\",\"about\":\"Im hot\",\"married\":false},\"id\":\"25\"}]\n";
+		expected = "[{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\","
+			+ "\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"},"
+			+ "{\"person\":{\"name\":\"Andreas\",\"nickname\":\"cute\","
+			+ "\"gender\":\"MALE\",\"about\":\"fine person\",\"married\":false},\"id\":\"24\"},"
+			+ "{\"person\":{\"name\":\"Tatjana\",\"nickname\":\"beautiful\","
+			+ "\"gender\":\"FEMALE\",\"about\":\"Im hot\",\"married\":false},\"id\":\"25\"}]\n";
 		actual = ReadFileExtensions.fromFile(jsonCollectionFile);
 		expected = expected.replace("\n", "").replace("\r", "").replace(" ", "");
 		actual = actual.replace("\n", "").replace("\r", "").replace(" ", "");
@@ -150,29 +166,238 @@ public class YamlToJsonExtensionsTest
 	 *             Signals that an I/O exception has occurred
 	 */
 	@Test
-	public void testToYamlWithJsonFile() throws IOException
+	public void testToJsonWithYamlFile() throws IOException
 	{
 		String expected;
 		String actual;
 
 		actual = YamlToJsonExtensions.toJson(yamlFile);
-		expected = "{\"id\":\"23\",\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"subOrdinates\":[]}";
+		expected = "{\n" + "  \"id\" : \"23\",\n" + "  \"person\" : {\n"
+			+ "    \"name\" : \"Anna\",\n" + "    \"nickname\" : \"beast\",\n"
+			+ "    \"gender\" : \"FEMALE\",\n" + "    \"about\" : \"Ha ha ha...\",\n"
+			+ "    \"married\" : true\n" + "  },\n" + "  \"subOrdinates\" : [ ]\n" + "}";
+		expected = expected.replace("\n", "").replace("\r", "");
+		actual = actual.replace("\n", "").replace("\r", "");
 		assertEquals(expected, actual);
 
 		actual = YamlToJsonExtensions.toJson(yamlSigninFile);
-		expected = "{\"username\":\"foo\",\"password\":\"bar\"}";
+		expected = "{\n" + "  \"username\" : \"foo\",\n" + "  \"password\" : \"bar\"\n" + "}";
+		expected = expected.replace("\n", "").replace("\r", "");
+		actual = actual.replace("\n", "").replace("\r", "");
 		assertEquals(expected, actual);
 
 		actual = YamlToJsonExtensions.toJson(yamlListFile);
-		expected = "[{\"id\":\"23\",\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"subOrdinates\":[]},{\"id\":\"24\",\"person\":{\"name\":\"Andreas\",\"nickname\":\"cute\",\"gender\":\"MALE\",\"about\":\"fine person\",\"married\":false},\"subOrdinates\":[]},{\"id\":\"25\",\"person\":{\"name\":\"Tatjana\",\"nickname\":\"beautiful\",\"gender\":\"FEMALE\",\"about\":\"Im hot\",\"married\":false},\"subOrdinates\":[]}]";
+		expected = "[ {\n" + "  \"id\" : \"23\",\n" + "  \"person\" : {\n"
+			+ "    \"name\" : \"Anna\",\n" + "    \"nickname\" : \"beast\",\n"
+			+ "    \"gender\" : \"FEMALE\",\n" + "    \"about\" : \"Ha ha ha...\",\n"
+			+ "    \"married\" : true\n" + "  },\n" + "  \"subOrdinates\" : [ ]\n" + "}, {\n"
+			+ "  \"id\" : \"24\",\n" + "  \"person\" : {\n" + "    \"name\" : \"Andreas\",\n"
+			+ "    \"nickname\" : \"cute\",\n" + "    \"gender\" : \"MALE\",\n"
+			+ "    \"about\" : \"fine person\",\n" + "    \"married\" : false\n" + "  },\n"
+			+ "  \"subOrdinates\" : [ ]\n" + "}, {\n" + "  \"id\" : \"25\",\n"
+			+ "  \"person\" : {\n" + "    \"name\" : \"Tatjana\",\n"
+			+ "    \"nickname\" : \"beautiful\",\n" + "    \"gender\" : \"FEMALE\",\n"
+			+ "    \"about\" : \"Im hot\",\n" + "    \"married\" : false\n" + "  },\n"
+			+ "  \"subOrdinates\" : [ ]\n" + "} ]";
+		expected = expected.replace("\n", "").replace("\r", "");
+		actual = actual.replace("\n", "").replace("\r", "");
 		assertEquals(expected, actual);
 
 		actual = YamlToJsonExtensions.toJson(yamlMapFile);
-		expected = "{\"1\":0,\"2\":0,\"3\":0,\"4\":0,\"5\":0}";
+		expected = "{\n" + "  \"1\" : 0,\n" + "  \"2\" : 0,\n" + "  \"3\" : 0,\n" + "  \"4\" : 0,\n"
+			+ "  \"5\" : 0\n" + "}";
+		expected = expected.replace("\n", "").replace("\r", "");
+		actual = actual.replace("\n", "").replace("\r", "");
 		assertEquals(expected, actual);
 
 		actual = YamlToJsonExtensions.toJson(yamlCollectionFile);
-		expected = "[{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"},{\"person\":{\"name\":\"Andreas\",\"nickname\":\"cute\",\"gender\":\"MALE\",\"about\":\"fine person\",\"married\":false},\"id\":\"24\"},{\"person\":{\"name\":\"Tatjana\",\"nickname\":\"beautiful\",\"gender\":\"FEMALE\",\"about\":\"Im hot\",\"married\":false},\"id\":\"25\"}]";
+		expected = "[ {\n" + "  \"person\" : {\n" + "    \"name\" : \"Anna\",\n"
+			+ "    \"nickname\" : \"beast\",\n" + "    \"gender\" : \"FEMALE\",\n"
+			+ "    \"about\" : \"Ha ha ha...\",\n" + "    \"married\" : true\n" + "  },\n"
+			+ "  \"id\" : \"23\"\n" + "}, {\n" + "  \"person\" : {\n"
+			+ "    \"name\" : \"Andreas\",\n" + "    \"nickname\" : \"cute\",\n"
+			+ "    \"gender\" : \"MALE\",\n" + "    \"about\" : \"fine person\",\n"
+			+ "    \"married\" : false\n" + "  },\n" + "  \"id\" : \"24\"\n" + "}, {\n"
+			+ "  \"person\" : {\n" + "    \"name\" : \"Tatjana\",\n"
+			+ "    \"nickname\" : \"beautiful\",\n" + "    \"gender\" : \"FEMALE\",\n"
+			+ "    \"about\" : \"Im hot\",\n" + "    \"married\" : false\n" + "  },\n"
+			+ "  \"id\" : \"25\"\n" + "} ]";
+		expected = expected.replace("\n", "").replace("\r", "");
+		actual = actual.replace("\n", "").replace("\r", "");
+		assertEquals(expected, actual);
+
+	}
+
+	/**
+	 * Test method for {@link YamlToJsonExtensions#toJson(File, boolean)}
+	 *
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
+	 */
+	@Test
+	public void testToJsonWithYamlFileWithPrettyPrint() throws IOException
+	{
+		String expected;
+		String actual;
+
+		actual = YamlToJsonExtensions.toJson(yamlFile, false);
+		expected = "{\"id\":\"23\",\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\","
+			+ "\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"subOrdinates\":[]}";
+		expected = expected.replace("\n", "").replace("\r", "").replace(" ", "");
+		actual = actual.replace("\n", "").replace("\r", "").replace(" ", "");
+		assertEquals(expected, actual);
+
+		actual = YamlToJsonExtensions.toJson(yamlSigninFile, false);
+		expected = "{\"username\":\"foo\",\"password\":\"bar\"}";
+
+		expected = expected.replace("\n", "").replace("\r", "").replace(" ", "");
+		actual = actual.replace("\n", "").replace("\r", "").replace(" ", "");
+		assertEquals(expected, actual);
+
+		actual = YamlToJsonExtensions.toJson(yamlListFile, false);
+		expected = "[{\"id\":\"23\",\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\""
+			+ ",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"subOrdinates\":[]},"
+			+ "{\"id\":\"24\",\"person\":{\"name\":\"Andreas\",\"nickname\":\"cute\","
+			+ "\"gender\":\"MALE\",\"about\":\"fine person\",\"married\":false},\"subOrdinates\":[]},"
+			+ "{\"id\":\"25\",\"person\":{\"name\":\"Tatjana\",\"nickname\":\"beautiful\","
+			+ "\"gender\":\"FEMALE\",\"about\":\"Im hot\",\"married\":false},\"subOrdinates\":[]}]";
+		expected = expected.replace("\n", "").replace("\r", "").replace(" ", "");
+		actual = actual.replace("\n", "").replace("\r", "").replace(" ", "");
+		assertEquals(expected, actual);
+
+		actual = YamlToJsonExtensions.toJson(yamlMapFile, false);
+		expected = "{\"1\":0,\"2\":0,\"3\":0,\"4\":0,\"5\":0}";
+
+		expected = expected.replace("\n", "").replace("\r", "").replace(" ", "");
+		actual = actual.replace("\n", "").replace("\r", "").replace(" ", "");
+		assertEquals(expected, actual);
+
+		actual = YamlToJsonExtensions.toJson(yamlCollectionFile, false);
+		expected = "[{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\","
+			+ "\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"},"
+			+ "{\"person\":{\"name\":\"Andreas\",\"nickname\":\"cute\","
+			+ "\"gender\":\"MALE\",\"about\":\"fine person\",\"married\":false},\"id\":\"24\"},"
+			+ "{\"person\":{\"name\":\"Tatjana\",\"nickname\":\"beautiful\","
+			+ "\"gender\":\"FEMALE\",\"about\":\"Im hot\",\"married\":false},\"id\":\"25\"}]";
+		expected = expected.replace("\n", "").replace("\r", "").replace(" ", "");
+		actual = actual.replace("\n", "").replace("\r", "").replace(" ", "");
+		assertEquals(expected, actual);
+
+		actual = YamlToJsonExtensions.toJson(yamlFile, true);
+		expected = "{\n" + "  \"id\" : \"23\",\n" + "  \"person\" : {\n"
+			+ "    \"name\" : \"Anna\",\n" + "    \"nickname\" : \"beast\",\n"
+			+ "    \"gender\" : \"FEMALE\",\n" + "    \"about\" : \"Ha ha ha...\",\n"
+			+ "    \"married\" : true\n" + "  },\n" + "  \"subOrdinates\" : [ ]\n" + "}";
+		expected = expected.replace("\n", "").replace("\r", "");
+		actual = actual.replace("\n", "").replace("\r", "");
+		assertEquals(expected, actual);
+
+		actual = YamlToJsonExtensions.toJson(yamlSigninFile, true);
+		expected = "{\n" + "  \"username\" : \"foo\",\n" + "  \"password\" : \"bar\"\n" + "}";
+		expected = expected.replace("\n", "").replace("\r", "");
+		actual = actual.replace("\n", "").replace("\r", "");
+		assertEquals(expected, actual);
+
+		actual = YamlToJsonExtensions.toJson(yamlListFile, true);
+		expected = "[ {\n" + "  \"id\" : \"23\",\n" + "  \"person\" : {\n"
+			+ "    \"name\" : \"Anna\",\n" + "    \"nickname\" : \"beast\",\n"
+			+ "    \"gender\" : \"FEMALE\",\n" + "    \"about\" : \"Ha ha ha...\",\n"
+			+ "    \"married\" : true\n" + "  },\n" + "  \"subOrdinates\" : [ ]\n" + "}, {\n"
+			+ "  \"id\" : \"24\",\n" + "  \"person\" : {\n" + "    \"name\" : \"Andreas\",\n"
+			+ "    \"nickname\" : \"cute\",\n" + "    \"gender\" : \"MALE\",\n"
+			+ "    \"about\" : \"fine person\",\n" + "    \"married\" : false\n" + "  },\n"
+			+ "  \"subOrdinates\" : [ ]\n" + "}, {\n" + "  \"id\" : \"25\",\n"
+			+ "  \"person\" : {\n" + "    \"name\" : \"Tatjana\",\n"
+			+ "    \"nickname\" : \"beautiful\",\n" + "    \"gender\" : \"FEMALE\",\n"
+			+ "    \"about\" : \"Im hot\",\n" + "    \"married\" : false\n" + "  },\n"
+			+ "  \"subOrdinates\" : [ ]\n" + "} ]";
+		expected = expected.replace("\n", "").replace("\r", "");
+		actual = actual.replace("\n", "").replace("\r", "");
+		assertEquals(expected, actual);
+
+		actual = YamlToJsonExtensions.toJson(yamlMapFile, true);
+		expected = "{\n" + "  \"1\" : 0,\n" + "  \"2\" : 0,\n" + "  \"3\" : 0,\n" + "  \"4\" : 0,\n"
+			+ "  \"5\" : 0\n" + "}";
+		expected = expected.replace("\n", "").replace("\r", "");
+		actual = actual.replace("\n", "").replace("\r", "");
+		assertEquals(expected, actual);
+
+		actual = YamlToJsonExtensions.toJson(yamlCollectionFile, true);
+		expected = "[ {\n" + "  \"person\" : {\n" + "    \"name\" : \"Anna\",\n"
+			+ "    \"nickname\" : \"beast\",\n" + "    \"gender\" : \"FEMALE\",\n"
+			+ "    \"about\" : \"Ha ha ha...\",\n" + "    \"married\" : true\n" + "  },\n"
+			+ "  \"id\" : \"23\"\n" + "}, {\n" + "  \"person\" : {\n"
+			+ "    \"name\" : \"Andreas\",\n" + "    \"nickname\" : \"cute\",\n"
+			+ "    \"gender\" : \"MALE\",\n" + "    \"about\" : \"fine person\",\n"
+			+ "    \"married\" : false\n" + "  },\n" + "  \"id\" : \"24\"\n" + "}, {\n"
+			+ "  \"person\" : {\n" + "    \"name\" : \"Tatjana\",\n"
+			+ "    \"nickname\" : \"beautiful\",\n" + "    \"gender\" : \"FEMALE\",\n"
+			+ "    \"about\" : \"Im hot\",\n" + "    \"married\" : false\n" + "  },\n"
+			+ "  \"id\" : \"25\"\n" + "} ]";
+		expected = expected.replace("\n", "").replace("\r", "");
+		actual = actual.replace("\n", "").replace("\r", "");
+		assertEquals(expected, actual);
+	}
+
+	/**
+	 * Test method for {@link YamlToJsonExtensions#toJson(String, boolean)}
+	 *
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
+	 */
+	@Test
+	public void testToJsonWithPrettyPrint() throws IOException
+	{
+		String expected;
+		String actual;
+
+		actual = YamlToJsonExtensions.toJson(ReadFileExtensions.fromFile(yamlFile), true);
+		expected = "{\n" + "  \"id\" : \"23\",\n" + "  \"person\" : {\n"
+			+ "    \"name\" : \"Anna\",\n" + "    \"nickname\" : \"beast\",\n"
+			+ "    \"gender\" : \"FEMALE\",\n" + "    \"about\" : \"Ha ha ha...\",\n"
+			+ "    \"married\" : true\n" + "  },\n" + "  \"subOrdinates\" : [ ]\n" + "}";
+		expected = expected.replace("\n", "").replace("\r", "");
+		actual = actual.replace("\n", "").replace("\r", "");
+		assertEquals(expected, actual);
+
+		actual = YamlToJsonExtensions.toJson(ReadFileExtensions.fromFile(yamlSigninFile), true);
+		expected = "{\n" + "  \"username\" : \"foo\",\n" + "  \"password\" : \"bar\"\n" + "}";
+		expected = expected.replace("\n", "").replace("\r", "");
+		actual = actual.replace("\n", "").replace("\r", "");
+		assertEquals(expected, actual);
+
+		actual = YamlToJsonExtensions.toJson(ReadFileExtensions.fromFile(yamlListFile), true);
+		expected = "[ {\n" + "  \"id\" : \"23\",\n" + "  \"person\" : {\n"
+			+ "    \"name\" : \"Anna\",\n" + "    \"nickname\" : \"beast\",\n"
+			+ "    \"gender\" : \"FEMALE\",\n" + "    \"about\" : \"Ha ha ha...\",\n"
+			+ "    \"married\" : true\n" + "  },\n" + "  \"subOrdinates\" : [ ]\n" + "}, {\n"
+			+ "  \"id\" : \"24\",\n" + "  \"person\" : {\n" + "    \"name\" : \"Andreas\",\n"
+			+ "    \"nickname\" : \"cute\",\n" + "    \"gender\" : \"MALE\",\n"
+			+ "    \"about\" : \"fine person\",\n" + "    \"married\" : false\n" + "  },\n"
+			+ "  \"subOrdinates\" : [ ]\n" + "}, {\n" + "  \"id\" : \"25\",\n"
+			+ "  \"person\" : {\n" + "    \"name\" : \"Tatjana\",\n"
+			+ "    \"nickname\" : \"beautiful\",\n" + "    \"gender\" : \"FEMALE\",\n"
+			+ "    \"about\" : \"Im hot\",\n" + "    \"married\" : false\n" + "  },\n"
+			+ "  \"subOrdinates\" : [ ]\n" + "} ]";
+		expected = expected.replace("\n", "").replace("\r", "");
+		actual = actual.replace("\n", "").replace("\r", "");
+		assertEquals(expected, actual);
+
+		actual = YamlToJsonExtensions.toJson(ReadFileExtensions.fromFile(yamlMapFile), true);
+		expected = "{  \"1\" : 0,  \"2\" : 0,  \"3\" : 0,  \"4\" : 0,  \"5\" : 0}";
+		expected = expected.replace("\n", "").replace("\r", "");
+		actual = actual.replace("\n", "").replace("\r", "");
+		assertEquals(expected, actual);
+
+		actual = YamlToJsonExtensions.toJson(ReadFileExtensions.fromFile(yamlCollectionFile), true);
+		expected = "[ {  \"person\" : {    \"name\" : \"Anna\",    \"nickname\" : \"beast\",    "
+			+ "\"gender\" : \"FEMALE\",    \"about\" : \"Ha ha ha...\",    \"married\" : true  },  \"id\" : \"23\"}, "
+			+ "{  \"person\" : {    \"name\" : \"Andreas\",    \"nickname\" : \"cute\",    "
+			+ "\"gender\" : \"MALE\",    \"about\" : \"fine person\",    \"married\" : false  },  \"id\" : \"24\"}, "
+			+ "{  \"person\" : {    \"name\" : \"Tatjana\",    \"nickname\" : \"beautiful\",    "
+			+ "\"gender\" : \"FEMALE\",    \"about\" : \"Im hot\",    \"married\" : false  },  \"id\" : \"25\"} ]";
+		expected = expected.replace("\n", "").replace("\r", "");
+		actual = actual.replace("\n", "").replace("\r", "");
 		assertEquals(expected, actual);
 	}
 
@@ -183,14 +408,15 @@ public class YamlToJsonExtensionsTest
 	 *             Signals that an I/O exception has occurred
 	 */
 	@Test
-	public void testToYaml() throws IOException
+	public void testToJson() throws IOException
 	{
 
 		String expected;
 		String actual;
 
 		actual = YamlToJsonExtensions.toJson(ReadFileExtensions.fromFile(yamlFile));
-		expected = "{\"id\":\"23\",\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"subOrdinates\":[]}";
+		expected = "{\"id\":\"23\",\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\","
+			+ "\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"subOrdinates\":[]}";
 		assertEquals(expected, actual);
 
 		actual = YamlToJsonExtensions.toJson(ReadFileExtensions.fromFile(yamlSigninFile));
@@ -198,7 +424,12 @@ public class YamlToJsonExtensionsTest
 		assertEquals(expected, actual);
 
 		actual = YamlToJsonExtensions.toJson(ReadFileExtensions.fromFile(yamlListFile));
-		expected = "[{\"id\":\"23\",\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"subOrdinates\":[]},{\"id\":\"24\",\"person\":{\"name\":\"Andreas\",\"nickname\":\"cute\",\"gender\":\"MALE\",\"about\":\"fine person\",\"married\":false},\"subOrdinates\":[]},{\"id\":\"25\",\"person\":{\"name\":\"Tatjana\",\"nickname\":\"beautiful\",\"gender\":\"FEMALE\",\"about\":\"Im hot\",\"married\":false},\"subOrdinates\":[]}]";
+		expected = "[{\"id\":\"23\",\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\","
+			+ "\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"subOrdinates\":[]},"
+			+ "{\"id\":\"24\",\"person\":{\"name\":\"Andreas\",\"nickname\":\"cute\","
+			+ "\"gender\":\"MALE\",\"about\":\"fine person\",\"married\":false},\"subOrdinates\":[]},"
+			+ "{\"id\":\"25\",\"person\":{\"name\":\"Tatjana\",\"nickname\":\"beautiful\","
+			+ "\"gender\":\"FEMALE\",\"about\":\"Im hot\",\"married\":false},\"subOrdinates\":[]}]";
 		assertEquals(expected, actual);
 
 		actual = YamlToJsonExtensions.toJson(ReadFileExtensions.fromFile(yamlMapFile));
@@ -206,7 +437,12 @@ public class YamlToJsonExtensionsTest
 		assertEquals(expected, actual);
 
 		actual = YamlToJsonExtensions.toJson(ReadFileExtensions.fromFile(yamlCollectionFile));
-		expected = "[{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"},{\"person\":{\"name\":\"Andreas\",\"nickname\":\"cute\",\"gender\":\"MALE\",\"about\":\"fine person\",\"married\":false},\"id\":\"24\"},{\"person\":{\"name\":\"Tatjana\",\"nickname\":\"beautiful\",\"gender\":\"FEMALE\",\"about\":\"Im hot\",\"married\":false},\"id\":\"25\"}]";
+		expected = "[{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\","
+			+ "\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"},"
+			+ "{\"person\":{\"name\":\"Andreas\",\"nickname\":\"cute\","
+			+ "\"gender\":\"MALE\",\"about\":\"fine person\",\"married\":false},\"id\":\"24\"},"
+			+ "{\"person\":{\"name\":\"Tatjana\",\"nickname\":\"beautiful\","
+			+ "\"gender\":\"FEMALE\",\"about\":\"Im hot\",\"married\":false},\"id\":\"25\"}]";
 		assertEquals(expected, actual);
 	}
 
