@@ -1,6 +1,26 @@
 ## Change log
 ----------------------
 
+Version 2.4
+-------------
+
+ADDED:
+
+- new test dependency xml-jackson-extensions in version 1.1
+- new method that takes a flag that indicates if a xml header should be added
+- new method that takes a flag that indicates if a xml root tag with name should be added
+- new extension class YamlFileToObjectExtensions
+- new extension class YamlStringToObjectExtensions
+- new extension class YamlToJsonExtensions
+- new extension class ObjectToYamlExtensions
+- new extension class ObjectToYamlFileExtensions
+- new extension class XmlToYamlExtensions
+- new extension class YamlToXmlExtensions
+
+CHANGED:
+
+- update of main dependency json-path to new version 2.8.0
+
 Version 2.3
 -------------
 

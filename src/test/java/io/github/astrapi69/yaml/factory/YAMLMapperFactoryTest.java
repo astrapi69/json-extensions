@@ -22,7 +22,7 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package io.github.astrapi69.json.factory;
+package io.github.astrapi69.yaml.factory;
 
 import static org.testng.AssertJUnit.assertNotNull;
 
@@ -31,6 +31,8 @@ import org.testng.annotations.Test;
 
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
+
+import io.github.astrapi69.json.factory.ObjectMapperFactory;
 
 
 /**

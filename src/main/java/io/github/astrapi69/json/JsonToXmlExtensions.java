@@ -47,19 +47,19 @@ public final class JsonToXmlExtensions
 	 *            the json as {@link String} object
 	 * @return the transformed xml as {@link String} object
 	 * @throws JSONException
-	 *             if there is a syntax error in the source string or a duplicated key.
+	 *             if there is a syntax error in the source string or a duplicated key
 	 */
 	public static String toXml(final String jsonString) throws JSONException
 	{
 		if (jsonString.startsWith("["))
 		{
-			JSONArray objects = new JSONArray(jsonString);
-			return XML_HEADER + XML.toString(objects);
+			JSONArray jsonArray = new JSONArray(jsonString);
+			return XML.toString(jsonArray);
 		}
 		else
 		{
-			final JSONObject json = new JSONObject(jsonString);
-			return XML_HEADER + XML.toString(json);
+			final JSONObject jsonObject = new JSONObject(jsonString);
+			return XML.toString(jsonObject);
 		}
 	}
 
@@ -72,20 +72,97 @@ public final class JsonToXmlExtensions
 	 *            the indent is the number of spaces to add to each level of indentation
 	 * @return the transformed xml as {@link String} object
 	 * @throws JSONException
-	 *             if there is a syntax error in the source string or a duplicated key.
+	 *             if there is a syntax error in the source string or a duplicated key
 	 */
 	public static String toXml(final String jsonString, int indent) throws JSONException
+	{
+		return toXml(jsonString, indent, false);
+	}
+
+	/**
+	 * Transform the given json as {@link String} object to a xml as {@link String} object
+	 *
+	 * @param jsonString
+	 *            the json as {@link String} object
+	 * @param indent
+	 *            the indent is the number of spaces to add to each level of indentation
+	 * @param withHeader
+	 *            the flag that indicates if an xml header should be added
+	 * @return the transformed xml as {@link String} object
+	 * @throws JSONException
+	 *             if there is a syntax error in the source string or a duplicated key
+	 */
+	public static String toXml(final String jsonString, int indent, boolean withHeader)
+		throws JSONException
 	{
 		if (jsonString.startsWith("["))
 		{
 			JSONArray objects = new JSONArray(jsonString);
-			return XML_HEADER + System.lineSeparator() + XML.toString(objects, indent);
+			return withHeader
+				? XML_HEADER + System.lineSeparator() + XML.toString(objects, indent)
+				: XML.toString(objects, indent);
 		}
 		else
 		{
 			final JSONObject json = new JSONObject(jsonString);
-			return XML_HEADER + System.lineSeparator() + XML.toString(json, indent);
+			return withHeader
+				? XML_HEADER + System.lineSeparator() + XML.toString(json, indent)
+				: XML.toString(json, indent);
 		}
+	}
+
+	/**
+	 * Transform the given json as {@link String} object to a xml as {@link String} object
+	 *
+	 * @param jsonString
+	 *            the json as {@link String} object
+	 * @param indent
+	 *            the indent is the number of spaces to add to each level of indentation
+	 * @param withHeader
+	 *            the flag that indicates if a xml header should be added
+	 * @param withRootTag
+	 *            the flag that indicates if a root tag will be added
+	 * @param rootTagName
+	 *            the name of the root tag
+	 * @return the transformed xml as {@link String} object
+	 * @throws JSONException
+	 *             if there is a syntax error in the source string or a duplicated key
+	 */
+	public static String toXml(final String jsonString, int indent, boolean withHeader,
+		boolean withRootTag, String rootTagName) throws JSONException
+	{
+		if (jsonString.startsWith("["))
+		{
+			JSONArray jsonArray = new JSONArray(jsonString);
+			return getXmlString(withHeader, withRootTag, rootTagName,
+				XML.toString(jsonArray, indent));
+		}
+		else
+		{
+			final JSONObject jsonObject = new JSONObject(jsonString);
+			return getXmlString(withHeader, withRootTag, rootTagName,
+				XML.toString(jsonObject, indent));
+		}
+	}
+
+	private static String getXmlString(boolean withHeader, boolean withRootTag, String rootTagName,
+		String xmlString)
+	{
+		StringBuilder sb = new StringBuilder();
+		if (withHeader)
+		{
+			sb.append(XML_HEADER).append(System.lineSeparator());
+		}
+		if (withRootTag && rootTagName != null && !rootTagName.isEmpty())
+		{
+			sb.append("<").append(rootTagName).append(">").append(System.lineSeparator());
+		}
+		sb.append(xmlString);
+		if (withRootTag && rootTagName != null && !rootTagName.isEmpty())
+		{
+			sb.append("</").append(rootTagName).append(">");
+		}
+		return sb.toString();
 	}
 
 }

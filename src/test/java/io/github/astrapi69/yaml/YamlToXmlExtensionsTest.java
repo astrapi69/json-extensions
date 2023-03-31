@@ -22,7 +22,7 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package io.github.astrapi69.json;
+package io.github.astrapi69.yaml;
 
 import static org.testng.AssertJUnit.assertEquals;
 
@@ -38,31 +38,30 @@ import io.github.astrapi69.file.read.ReadFileExtensions;
 import io.github.astrapi69.file.search.PathFinder;
 
 /**
- * The unit test class for the class {@link JsonToXmlExtensions}
+ * The unit test class for the class {@link YamlToXmlExtensions}
  */
-public class JsonToXmlExtensionsTest
+public class YamlToXmlExtensionsTest
 {
 
+	File yamlDir;
+	File yamlFile;
+	File yamlCollectionFile;
 
-	File jsonDir;
-	File jsonFile;
-	File jsonCollectionFile;
-
-	File jsonMapFile;
-	File jsonListFile;
+	File yamlMapFile;
+	File yamlListFile;
 
 	@BeforeMethod
 	protected void setUp()
 	{
-		jsonDir = new File(PathFinder.getSrcTestResourcesDir(), "json");
-		jsonFile = new File(jsonDir, "person.json");
-		jsonListFile = new File(jsonDir, "employees.json");
-		jsonMapFile = new File(jsonDir, "map.json");
-		jsonCollectionFile = new File(jsonDir, "collection.json");
+		yamlDir = new File(PathFinder.getSrcTestResourcesDir(), "yaml");
+		yamlFile = new File(yamlDir, "person.yaml");
+		yamlListFile = new File(yamlDir, "employees.yaml");
+		yamlMapFile = new File(yamlDir, "map.yaml");
+		yamlCollectionFile = new File(yamlDir, "collection.yaml");
 	}
 
 	/**
-	 * Test method for {@link JsonToXmlExtensions#toXml(String)}
+	 * Test method for {@link YamlToXmlExtensions#toXml(String)}
 	 *
 	 * @throws JSONException
 	 *             if there is a syntax error in the source string or a duplicated key
@@ -77,32 +76,32 @@ public class JsonToXmlExtensionsTest
 		String jsonString;
 
 		jsonString = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
-		actual = JsonToXmlExtensions.toXml(jsonString);
+		actual = YamlToXmlExtensions.toXml(jsonString);
 		expected = "<person><gender>FEMALE</gender><name>Anna</name><nickname>beast</nickname><about>Ha ha ha...</about><married>true</married></person><id>23</id>";
 		assertEquals(actual, expected);
 
-		jsonString = ReadFileExtensions.fromFile(jsonFile);
-		actual = JsonToXmlExtensions.toXml(jsonString);
+		jsonString = ReadFileExtensions.fromFile(yamlFile);
+		actual = YamlToXmlExtensions.toXml(jsonString);
 		assertEquals(actual, expected);
 
-		jsonString = ReadFileExtensions.fromFile(jsonListFile);
-		actual = JsonToXmlExtensions.toXml(jsonString);
+		jsonString = ReadFileExtensions.fromFile(yamlListFile);
+		actual = YamlToXmlExtensions.toXml(jsonString);
 		expected = "<array><person><gender>FEMALE</gender><name>Anna</name><nickname>beast</nickname><about>Ha ha ha...</about><married>true</married></person><id>23</id></array><array><person><gender>MALE</gender><name>Andreas</name><nickname>cute</nickname><about>fine person</about><married>false</married></person><id>24</id></array><array><person><gender>FEMALE</gender><name>Tatjana</name><nickname>beautiful</nickname><about>Im hot</about><married>false</married></person><id>25</id></array>";
 		assertEquals(actual, expected);
 
-		jsonString = ReadFileExtensions.fromFile(jsonMapFile);
-		actual = JsonToXmlExtensions.toXml(jsonString);
+		jsonString = ReadFileExtensions.fromFile(yamlMapFile);
+		actual = YamlToXmlExtensions.toXml(jsonString);
 		expected = "<1>0</1><2>0</2><3>0</3><4>0</4><5>0</5>";
 		assertEquals(actual, expected);
 
-		jsonString = ReadFileExtensions.fromFile(jsonCollectionFile);
-		actual = JsonToXmlExtensions.toXml(jsonString);
+		jsonString = ReadFileExtensions.fromFile(yamlCollectionFile);
+		actual = YamlToXmlExtensions.toXml(jsonString);
 		expected = "<array><person><gender>FEMALE</gender><name>Anna</name><nickname>beast</nickname><about>Ha ha ha...</about><married>true</married></person><id>23</id></array><array><person><gender>MALE</gender><name>Andreas</name><nickname>cute</nickname><about>fine person</about><married>false</married></person><id>24</id></array><array><person><gender>FEMALE</gender><name>Tatjana</name><nickname>beautiful</nickname><about>Im hot</about><married>false</married></person><id>25</id></array>";
 		assertEquals(actual, expected);
 	}
 
 	/**
-	 * Test method for {@link JsonToXmlExtensions#toXml(String, int)}
+	 * Test method for {@link YamlToXmlExtensions#toXml(String, int)}
 	 *
 	 * @throws JSONException
 	 *             if there is a syntax error in the source string or a duplicated key
@@ -117,18 +116,18 @@ public class JsonToXmlExtensionsTest
 		String jsonString;
 
 		jsonString = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
-		actual = JsonToXmlExtensions.toXml(jsonString, 4);
+		actual = YamlToXmlExtensions.toXml(jsonString, 4);
 		expected = "<person>\n" + "    <gender>FEMALE</gender>\n" + "    <name>Anna</name>\n"
 			+ "    <nickname>beast</nickname>\n" + "    <about>Ha ha ha...</about>\n"
 			+ "    <married>true</married>\n" + "</person>\n" + "<id>23</id>\n";
 		assertEquals(actual, expected);
 
-		jsonString = ReadFileExtensions.fromFile(jsonFile);
-		actual = JsonToXmlExtensions.toXml(jsonString, 4);
+		jsonString = ReadFileExtensions.fromFile(yamlFile);
+		actual = YamlToXmlExtensions.toXml(jsonString, 4);
 		assertEquals(actual, expected);
 
-		jsonString = ReadFileExtensions.fromFile(jsonListFile);
-		actual = JsonToXmlExtensions.toXml(jsonString, 4);
+		jsonString = ReadFileExtensions.fromFile(yamlListFile);
+		actual = YamlToXmlExtensions.toXml(jsonString, 4);
 		expected = "<array>\n" + "    <person>\n" + "        <gender>FEMALE</gender>\n"
 			+ "        <name>Anna</name>\n" + "        <nickname>beast</nickname>\n"
 			+ "        <about>Ha ha ha...</about>\n" + "        <married>true</married>\n"
@@ -143,13 +142,13 @@ public class JsonToXmlExtensionsTest
 			+ "    </person>\n" + "    <id>25</id>\n" + "</array>\n";
 		assertEquals(actual, expected);
 
-		jsonString = ReadFileExtensions.fromFile(jsonMapFile);
-		actual = JsonToXmlExtensions.toXml(jsonString, 4);
+		jsonString = ReadFileExtensions.fromFile(yamlMapFile);
+		actual = YamlToXmlExtensions.toXml(jsonString, 4);
 		expected = "<1>0</1>\n" + "<2>0</2>\n" + "<3>0</3>\n" + "<4>0</4>\n" + "<5>0</5>\n";
 		assertEquals(actual, expected);
 
-		jsonString = ReadFileExtensions.fromFile(jsonCollectionFile);
-		actual = JsonToXmlExtensions.toXml(jsonString, 4);
+		jsonString = ReadFileExtensions.fromFile(yamlCollectionFile);
+		actual = YamlToXmlExtensions.toXml(jsonString, 4);
 		expected = "<array>\n" + "    <person>\n" + "        <gender>FEMALE</gender>\n"
 			+ "        <name>Anna</name>\n" + "        <nickname>beast</nickname>\n"
 			+ "        <about>Ha ha ha...</about>\n" + "        <married>true</married>\n"
@@ -166,7 +165,7 @@ public class JsonToXmlExtensionsTest
 	}
 
 	/**
-	 * Test method for {@link JsonToXmlExtensions#toXml(String, int)}
+	 * Test method for {@link YamlToXmlExtensions#toXml(String, int)}
 	 *
 	 * @throws JSONException
 	 *             if there is a syntax error in the source string or a duplicated key
@@ -181,19 +180,19 @@ public class JsonToXmlExtensionsTest
 		String jsonString;
 
 		jsonString = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
-		actual = JsonToXmlExtensions.toXml(jsonString, 4, true);
+		actual = YamlToXmlExtensions.toXml(jsonString, 4, true);
 		expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + System.lineSeparator()
 			+ "<person>\n" + "    <gender>FEMALE</gender>\n" + "    <name>Anna</name>\n"
 			+ "    <nickname>beast</nickname>\n" + "    <about>Ha ha ha...</about>\n"
 			+ "    <married>true</married>\n" + "</person>\n" + "<id>23</id>\n";
 		assertEquals(actual, expected);
 
-		jsonString = ReadFileExtensions.fromFile(jsonFile);
-		actual = JsonToXmlExtensions.toXml(jsonString, 4, true);
+		jsonString = ReadFileExtensions.fromFile(yamlFile);
+		actual = YamlToXmlExtensions.toXml(jsonString, 4, true);
 		assertEquals(actual, expected);
 
-		jsonString = ReadFileExtensions.fromFile(jsonListFile);
-		actual = JsonToXmlExtensions.toXml(jsonString, 4, true);
+		jsonString = ReadFileExtensions.fromFile(yamlListFile);
+		actual = YamlToXmlExtensions.toXml(jsonString, 4, true);
 		expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + System.lineSeparator()
 			+ "<array>\n" + "    <person>\n" + "        <gender>FEMALE</gender>\n"
 			+ "        <name>Anna</name>\n" + "        <nickname>beast</nickname>\n"
@@ -209,14 +208,14 @@ public class JsonToXmlExtensionsTest
 			+ "    </person>\n" + "    <id>25</id>\n" + "</array>\n";
 		assertEquals(actual, expected);
 
-		jsonString = ReadFileExtensions.fromFile(jsonMapFile);
-		actual = JsonToXmlExtensions.toXml(jsonString, 4, true);
+		jsonString = ReadFileExtensions.fromFile(yamlMapFile);
+		actual = YamlToXmlExtensions.toXml(jsonString, 4, true);
 		expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + System.lineSeparator()
 			+ "<1>0</1>\n" + "<2>0</2>\n" + "<3>0</3>\n" + "<4>0</4>\n" + "<5>0</5>\n";
 		assertEquals(actual, expected);
 
-		jsonString = ReadFileExtensions.fromFile(jsonCollectionFile);
-		actual = JsonToXmlExtensions.toXml(jsonString, 4, true);
+		jsonString = ReadFileExtensions.fromFile(yamlCollectionFile);
+		actual = YamlToXmlExtensions.toXml(jsonString, 4, true);
 		expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + System.lineSeparator()
 			+ "<array>\n" + "    <person>\n" + "        <gender>FEMALE</gender>\n"
 			+ "        <name>Anna</name>\n" + "        <nickname>beast</nickname>\n"
@@ -234,7 +233,7 @@ public class JsonToXmlExtensionsTest
 	}
 
 	/**
-	 * Test method for {@link JsonToXmlExtensions#toXml(String, int)}
+	 * Test method for {@link YamlToXmlExtensions#toXml(String, int)}
 	 *
 	 * @throws JSONException
 	 *             if there is a syntax error in the source string or a duplicated key
@@ -249,7 +248,7 @@ public class JsonToXmlExtensionsTest
 		String jsonString;
 
 		jsonString = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
-		actual = JsonToXmlExtensions.toXml(jsonString, 4, true, true, "content");
+		actual = YamlToXmlExtensions.toXml(jsonString, 4, true, true, "content");
 		expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + "<content>\n" + "<person>\n"
 			+ "    <gender>FEMALE</gender>\n" + "    <name>Anna</name>\n"
 			+ "    <nickname>beast</nickname>\n" + "    <about>Ha ha ha...</about>\n"
@@ -258,15 +257,15 @@ public class JsonToXmlExtensionsTest
 		actual = actual.replace("\n", "").replace("\r", "").replace(" ", "");
 		assertEquals(actual, expected);
 
-		jsonString = ReadFileExtensions.fromFile(jsonFile);
-		actual = JsonToXmlExtensions.toXml(jsonString, 4, true, true, "content");
+		jsonString = ReadFileExtensions.fromFile(yamlFile);
+		actual = YamlToXmlExtensions.toXml(jsonString, 4, true, true, "content");
 
 		expected = expected.replace("\n", "").replace("\r", "").replace(" ", "");
 		actual = actual.replace("\n", "").replace("\r", "").replace(" ", "");
 		assertEquals(actual, expected);
 
-		jsonString = ReadFileExtensions.fromFile(jsonListFile);
-		actual = JsonToXmlExtensions.toXml(jsonString, 4, true, true, "content");
+		jsonString = ReadFileExtensions.fromFile(yamlListFile);
+		actual = YamlToXmlExtensions.toXml(jsonString, 4, true, true, "content");
 		expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + "<content>\n" + "<array>\n"
 			+ "    <person>\n" + "        <gender>FEMALE</gender>\n" + "        <name>Anna</name>\n"
 			+ "        <nickname>beast</nickname>\n" + "        <about>Ha ha ha...</about>\n"
@@ -283,16 +282,16 @@ public class JsonToXmlExtensionsTest
 		actual = actual.replace("\n", "").replace("\r", "").replace(" ", "");
 		assertEquals(actual, expected);
 
-		jsonString = ReadFileExtensions.fromFile(jsonMapFile);
-		actual = JsonToXmlExtensions.toXml(jsonString, 4, true, true, "content");
+		jsonString = ReadFileExtensions.fromFile(yamlMapFile);
+		actual = YamlToXmlExtensions.toXml(jsonString, 4, true, true, "content");
 		expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + "<content>\n" + "<1>0</1>\n"
 			+ "<2>0</2>\n" + "<3>0</3>\n" + "<4>0</4>\n" + "<5>0</5>\n" + "</content>";
 		expected = expected.replace("\n", "").replace("\r", "").replace(" ", "");
 		actual = actual.replace("\n", "").replace("\r", "").replace(" ", "");
 		assertEquals(actual, expected);
 
-		jsonString = ReadFileExtensions.fromFile(jsonCollectionFile);
-		actual = JsonToXmlExtensions.toXml(jsonString, 4, true, true, "content");
+		jsonString = ReadFileExtensions.fromFile(yamlCollectionFile);
+		actual = YamlToXmlExtensions.toXml(jsonString, 4, true, true, "content");
 		expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + "<content>\n" + "<array>\n"
 			+ "    <person>\n" + "        <gender>FEMALE</gender>\n" + "        <name>Anna</name>\n"
 			+ "        <nickname>beast</nickname>\n" + "        <about>Ha ha ha...</about>\n"
@@ -311,13 +310,13 @@ public class JsonToXmlExtensionsTest
 	}
 
 	/**
-	 * Test method for {@link JsonToXmlExtensions}
+	 * Test method for {@link YamlToXmlExtensions}
 	 */
 	@Test
 	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();
-		beanTester.testBean(JsonToXmlExtensions.class);
+		beanTester.testBean(YamlToXmlExtensions.class);
 	}
 
 }

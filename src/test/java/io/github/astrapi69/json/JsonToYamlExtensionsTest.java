@@ -46,11 +46,13 @@ public class JsonToYamlExtensionsTest
 	File jsonDir;
 	File yamlDir;
 	File jsonFile;
+	File jsonSigninFile;
 	File jsonCollectionFile;
 
 	File jsonMapFile;
 	File jsonListFile;
 	File yamlFile;
+	File yamlSigninFile;
 	File yamlCollectionFile;
 
 	File yamlMapFile;
@@ -62,15 +64,16 @@ public class JsonToYamlExtensionsTest
 		jsonDir = new File(PathFinder.getSrcTestResourcesDir(), "json");
 		yamlDir = new File(PathFinder.getSrcTestResourcesDir(), "yaml");
 		jsonFile = new File(jsonDir, "person.json");
+		jsonSigninFile = new File(jsonDir, "signin.json");
 		jsonListFile = new File(jsonDir, "employees.json");
 		jsonMapFile = new File(jsonDir, "map.json");
 		jsonCollectionFile = new File(jsonDir, "collection.json");
 
 		yamlFile = new File(yamlDir, "person.yaml");
+		yamlSigninFile = new File(yamlDir, "signin.yaml");
 		yamlListFile = new File(yamlDir, "employees.yaml");
 		yamlMapFile = new File(yamlDir, "map.yaml");
 		yamlCollectionFile = new File(yamlDir, "collection.yaml");
-
 	}
 
 	/**
@@ -90,6 +93,13 @@ public class JsonToYamlExtensionsTest
 			+ "  nickname: \"beast\"\n" + "  gender: \"FEMALE\"\n" + "  about: \"Ha ha ha...\"\n"
 			+ "  married: true\n" + "subOrdinates: []\n" + "\n";
 		actual = ReadFileExtensions.fromFile(yamlFile);
+		expected = expected.replace("\n", "").replace("\r", "").replace(" ", "");
+		actual = actual.replace("\n", "").replace("\r", "").replace(" ", "");
+		assertEquals(expected, actual);
+
+		JsonToYamlExtensions.toYaml(jsonSigninFile, yamlSigninFile);
+		expected = "---\n" + "username: \"foo\"\n" + "password: \"bar\"\n" + "\n";
+		actual = ReadFileExtensions.fromFile(yamlSigninFile);
 		expected = expected.replace("\n", "").replace("\r", "").replace(" ", "");
 		actual = actual.replace("\n", "").replace("\r", "").replace(" ", "");
 		assertEquals(expected, actual);
@@ -163,6 +173,10 @@ public class JsonToYamlExtensionsTest
 			+ "  married: true\n" + "subOrdinates: []\n";
 		assertEquals(expected, actual);
 
+		actual = JsonToYamlExtensions.toYaml(jsonSigninFile);
+		expected = "---\n" + "username: \"foo\"\n" + "password: \"bar\"\n";
+		assertEquals(expected, actual);
+
 		actual = JsonToYamlExtensions.toYaml(jsonListFile);
 		expected = "---\n" + "- id: \"23\"\n" + "  person:\n" + "    name: \"Anna\"\n"
 			+ "    nickname: \"beast\"\n" + "    gender: \"FEMALE\"\n"
@@ -208,6 +222,10 @@ public class JsonToYamlExtensionsTest
 		expected = "---\n" + "id: \"23\"\n" + "person:\n" + "  name: \"Anna\"\n"
 			+ "  nickname: \"beast\"\n" + "  gender: \"FEMALE\"\n" + "  about: \"Ha ha ha...\"\n"
 			+ "  married: true\n" + "subOrdinates: []\n";
+		assertEquals(expected, actual);
+
+		actual = JsonToYamlExtensions.toYaml(ReadFileExtensions.fromFile(jsonSigninFile));
+		expected = "---\n" + "username: \"foo\"\n" + "password: \"bar\"\n";
 		assertEquals(expected, actual);
 
 		actual = JsonToYamlExtensions.toYaml(ReadFileExtensions.fromFile(jsonListFile));

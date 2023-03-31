@@ -70,7 +70,7 @@ public class Json2XmlExtensionsTest
 	 *            the json as {@link String} object
 	 * @return the transformed xml as {@link String} object
 	 * @throws JSONException
-	 *             if there is a syntax error in the source string or a duplicated key.
+	 *             if there is a syntax error in the source string or a duplicated key
 	 */
 	public static String toXml(final String jsonString) throws XMLStreamException, IOException
 	{

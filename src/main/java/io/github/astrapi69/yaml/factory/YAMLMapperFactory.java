@@ -22,7 +22,7 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package io.github.astrapi69.json.factory;
+package io.github.astrapi69.yaml.factory;
 
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
@@ -43,7 +43,29 @@ public final class YAMLMapperFactory
 	 */
 	public static YAMLMapper newYAMLMapper()
 	{
-		return new YAMLMapper();
+		return newYAMLMapper(true);
+	}
+
+	/** The constant mapper. */
+	private final static YAMLMapper YAML_MAPPER = newYAMLMapper(true);
+
+	/**
+	 * Factory method for create a new {@link YAMLMapper}. If the given flag is true a new
+	 * {@link YAMLMapper} will be created otherwise the default {@link YAMLMapper} will be taken.
+	 *
+	 * @param newMapper
+	 *            flag that indicates if a new {@link YAMLMapper} should be created, if true a new
+	 *            {@link YAMLMapper} will be created otherwise the default {@link YAMLMapper} from
+	 *            this class will be returned.
+	 * @return the new {@link YAMLMapper}
+	 */
+	public static YAMLMapper newYAMLMapper(final boolean newMapper)
+	{
+		if (newMapper)
+		{
+			return new YAMLMapper();
+		}
+		return YAML_MAPPER;
 	}
 
 	/**
