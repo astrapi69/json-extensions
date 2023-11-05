@@ -1,8 +1,27 @@
 ## Change log
 ----------------------
 
-Version 2.5-SNAPSHOT
+Version 3-SNAPSHOT
 -------------
+
+ADDED:
+
+- new factory class JavaTypeFactory
+
+CHANGED:
+
+- update of jdk to version 17
+- update gradle to new version 8.4
+- update of gradle plugin dependency com.github.ben-manes.versions.gradle.plugin to new version 0.49.0
+- update of gradle-plugin dependency 'org.ajoberstar.grgit:grgit-gradle' to new version 5.2.1
+- update of gradle plugin dependency io.freefair.gradle:lombok-plugin to new version 6.22.0
+- update of main dependency json to new version 20231013
+- update of main dependency jackson-* to new version 2.16.0-rc1
+- update of test dependency silly-collection to new version 27
+- update of test dependency xml-jackson-extensions to new version 2.1
+- update of test dependency file-worker to new version 17.1
+- update of test dependency test-object to new version 8.2
+- update of test dependency testng to new version 7.8.0
 
 Version 2.4
 -------------
