@@ -27,8 +27,12 @@ package io.github.astrapi69.json.factory;
 import java.util.Map;
 
 import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.cfg.DatatypeFeature;
 
 /**
  * The factory class {@link ObjectMapperFactory} for creating {@link ObjectMapper} objects
@@ -73,16 +77,62 @@ public final class ObjectMapperFactory
 	}
 
 	/**
-	 * Factory method for create a new {@link ObjectMapper} with the given features
+	 * Factory method for create a new {@link ObjectMapper} with the given map of json parser
+	 * features
 	 *
-	 * @param features
-	 *            the features for the new {@link ObjectMapper}
+	 * @param jsonParserFeatures
+	 *            the map with the json parser features for the new {@link ObjectMapper}
 	 * @return the new {@link ObjectMapper}
 	 */
-	public static ObjectMapper newObjectMapper(Map<JsonParser.Feature, Boolean> features)
+	public static ObjectMapper newObjectMapper(Map<JsonParser.Feature, Boolean> jsonParserFeatures)
 	{
 		final ObjectMapper objectMapper = newObjectMapper(true);
-		features.forEach(objectMapper::configure);
+		jsonParserFeatures.forEach(objectMapper::configure);
+		return newObjectMapper(jsonParserFeatures, null, null, null, null);
+	}
+
+	/**
+	 * Factory method for create a new {@link ObjectMapper} with the given features
+	 *
+	 * @param jsonParserFeatures
+	 *            the map with the json parser features for the new {@link ObjectMapper}
+	 * @param jsonGeneratorFeatures
+	 *            the map with the json generator features for the new {@link ObjectMapper}
+	 * @param deserializationFeatures
+	 *            the map with the json deserialization features for the new {@link ObjectMapper}
+	 * @param serializationFeatures
+	 *            the map with the json serialization features for the new {@link ObjectMapper}
+	 * @param datatypeFeatures
+	 *            the map with the datatype features for the new {@link ObjectMapper}
+	 * @return the new {@link ObjectMapper}
+	 */
+	public static ObjectMapper newObjectMapper(Map<JsonParser.Feature, Boolean> jsonParserFeatures,
+		Map<JsonGenerator.Feature, Boolean> jsonGeneratorFeatures,
+		Map<DeserializationFeature, Boolean> deserializationFeatures,
+		Map<SerializationFeature, Boolean> serializationFeatures,
+		Map<DatatypeFeature, Boolean> datatypeFeatures)
+	{
+		final ObjectMapper objectMapper = newObjectMapper(true);
+		if (jsonParserFeatures != null && !jsonParserFeatures.isEmpty())
+		{
+			jsonParserFeatures.forEach(objectMapper::configure);
+		}
+		if (jsonGeneratorFeatures != null && !jsonGeneratorFeatures.isEmpty())
+		{
+			jsonGeneratorFeatures.forEach(objectMapper::configure);
+		}
+		if (deserializationFeatures != null && !deserializationFeatures.isEmpty())
+		{
+			deserializationFeatures.forEach(objectMapper::configure);
+		}
+		if (serializationFeatures != null && !serializationFeatures.isEmpty())
+		{
+			serializationFeatures.forEach(objectMapper::configure);
+		}
+		if (datatypeFeatures != null && !datatypeFeatures.isEmpty())
+		{
+			datatypeFeatures.forEach(objectMapper::configure);
+		}
 		return objectMapper;
 	}
 
@@ -97,6 +147,5 @@ public final class ObjectMapperFactory
 	{
 		return new ObjectMapper(jsonFactory);
 	}
-
 
 }
