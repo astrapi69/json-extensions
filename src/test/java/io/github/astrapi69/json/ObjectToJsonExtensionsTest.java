@@ -25,9 +25,10 @@
 package io.github.astrapi69.json;
 
 import static org.testng.AssertJUnit.assertEquals;
-import static org.testng.AssertJUnit.assertTrue;
+import static org.testng.AssertJUnit.assertNotNull;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -42,6 +43,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import io.github.astrapi69.collection.list.ListFactory;
 import io.github.astrapi69.collection.map.MapFactory;
+import io.github.astrapi69.json.export.html.ForexEntry;
+import io.github.astrapi69.json.export.html.ForexEntryExtensions;
 import io.github.astrapi69.test.object.Employee;
 import io.github.astrapi69.test.object.Person;
 import io.github.astrapi69.test.object.enumeration.Gender;
@@ -85,7 +88,7 @@ public class ObjectToJsonExtensionsTest
 		// new scenario: try to convert a Employee object to json
 		expected = "{\"id\":\"23\",\"person\":{\"about\":\"Ha ha ha...\",\"gender\":\"FEMALE\",\"married\":true,\"name\":\"Anna\",\"nickname\":\"beast\"},\"subOrdinates\":[]}";
 		actual = ObjectToJsonExtensions.toJson(employee);
-		assertTrue("", actual.equals(expected));
+		assertEquals(expected, actual);
 		// new scenario: try to convert a integer map to json
 		Map<Integer, Integer> numberCounterMap = newCounterMap(ListFactory.newRangeList(1, 5));
 		expected = "{\"1\":0,\"2\":0,\"3\":0,\"4\":0,\"5\":0}";
@@ -123,6 +126,24 @@ public class ObjectToJsonExtensionsTest
 		actual = ObjectToJsonExtensions.toJson(integerEmployeeMap);
 		assertEquals(actual, expected);
 
+	}
+
+	/**
+	 * Test method for {@link ObjectToJsonExtensions#toJson(Object)} with {@link Map}
+	 *
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 * @throws JsonProcessingException
+	 *             if an error occurs when converting object to String
+	 */
+	@Test
+	public void testToJsonFromForexEntriesMap() throws IOException, JsonProcessingException
+	{
+		URL url = new URL("https://ec.forexprostools.com/");
+		Map<String, ArrayList<ForexEntry>> forexEntries = ForexEntryExtensions
+			.readForexEntries(url);
+		String json = ObjectToJsonExtensions.toJson(forexEntries);
+		assertNotNull(json);
 	}
 
 	/**

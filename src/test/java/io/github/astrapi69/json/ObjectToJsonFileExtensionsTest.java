@@ -25,14 +25,18 @@
 package io.github.astrapi69.json;
 
 import static org.testng.AssertJUnit.assertEquals;
+import static org.testng.AssertJUnit.assertNotNull;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.Map;
 
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.github.astrapi69.collection.list.ListFactory;
@@ -40,6 +44,8 @@ import io.github.astrapi69.collection.map.MapFactory;
 import io.github.astrapi69.file.delete.DeleteFileExtensions;
 import io.github.astrapi69.file.read.ReadFileExtensions;
 import io.github.astrapi69.file.search.PathFinder;
+import io.github.astrapi69.json.export.html.ForexEntry;
+import io.github.astrapi69.json.export.html.ForexEntryExtensions;
 import io.github.astrapi69.json.factory.ObjectMapperFactory;
 import io.github.astrapi69.test.object.Employee;
 import io.github.astrapi69.test.object.Person;
@@ -83,6 +89,34 @@ public class ObjectToJsonFileExtensionsTest
 		expected = "{\"1\":0,\"2\":0,\"3\":0,\"4\":0,\"5\":0}";
 		ObjectToJsonFileExtensions.toJsonFile(numberCounterMap, jsonFile);
 		actual = ReadFileExtensions.fromFile(jsonFile);
+		assertEquals(expected, actual);
+		// clean up
+		DeleteFileExtensions.delete(jsonFile);
+	}
+
+	/**
+	 * Test method for {@link ObjectToJsonExtensions#toJson(Object)} with {@link Map}
+	 *
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 * @throws JsonProcessingException
+	 *             if an error occurs when converting object to String
+	 */
+	@Test
+	public void testToJsonFileFromForexEntriesMap() throws IOException, JsonProcessingException
+	{
+		String expected;
+		String actual;
+		File jsonFile;
+		URL url = new URL("https://ec.forexprostools.com/");
+		Map<String, ArrayList<ForexEntry>> forexEntries = ForexEntryExtensions
+			.readForexEntries(url);
+
+		jsonFile = new File(PathFinder.getSrcTestResourcesDir(), "forex-entries.json");
+		ObjectToJsonFileExtensions.toJsonFile(forexEntries, jsonFile);
+		expected = ObjectToJsonExtensions.toJson(forexEntries);
+		actual = ReadFileExtensions.fromFile(jsonFile);
+		assertNotNull(actual);
 		assertEquals(expected, actual);
 		// clean up
 		DeleteFileExtensions.delete(jsonFile);
