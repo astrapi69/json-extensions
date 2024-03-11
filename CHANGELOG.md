@@ -4,7 +4,19 @@
 Version 3.1-SNAPSHOT
 -------------
 
+ADDED:
 
+- new test dependency lombok in version 1.18.30
+- new test dependency jsoup in version 1.17.2
+- new unit tests for extract large map from html and transform to json
+
+CHANGED:
+
+- update gradle to new version 8.6-rc-2
+- update of gradle plugin dependency com.github.ben-manes.versions.gradle.plugin to new version 0.50.0
+- update of gradle plugin dependency io.freefair.gradle:lombok-plugin to new version 6.24.0
+- update of main dependency jackson-* to new version 2.16.1
+- update of test dependency testng to new version 7.9.0
 
 Version 3
 -------------
