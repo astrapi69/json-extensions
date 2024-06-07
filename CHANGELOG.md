@@ -12,7 +12,7 @@ ADDED:
 
 CHANGED:
 
-- update gradle to new version 8.6-rc-2
+- update gradle to new version 8.8
 - update of gradle plugin dependency com.github.ben-manes.versions.gradle.plugin to new version 0.50.0
 - update of gradle plugin dependency io.freefair.gradle:lombok-plugin to new version 6.24.0
 - update of main dependency jackson-* to new version 2.16.1
