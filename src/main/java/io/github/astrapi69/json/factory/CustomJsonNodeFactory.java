@@ -104,7 +104,7 @@ public class CustomJsonNodeFactory extends JsonNodeFactory
 	 */
 	private <T extends JsonNode> T markNode(T node)
 	{
-		JsonLocation loc = parserFactory.getParser().getCurrentLocation();
+		JsonLocation loc = parserFactory.getParser().currentLocation();
 		locationMapping.add(new SimpleEntry<>(node, loc));
 		return node;
 	}
