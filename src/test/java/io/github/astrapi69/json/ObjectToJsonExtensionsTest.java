@@ -136,7 +136,7 @@ public class ObjectToJsonExtensionsTest
 	 * @throws JsonProcessingException
 	 *             if an error occurs when converting object to String
 	 */
-	@Test
+	@Test(enabled = false)
 	public void testToJsonFromForexEntriesMap() throws IOException, JsonProcessingException
 	{
 		URL url = new URL("https://ec.forexprostools.com/");

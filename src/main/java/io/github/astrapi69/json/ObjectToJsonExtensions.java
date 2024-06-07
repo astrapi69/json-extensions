@@ -57,8 +57,7 @@ public final class ObjectToJsonExtensions
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred
 	 */
-	public static <T> String toJson(final List<T> list)
-		throws IOException
+	public static <T> String toJson(final List<T> list) throws IOException
 	{
 		Objects.requireNonNull(list);
 		final ObjectMapper mapper = ObjectMapperFactory.newObjectMapper();

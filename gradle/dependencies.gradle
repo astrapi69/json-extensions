@@ -1,5 +1,6 @@
 dependencies {
     implementation libs.json
+    implementation libs.transform.json.api
     implementation libs.jackson.databind
     implementation libs.jackson.dataformat.yaml
     implementation libs.jackson.module.jsonSchema

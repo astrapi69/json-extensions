@@ -102,7 +102,7 @@ public class ObjectToJsonFileExtensionsTest
 	 * @throws JsonProcessingException
 	 *             if an error occurs when converting object to String
 	 */
-	@Test
+	@Test(enabled = false)
 	public void testToJsonFileFromForexEntriesMap() throws IOException, JsonProcessingException
 	{
 		String expected;

@@ -12,6 +12,7 @@ plugins {
     id 'maven-publish'
     id 'signing'
     id 'jacoco'
+    alias(libs.plugins.lombok.plugin)
     alias(libs.plugins.gradle.versions.plugin)
     alias(libs.plugins.license.gradle.plugin)
     alias(libs.plugins.grgit.gradle)

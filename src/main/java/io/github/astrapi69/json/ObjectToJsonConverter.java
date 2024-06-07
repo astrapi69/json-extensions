@@ -24,32 +24,41 @@
  */
 package io.github.astrapi69.json;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import io.github.astrapi69.transform.json.api.ObjectToJson;
-
 import java.util.List;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+
+import io.github.astrapi69.transform.json.api.ObjectToJson;
 
 /**
  * The class {@link ObjectToJsonConverter} can convert a given json string to an object
  */
-public class ObjectToJsonConverter
- implements ObjectToJson
+public class ObjectToJsonConverter implements ObjectToJson
 {
 
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override public <T> String toJson(T object) {
-		if(object instanceof List<?>) {
-			try {
+	@Override
+	public <T> String toJson(T object)
+	{
+		if (object instanceof List<?>)
+		{
+			try
+			{
 				ObjectToJsonExtensions.toJson(object);
-			} catch (JsonProcessingException e) {
+			}
+			catch (JsonProcessingException e)
+			{
 				throw new RuntimeException(e);
 			}
 		}
-		try {
+		try
+		{
 			return ObjectToJsonExtensions.toJson(object);
-		} catch (JsonProcessingException e) {
+		}
+		catch (JsonProcessingException e)
+		{
 			throw new RuntimeException(e);
 		}
 	}
