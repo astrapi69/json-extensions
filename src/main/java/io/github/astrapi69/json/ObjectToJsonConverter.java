@@ -22,17 +22,35 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-module json.extensions.main
-{
-	requires org.json;
-	requires com.fasterxml.jackson.core;
-	requires com.fasterxml.jackson.databind;
-	requires com.fasterxml.jackson.dataformat.yaml;
-	requires com.fasterxml.jackson.module.jsonSchema;
-	requires transform.json.api.main;
+package io.github.astrapi69.json;
 
-	exports io.github.astrapi69.json;
-	exports io.github.astrapi69.json.factory;
-	exports io.github.astrapi69.yaml;
-	exports io.github.astrapi69.yaml.factory;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import io.github.astrapi69.transform.json.api.ObjectToJson;
+
+import java.util.List;
+
+/**
+ * The class {@link ObjectToJsonConverter} can convert a given json string to an object
+ */
+public class ObjectToJsonConverter
+ implements ObjectToJson
+{
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override public <T> String toJson(T object) {
+		if(object instanceof List<?>) {
+			try {
+				ObjectToJsonExtensions.toJson(object);
+			} catch (JsonProcessingException e) {
+				throw new RuntimeException(e);
+			}
+		}
+		try {
+			return ObjectToJsonExtensions.toJson(object);
+		} catch (JsonProcessingException e) {
+			throw new RuntimeException(e);
+		}
+	}
 }

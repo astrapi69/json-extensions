@@ -53,16 +53,12 @@ public final class ObjectToJsonExtensions
 	 *            the generic type
 	 * @param list
 	 *            the list
-	 * @return the json string.
-	 * @throws JsonGenerationException
-	 *             If an error occurs by writing json string
-	 * @throws JsonMappingException
-	 *             the If an error occurs when mapping the string into Object
+	 * @return the json string
 	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
+	 *             Signals that an I/O exception has occurred
 	 */
 	public static <T> String toJson(final List<T> list)
-		throws JsonGenerationException, JsonMappingException, IOException
+		throws IOException
 	{
 		Objects.requireNonNull(list);
 		final ObjectMapper mapper = ObjectMapperFactory.newObjectMapper();
@@ -89,7 +85,6 @@ public final class ObjectToJsonExtensions
 		Objects.requireNonNull(mapper);
 		final ByteArrayOutputStream out = new ByteArrayOutputStream();
 		mapper.writeValue(out, list);
-
 		out.close();
 		return out.toString();
 	}
