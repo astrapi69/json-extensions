@@ -23,38 +23,15 @@ No animals were harmed in the making of this library.
 
 The source code comes under the liberal MIT License, making json-extensions great for all types of applications.
 
-## Maven dependency
+## Import dependencies to your project
 
-Maven dependency is now on sonatype.
-Check
-out [sonatype repository](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~json-extensions~~~)
-for latest snapshots and
-releases.
-
-Add the following maven dependency to your project `pom.xml` if you want to import the core functionality of
-json-extensions:
-
-Than you can add the dependency to your dependencies:
-
-    <properties>
-            ...
-        <!-- JSON-EXTENSIONS version -->
-        <json-extensions.version>3</json-extensions.version>
-            ...
-    </properties>
-            ...
-        <dependencies>
-            ...
-            <!-- JSON-EXTENSIONS DEPENDENCY -->
-            <dependency>
-                <groupId>io.github.astrapi69</groupId>
-                <artifactId>json-extensions</artifactId>
-                <version>${json-extensions.version}</version>
-            </dependency>
-            ...
-        </dependencies>
+<details>
+  <summary>gradle (click to expand)</summary>
 
 ## gradle dependency
+
+Replace the variable ${latestVersion} with the current latest
+version: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/json-extensions/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/json-extensions)
 
 You can first define the version in the ext section and add than the following gradle dependency to
 your project `build.gradle` if you want to import the core functionality of json-extensions:
@@ -62,23 +39,120 @@ your project `build.gradle` if you want to import the core functionality of json
 define version in file gradle.properties
 
 ```
-jsonExtensionsVersion=3
+jsonExtensionsVersion=${latestVersion}
 ```
 
 or in build.gradle ext area
 
 ```
-ext {
-            ...
-    jsonExtensionsVersion = "3"
-            ...
-}
-dependencies {
-            ...
+    jsonExtensionsVersion = "${latestVersion}"
+```
+
+then add the dependency to the dependencies area
+
+```
     implementation("io.github.astrapi69:json-extensions:$jsonExtensionsVersion")
-            ...
+```
+
+# with new libs.versions.toml file
+
+If you use the new libs.versions.toml file for new automatic catalog versions update
+
+```
+[versions]
+```
+```
+json-extensions-version= "${latestVersion}"
+```
+```
+[libraries]
+```
+```
+json-extensions = { module = "io.github.astrapi69:json-extensions", version.ref = "json-extensions-version" }
+```
+
+then add the dependency to the dependencies area
+
+```
+    implementation libs.json.extensions
+```
+
+</details>
+
+<details>
+  <summary>Maven (click to expand)</summary>
+
+## Maven dependency
+
+Maven dependency is now on sonatype.
+Check
+out [sonatype repository](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~json-extensions~~~)
+for latest snapshots and releases.
+
+Add the following maven dependency to your project `pom.xml` if you want to import the core
+functionality of json-extensions:
+
+Then you can add the dependency to your dependencies:
+
+    <properties>
+        ...
+
+```xml
+        <!-- json-extensions version -->
+        <json-extensions.version>${latestVersion}</json-extensions.version>
+```
+
+        ...
+    </properties>
+        ...
+        <dependencies>
+        ...
+
+```xml
+            <!-- json-extensions DEPENDENCY -->
+            <dependency>
+                <groupId>io.github.astrapi69</groupId>
+                <artifactId>json-extensions</artifactId>
+                <version>${json-extensions.version}</version>
+            </dependency>
+```
+
+        ...
+        </dependencies>
+
+</details>
+
+
+<details>
+  <summary>Snapshots (click to expand)</summary>
+
+## 📸 Snapshots
+
+[![Snapshot](https://img.shields.io/badge/dynamic/xml?url=https://oss.sonatype.org/service/local/repositories/snapshots/content/io/github/astrapi69/json-extensions/maven-metadata.xml&label=snapshot&color=red&query=.//versioning/latest)](https://oss.sonatype.org/content/repositories/snapshots/io/github/astrapi69/json-extensions/)
+
+This section describes how to import snapshot versions into your project.
+Add the following code snippet to your gradle file in the repositories section:
+
+```
+repositories {
+   //...
+```
+
+```groovy
+    maven {
+        name "Sonatype Nexus Snapshots"
+        url "https://oss.sonatype.org/content/repositories/snapshots"
+        mavenContent {
+            snapshotsOnly()
+        }
+    }
+```
+
+```
 }
 ```
+
+</details>
 
 # Donations
 
