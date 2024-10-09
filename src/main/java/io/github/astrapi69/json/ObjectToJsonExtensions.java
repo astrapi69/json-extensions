@@ -29,9 +29,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
-import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.github.astrapi69.json.factory.ObjectMapperFactory;
