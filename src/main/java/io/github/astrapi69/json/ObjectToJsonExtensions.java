@@ -29,9 +29,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
-import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.github.astrapi69.json.factory.ObjectMapperFactory;
@@ -53,16 +51,11 @@ public final class ObjectToJsonExtensions
 	 *            the generic type
 	 * @param list
 	 *            the list
-	 * @return the json string.
-	 * @throws JsonGenerationException
-	 *             If an error occurs by writing json string
-	 * @throws JsonMappingException
-	 *             the If an error occurs when mapping the string into Object
+	 * @return the json string
 	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
+	 *             Signals that an I/O exception has occurred
 	 */
-	public static <T> String toJson(final List<T> list)
-		throws JsonGenerationException, JsonMappingException, IOException
+	public static <T> String toJson(final List<T> list) throws IOException
 	{
 		Objects.requireNonNull(list);
 		final ObjectMapper mapper = ObjectMapperFactory.newObjectMapper();
@@ -89,7 +82,6 @@ public final class ObjectToJsonExtensions
 		Objects.requireNonNull(mapper);
 		final ByteArrayOutputStream out = new ByteArrayOutputStream();
 		mapper.writeValue(out, list);
-
 		out.close();
 		return out.toString();
 	}

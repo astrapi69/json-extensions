@@ -25,10 +25,9 @@
 package io.github.astrapi69.json;
 
 import static org.testng.AssertJUnit.assertEquals;
-import static org.testng.AssertJUnit.assertNotNull;
+import static org.testng.AssertJUnit.assertTrue;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -43,16 +42,14 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import io.github.astrapi69.collection.list.ListFactory;
 import io.github.astrapi69.collection.map.MapFactory;
-import io.github.astrapi69.json.export.html.ForexEntry;
-import io.github.astrapi69.json.export.html.ForexEntryExtensions;
 import io.github.astrapi69.test.object.Employee;
 import io.github.astrapi69.test.object.Person;
 import io.github.astrapi69.test.object.enumeration.Gender;
 
 /**
- * The unit test class for the class {@link ObjectToJsonExtensions}
+ * The unit test class for the class {@link ObjectToJsonConverter}
  */
-public class ObjectToJsonExtensionsTest
+public class ObjectToJsonConverterTest
 {
 
 	public static <K> Map<K, Integer> newCounterMap(final Collection<K> elements)
@@ -72,23 +69,23 @@ public class ObjectToJsonExtensionsTest
 	}
 
 	/**
-	 * Test method for {@link ObjectToJsonExtensions#toJson(Object)}
-	 *
-	 * @throws JsonProcessingException
-	 *             if an error occurs when converting object to String
+	 * Test method for {@link ObjectToJsonConverter#toJson(Object)}
 	 */
 	@Test
 	public void testToJson() throws JsonProcessingException
 	{
 		String expected;
 		String actual;
+		ObjectToJsonConverter objectToJsonConverter;
+
+		objectToJsonConverter = new ObjectToJsonConverter();
 		final Employee employee = Employee.builder().person(Person.builder().gender(Gender.FEMALE)
 			.name("Anna").married(true).about("Ha ha ha...").nickname("beast").build()).id("23")
 			.build();
 		// new scenario: try to convert a Employee object to json
 		expected = "{\"id\":\"23\",\"person\":{\"about\":\"Ha ha ha...\",\"gender\":\"FEMALE\",\"married\":true,\"name\":\"Anna\",\"nickname\":\"beast\"},\"subOrdinates\":[]}";
-		actual = ObjectToJsonExtensions.toJson(employee);
-		assertEquals(expected, actual);
+		actual = objectToJsonConverter.toJson(employee);
+		assertTrue("", actual.equals(expected));
 		// new scenario: try to convert a integer map to json
 		Map<Integer, Integer> numberCounterMap = newCounterMap(ListFactory.newRangeList(1, 5));
 		expected = "{\"1\":0,\"2\":0,\"3\":0,\"4\":0,\"5\":0}";
@@ -97,7 +94,7 @@ public class ObjectToJsonExtensionsTest
 	}
 
 	/**
-	 * Test method for {@link ObjectToJsonExtensions#toJson(Object)} with {@link Map}
+	 * Test method for {@link ObjectToJsonConverter#toJson(Object)} with {@link Map}
 	 *
 	 * @throws JsonProcessingException
 	 *             if an error occurs when converting object to String
@@ -107,12 +104,15 @@ public class ObjectToJsonExtensionsTest
 	{
 		String expected;
 		String actual;
+		ObjectToJsonConverter objectToJsonConverter;
+
+		objectToJsonConverter = new ObjectToJsonConverter();
 		final Map<String, String> stringMap = new HashMap<>();
 		stringMap.put("a", "ss");
 		stringMap.put("b", "qq");
 
 		expected = "{\"a\":\"ss\",\"b\":\"qq\"}";
-		actual = ObjectToJsonExtensions.toJson(stringMap);
+		actual = objectToJsonConverter.toJson(stringMap);
 		assertEquals(actual, expected);
 
 		final Employee employee1 = Employee.builder().person(Person.builder().gender(Gender.FEMALE)
@@ -123,31 +123,13 @@ public class ObjectToJsonExtensionsTest
 		integerEmployeeMap.put(1, employee1);
 
 		expected = "{\"1\":{\"id\":\"23\",\"person\":{\"about\":\"Ha ha ha...\",\"gender\":\"FEMALE\",\"married\":true,\"name\":\"Anna\",\"nickname\":\"beast\"},\"subOrdinates\":[]}}";
-		actual = ObjectToJsonExtensions.toJson(integerEmployeeMap);
+		actual = objectToJsonConverter.toJson(integerEmployeeMap);
 		assertEquals(actual, expected);
 
 	}
 
 	/**
-	 * Test method for {@link ObjectToJsonExtensions#toJson(Object)} with {@link Map}
-	 *
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 * @throws JsonProcessingException
-	 *             if an error occurs when converting object to String
-	 */
-	@Test(enabled = false)
-	public void testToJsonFromForexEntriesMap() throws IOException, JsonProcessingException
-	{
-		URL url = new URL("https://ec.forexprostools.com/");
-		Map<String, ArrayList<ForexEntry>> forexEntries = ForexEntryExtensions
-			.readForexEntries(url);
-		String json = ObjectToJsonExtensions.toJson(forexEntries);
-		assertNotNull(json);
-	}
-
-	/**
-	 * Test method for {@link ObjectToJsonExtensions#toJson(java.util.List)}
+	 * Test method for {@link ObjectToJsonConverter#toJson(Object)} with list
 	 *
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
@@ -158,6 +140,9 @@ public class ObjectToJsonExtensionsTest
 		String expected;
 		String actual;
 		List<Employee> employees;
+		ObjectToJsonConverter objectToJsonConverter;
+
+		objectToJsonConverter = new ObjectToJsonConverter();
 
 		employees = new ArrayList<>();
 		employees
@@ -176,20 +161,20 @@ public class ObjectToJsonExtensionsTest
 				.builder().person(Person.builder().gender(Gender.FEMALE).name("Tatjana")
 					.married(false).about("Im hot").nickname("beautiful").build())
 				.id("25").build());
-		actual = ObjectToJsonExtensions.toJson(employees);
+		actual = objectToJsonConverter.toJson(employees);
 
 		expected = "[{\"id\":\"23\",\"person\":{\"about\":\"Ha ha ha...\",\"gender\":\"FEMALE\",\"married\":true,\"name\":\"Anna\",\"nickname\":\"beast\"},\"subOrdinates\":[]},{\"id\":\"24\",\"person\":{\"about\":\"fine person\",\"gender\":\"MALE\",\"married\":false,\"name\":\"Andreas\",\"nickname\":\"cute\"},\"subOrdinates\":[]},{\"id\":\"25\",\"person\":{\"about\":\"Im hot\",\"gender\":\"FEMALE\",\"married\":false,\"name\":\"Tatjana\",\"nickname\":\"beautiful\"},\"subOrdinates\":[]}]";
 		assertEquals(actual, expected);
 	}
 
 	/**
-	 * Test method for {@link ObjectToJsonExtensions}
+	 * Test method for {@link ObjectToJsonConverter}
 	 */
 	@Test
 	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();
-		beanTester.testBean(ObjectToJsonExtensions.class);
+		beanTester.testBean(ObjectToJsonConverter.class);
 	}
 
 }

@@ -22,65 +22,32 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package io.github.astrapi69.json.factory;
+package io.github.astrapi69.json.export.html;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.Reader;
+import lombok.Builder;
+import lombok.Data;
 
-import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.core.JsonParser;
-
-/**
- * The factory class {@link CustomParserFactory} for creating {@link JsonParser} object with a
- * reference on the parser. <br>
- * Note: this class is not thread-save
- */
-public class CustomParserFactory extends JsonFactory
+@Data
+@Builder
+public class ForexEntry
 {
 
-	/**
-	 * the {@link JsonParser} object
-	 */
-	private JsonParser parser;
+	int listIndex;
 
-	/**
-	 * Gets the parser of this factory
-	 *
-	 * @return the parser
-	 */
-	public JsonParser getParser()
-	{
-		return this.parser;
-	}
+	String time;
 
-	/**
-	 * {@inheritDoc}
-	 **/
-	@Override
-	public JsonParser createParser(Reader r) throws IOException
-	{
-		parser = super.createParser(r);
-		return parser;
-	}
+	String cur;
 
-	/**
-	 * {@inheritDoc}
-	 **/
-	@Override
-	public JsonParser createParser(File f) throws IOException
-	{
-		parser = super.createParser(f);
-		return parser;
-	}
+	String impl;
 
-	/**
-	 * {@inheritDoc}
-	 **/
-	@Override
-	public JsonParser createParser(String content) throws IOException
-	{
-		parser = super.createParser(content);
-		return parser;
-	}
+	String event;
+
+	String actual;
+
+	String forecast;
+
+	String previous;
+
+	String diamond;
+
 }

@@ -1,21 +1,6 @@
 dependencies {
-    implementation("org.json:json:$jsonVersion")
-    implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
-    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$jacksonVersion")
-    implementation("com.fasterxml.jackson.module:jackson-module-jsonSchema:$jacksonVersion")
-
-    testImplementation("io.github.astrapi69:xml-jackson-extensions:$xmlJacksonExtensionsVersion")
-    testImplementation("io.github.astrapi69:throwable:$throwableVersion")
-    testImplementation("io.github.astrapi69:xml-extensions:$xmlExtensionsVersion")
-    testImplementation("io.github.astrapi69:json2xml:$json2xmlVersion")
-    testImplementation("javax.json:javax.json-api:$javaxJsonApiVersion")
-    testImplementation("org.glassfish:javax.json:$javaxJsonVersion")
-    testImplementation("com.fasterxml.jackson.datatype:jackson-datatype-json-org:$jacksonVersion")
-    testImplementation("io.github.astrapi69:silly-collection:$sillyCollectionVersion")
-    testImplementation("io.github.astrapi69:silly-bean:$sillyBeanVersion")
-    testImplementation("io.github.astrapi69:file-worker:$fileWorkerVersion")
-    testImplementation("io.github.astrapi69:test-object:$testObjectVersion")
-    testImplementation("com.github.meanbeanlib:meanbean:$meanbeanVersion")
-    testImplementation("org.testng:testng:$testngVersion")
-    testImplementation("org.hamcrest:hamcrest-core:$hamcrestCoreVersion")
+    // Note: use of bundles...
+    implementation libs.bundles.core.dependencies
+    testCompileOnly libs.bundles.test.compile.only
+    testImplementation libs.bundles.unit.testing
 }

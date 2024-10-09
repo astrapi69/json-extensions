@@ -1,6 +1,35 @@
 ## Change log
 ----------------------
 
+Version 3.1
+-------------
+
+ADDED:
+
+- new test dependency lombok in version 1.18.34
+- new test dependency jsoup in version 1.18.1
+- new unit tests for extract large map from html and transform to json
+
+CHANGED:
+
+- rename of module to new name 'io.github.astrapisixtynine.json.extensions'
+- update gradle to new version 8.10.2
+- update of gradle plugin dependency com.github.ben-manes.versions.gradle.plugin to new version 0.51.0
+- update of gradle-plugin dependency 'org.ajoberstar.grgit:grgit-gradle' to new version 5.3.0
+- update of gradle-plugin dependency with id 'com.diffplug.spotless' to new beta version 7.0.0.BETA2
+- update of gradle plugin dependency io.freefair.gradle:lombok-plugin to new version 8.10.2
+- update of main dependency json to new version 20240303
+- update of main dependency jackson-* to new version 2.18.0
+- update of test dependency throwable to new version 3
+- update of test dependency silly-bean to new version 3.0
+- update of test dependency silly-collection to new version 28.1
+- update of test dependency file-worker to new version 18.0
+- update of test dependency test-object to new version 9
+- update of test dependency hamcrest-core to new version 3.0
+- update of test dependency mockito-core to new version 5.14.1
+- update of test dependency testng to new version 7.10.2
+- dependencies are managed now over bundles
+
 Version 3
 -------------
 

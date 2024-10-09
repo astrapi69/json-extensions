@@ -18,13 +18,14 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-module json.extensions.main
+module io.github.astrapisixtynine.json.extensions
 {
 	requires org.json;
 	requires com.fasterxml.jackson.core;
 	requires com.fasterxml.jackson.databind;
 	requires com.fasterxml.jackson.dataformat.yaml;
 	requires com.fasterxml.jackson.module.jsonSchema;
+	requires transform.json.api.main;
 
 	exports io.github.astrapi69.json;
 	exports io.github.astrapi69.json.factory;
