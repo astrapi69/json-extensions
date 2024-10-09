@@ -1,21 +1,6 @@
 dependencies {
-    implementation libs.json
-    implementation libs.transform.json.api
-    implementation libs.jackson.databind
-    implementation libs.jackson.dataformat.yaml
-    implementation libs.jackson.module.jsonSchema
-    testCompileOnly libs.lombok
-    testImplementation libs.jsoup
-    testImplementation libs.xml.jackson.extensions
-    testImplementation libs.throwable
-    testImplementation libs.xml.extensions
-    testImplementation libs.json2xml
-    testImplementation libs.javax.json.api
-    testImplementation libs.javax.json
-    testImplementation libs.jackson.datatype.json.org
-    testImplementation libs.silly.collection
-    testImplementation libs.silly.bean
-    testImplementation libs.file.worker
     // Note: use of bundles...
+    implementation libs.bundles.core.dependencies
+    testCompileOnly libs.bundles.test.compile.only
     testImplementation libs.bundles.unit.testing
 }

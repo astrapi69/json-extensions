@@ -1,29 +1,29 @@
 [versions]
-file-worker-version = "17.1"
-gradle-plugin-grgit-version = "5.2.2"
+file-worker-version = "18.0"
+gradle-plugin-grgit-version = "5.3.0"
 gradle-plugin-license-version = "0.16.1"
-gradle-plugin-lombok-version = "8.6"
-gradle-plugin-spotless-version = "7.0.0.BETA1"
+gradle-plugin-lombok-version = "8.10.2"
+gradle-plugin-spotless-version = "7.0.0.BETA2"
 gradle-plugin-version-catalog-update-version = "0.8.4"
 gradle-plugin-versions-version = "0.51.0"
-hamcrest-core-version = "2.2"
-jackson-databind-version = "2.17.1"
-jackson-dataformat-yaml-version = "2.17.1"
-jackson-datatype-json-org-version = "2.17.1"
-jackson-module-jsonSchema-version = "2.17.1"
+hamcrest-core-version = "3.0"
+jackson-databind-version = "2.18.0"
+jackson-dataformat-yaml-version = "2.18.0"
+jackson-datatype-json-org-version = "2.18.0"
+jackson-module-jsonSchema-version = "2.18.0"
 javax-json-api-version = "1.1.4"
 javax-json-version = "1.1.4"
 json-version = "20240303"
 json2xml-version = "1"
-jsoup-version = "1.17.2"
-lombok-version = "1.18.32"
+jsoup-version = "1.18.1"
+lombok-version = "1.18.34"
 meanbean-version = "3.0.0-M9"
-mockito-core-version = "5.12.0"
-silly-bean-version = "2"
-silly-collection-version = "27.1"
-test-object-version = "8.2"
+mockito-core-version = "5.14.1"
+silly-bean-version = "3.0"
+silly-collection-version = "28.1"
+test-object-version = "9"
 testng-version = "7.10.2"
-throwable-version = "2.3"
+throwable-version = "3"
 transform-json-api-version = "1"
 xml-extensions-version = "8.2"
 xml-jackson-extensions-version = "2.1"
@@ -53,7 +53,31 @@ xml-extensions = { module = "io.github.astrapi69:xml-extensions", version.ref = 
 xml-jackson-extensions = { module = "io.github.astrapi69:xml-jackson-extensions", version.ref = "xml-jackson-extensions-version" }
 
 [bundles]
+# The core dependencies
+core-dependencies = [
+    "json",
+    "transform-json-api",
+    "jackson-databind",
+    "jackson-dataformat-yaml",
+    "jackson-module-jsonSchema",
+]
+# Dependencies required only at test compile-time and not included in test runtime
+test-compile-only = [
+    "lombok",
+]
+# Dependencies required for unit testing
 unit-testing = [
+    "jsoup",
+    "xml-jackson-extensions",
+    "throwable",
+    "xml-extensions",
+    "json2xml",
+    "javax-json-api",
+    "javax-json",
+    "jackson-datatype-json-org",
+    "silly-collection",
+    "silly-bean",
+    "file-worker",
     "hamcrest-core",
     "meanbean",
     "mockito-core",
