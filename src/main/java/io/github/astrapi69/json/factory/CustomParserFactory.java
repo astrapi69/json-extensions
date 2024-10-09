@@ -39,6 +39,9 @@ import com.fasterxml.jackson.core.JsonParser;
 public class CustomParserFactory extends JsonFactory
 {
 
+	/**
+	 * the {@link JsonParser} object
+	 */
 	private JsonParser parser;
 
 	/**
