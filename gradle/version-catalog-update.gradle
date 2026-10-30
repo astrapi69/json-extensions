@@ -24,9 +24,19 @@ versionCatalogUpdate {
 
         // keep versions without any library or plugin reference
         keepUnusedVersions = true
-        // keep all libraries that aren't used in the project
-        keepUnusedLibraries = true
-        // keep all plugins that aren't used in the project
-        keepUnusedPlugins = true
+    }
+}
+// versionCatalogUpdate takes its candidates from dependencyUpdates, which accepts milestones and release
+// candidates; a release candidate is how jackson 2.16.0-rc1 once reached every consumer of jobj-copy.
+// Only stable versions are offered (test-object#17).
+def isNonStable = { String version ->
+    def stableKeyword = ["RELEASE", "FINAL", "GA"].any { version.toUpperCase().contains(it) }
+    def regex = /^[0-9,.v-]+(-r)?$/
+    return !stableKeyword && !(version ==~ regex)
+}
+
+tasks.named("dependencyUpdates").configure {
+    rejectVersionIf {
+        isNonStable(it.candidate.version) && !isNonStable(it.currentVersion)
     }
 }

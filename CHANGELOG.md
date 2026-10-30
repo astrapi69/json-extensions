@@ -12,6 +12,11 @@ CHANGED:
   `GPG_KEY_ID` names. The OSSRH staging endpoint this project published to is shut down; its
   settings are gone, among them the switch that held the checksums to md5 and sha1, and snapshots
   resolve from the Central Portal's snapshot repository (#3)
+- dependencies are raised by `versionCatalogUpdate`, stable versions only (#5): jackson-databind,
+  jackson-dataformat-yaml, jackson-datatype-json-org and jackson-module-jsonSchema 2.18.0 -> 2.22.4, which
+  closes 8 high alerts on the runtime class path; file-worker 19.1, json 20260814, test-object 9.1,
+  silly-collection 28.2, jsoup 1.23.2, lombok 1.18.48, mockito 5.24.0, testng 7.12.0, and the plugins
+  spotless 8.10.4, lombok 9.8.2, nmcp 1.6.2, grgit 5.3.3, version-catalog-update 1.1.2, versions 0.66.0
 
 Version 3.1
 -------------
