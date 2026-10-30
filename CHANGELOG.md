@@ -4,6 +4,14 @@
 Version 3.2-SNAPSHOT
 -------------
 
+CHANGED:
+
+- releases go to Maven Central through the Central Portal, as in the rest of the family: the
+  `com.gradleup.nmcp` plugin uploads, the maintainer releases each deployment in the Portal, and a
+  `RELEASE-*` tag runs the new `publish.yml`, which signs with the signing subkey that the secret
+  `GPG_KEY_ID` names. The OSSRH staging endpoint this project published to is shut down; its
+  settings are gone, among them the switch that held the checksums to md5 and sha1, and snapshots
+  resolve from the Central Portal's snapshot repository (#3)
 
 Version 3.1
 -------------
