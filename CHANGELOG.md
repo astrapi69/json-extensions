@@ -1,7 +1,7 @@
 ## Change log
 ----------------------
 
-Version 4.0-SNAPSHOT
+Version 4.0
 -------------
 
 BREAKING:
@@ -13,6 +13,13 @@ CHANGED:
 
 - built with Gradle 9.7.0; the grgit and hierynomus license plugins are gone: a release is tagged
   through git, and spotless writes the license header from `src/main/resources/license-header.txt` (#13)
+- an upload to the Central Portal leaves only from CI, and a release only from its `RELEASE-*` tag; a local
+  build that runs an upload task stops with a message saying so (#15)
+- an upload refuses a half-configured signing key: `GPG_PRIVATE_KEY` without `GPG_PASSPHRASE`, or the
+  reverse, signed nothing and let a snapshot go up without its `.asc` files (#17)
+- `versionCatalogUpdate` chooses versions through a selector of its own, stable versions only; its 1.x
+  default ignored the stable-only filter (#8)
+- the `gradle/` directory is no longer ignored, so the split build scripts are version controlled (#10)
 
 Version 3.2
 -------------
