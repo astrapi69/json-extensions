@@ -44,3 +44,10 @@ tasks.withType(JavaCompile).configureEach { javaCompiler ->
     // uncomment the next line for build with compiler argument -Xlint:unchecked
     // options.compilerArgs << "-Xlint:unchecked"
 }
+
+// test classes that leave no result, each with its reason (gradle/test-results-complete.gradle)
+ext.testClassesWithoutResult = [
+    'io.github.astrapi69.json.factory.CustomJsonNodeFactoryTest': 'its only test has enabled = false, and enabled it fails: BeanTester cannot instantiate a factory (#25)'
+]
+
+apply from: "gradle/test-results-complete.gradle"
