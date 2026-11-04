@@ -16,6 +16,7 @@ plugins {
     alias(libs.plugins.lombok.plugin)
     alias(libs.plugins.nmcp.gradle.plugin)
     alias(libs.plugins.spotless.plugin.gradle)
+    alias(libs.plugins.test.results.complete)
     alias(libs.plugins.version.catalog.update)
 }
 
@@ -45,9 +46,7 @@ tasks.withType(JavaCompile).configureEach { javaCompiler ->
     // options.compilerArgs << "-Xlint:unchecked"
 }
 
-// test classes that leave no result, each with its reason (gradle/test-results-complete.gradle)
+// test classes that leave no result, each with its reason (read by the plugin test-results-complete)
 ext.testClassesWithoutResult = [
     'io.github.astrapi69.json.factory.CustomJsonNodeFactoryTest': 'its only test has enabled = false, and enabled it fails: BeanTester cannot instantiate a factory (#25)'
 ]
-
-apply from: "gradle/test-results-complete.gradle"
