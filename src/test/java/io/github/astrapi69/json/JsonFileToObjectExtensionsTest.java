@@ -24,7 +24,6 @@
  */
 package io.github.astrapi69.json;
 
-import static org.testng.Assert.assertNotEquals;
 import static org.testng.AssertJUnit.assertEquals;
 
 import java.io.File;
@@ -140,23 +139,20 @@ public class JsonFileToObjectExtensionsTest
 
 		jsonList = (Set<Employee>)JsonFileToObjectExtensions.toObjectCollection(jsonCollectionFile,
 			LinkedHashSet.class, Employee.class);
-		firstExpected = Employee.builder().person(Person.builder().gender(Gender.FEMALE)
-			.name("Anna").nickname("beast").married(true).about("Ha ha ha...").build()).id("23")
-			.build();
-		secondExpected = Employee.builder().person(Person.builder().gender(Gender.MALE)
-			.name("Andreas").nickname("cute").married(false).about("fine person").build()).id("24")
-			.build();
-		thirdExpected = Employee.builder().person(Person.builder().gender(Gender.FEMALE)
-			.name("Tatjana").nickname("beautiful").married(false).about("Im hot").build()).id("25")
-			.build();
+		// the file names no subOrdinates, so the deserialized employees keep it null, where the
+		// builder would give an empty set
+		firstExpected = new Employee("23", Person.builder().gender(Gender.FEMALE).name("Anna")
+			.nickname("beast").married(true).about("Ha ha ha...").build(), null);
+		secondExpected = new Employee("24", Person.builder().gender(Gender.MALE).name("Andreas")
+			.nickname("cute").married(false).about("fine person").build(), null);
+		thirdExpected = new Employee("25", Person.builder().gender(Gender.FEMALE).name("Tatjana")
+			.nickname("beautiful").married(false).about("Im hot").build(), null);
 		objectList = SetFactory.newLinkedHashSet(firstExpected, secondExpected, thirdExpected);
 
 		actual = CollectionExtensions.isEqualCollection(jsonList, objectList);
 		expected = true;
 		assertEquals(expected, actual);
-		// the deserialized employees keep subOrdinates null, the expected ones from the builder
-		// have an empty set, so today they differ (#29)
-		assertNotEquals(jsonList, objectList);
+		assertEquals(objectList, jsonList);
 	}
 
 	/**
@@ -177,23 +173,20 @@ public class JsonFileToObjectExtensionsTest
 		Employee thirdExpected;
 
 		jsonList = JsonFileToObjectExtensions.toObjectList(jsonCollectionFile, Employee.class);
-		firstExpected = Employee.builder().person(Person.builder().gender(Gender.FEMALE)
-			.name("Anna").nickname("beast").married(true).about("Ha ha ha...").build()).id("23")
-			.build();
-		secondExpected = Employee.builder().person(Person.builder().gender(Gender.MALE)
-			.name("Andreas").nickname("cute").married(false).about("fine person").build()).id("24")
-			.build();
-		thirdExpected = Employee.builder().person(Person.builder().gender(Gender.FEMALE)
-			.name("Tatjana").nickname("beautiful").married(false).about("Im hot").build()).id("25")
-			.build();
+		// the file names no subOrdinates, so the deserialized employees keep it null, where the
+		// builder would give an empty set
+		firstExpected = new Employee("23", Person.builder().gender(Gender.FEMALE).name("Anna")
+			.nickname("beast").married(true).about("Ha ha ha...").build(), null);
+		secondExpected = new Employee("24", Person.builder().gender(Gender.MALE).name("Andreas")
+			.nickname("cute").married(false).about("fine person").build(), null);
+		thirdExpected = new Employee("25", Person.builder().gender(Gender.FEMALE).name("Tatjana")
+			.nickname("beautiful").married(false).about("Im hot").build(), null);
 		objectList = ListFactory.newArrayList(firstExpected, secondExpected, thirdExpected);
 
 		actual = CollectionExtensions.isEqualCollection(jsonList, objectList);
 		expected = true;
 		assertEquals(expected, actual);
-		// the deserialized employees keep subOrdinates null, the expected ones from the builder
-		// have an empty set, so today they differ (#29)
-		assertNotEquals(jsonList, objectList);
+		assertEquals(objectList, jsonList);
 	}
 
 	/**
