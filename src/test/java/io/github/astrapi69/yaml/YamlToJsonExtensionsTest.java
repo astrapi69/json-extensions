@@ -30,7 +30,7 @@ import java.io.File;
 import java.io.IOException;
 
 import org.meanbean.test.BeanTester;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -77,7 +77,11 @@ public class YamlToJsonExtensionsTest
 		yamlCollectionFile = new File(yamlDir, "collection.yaml");
 	}
 
-	@AfterTest
+	/**
+	 * Deletes the files a test wrote, after each test method of this class, as {@link #setUp()}
+	 * names them before each; a run whose filter selects none of this class's methods runs neither
+	 */
+	@AfterMethod
 	public void cleanUp() throws IOException
 	{
 		DeleteFileExtensions.delete(jsonFile);
