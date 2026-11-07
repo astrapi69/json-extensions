@@ -156,7 +156,7 @@ public class YamlToJsonExtensionsTest
 			+ "\"gender\":\"MALE\",\"about\":\"fine person\",\"married\":false},\"id\":\"24\"},"
 			+ "{\"person\":{\"name\":\"Tatjana\",\"nickname\":\"beautiful\","
 			+ "\"gender\":\"FEMALE\",\"about\":\"Im hot\",\"married\":false},\"id\":\"25\"}]\n";
-		actual = ReadFileExtensions.fromFile(jsonCollectionFile);
+		actual = ReadFileExtensions.fromFile(newFile);
 		expected = expected.replace("\n", "").replace("\r", "").replace(" ", "");
 		actual = actual.replace("\n", "").replace("\r", "").replace(" ", "");
 		assertEquals(expected, actual);
