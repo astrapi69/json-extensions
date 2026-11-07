@@ -24,6 +24,7 @@
  */
 package io.github.astrapi69.yaml;
 
+import static org.testng.Assert.assertNotEquals;
 import static org.testng.AssertJUnit.assertEquals;
 
 import java.io.File;
@@ -185,6 +186,9 @@ public class YamlStringToObjectExtensionsTest
 		actual = CollectionExtensions.isEqualCollection(yamlList, objectList);
 		expected = true;
 		assertEquals(expected, actual);
+		// the deserialized employees keep subOrdinates null, the expected ones from the builder
+		// have an empty set, so today they differ (#29)
+		assertNotEquals(yamlList, objectList);
 	}
 
 	/**
@@ -224,7 +228,9 @@ public class YamlStringToObjectExtensionsTest
 		actual = CollectionExtensions.isEqualCollection(yamlList, objectList);
 		expected = true;
 		assertEquals(expected, actual);
-
+		// the deserialized employees keep subOrdinates null, the expected ones from the builder
+		// have an empty set, so today they differ (#29)
+		assertNotEquals(yamlList, objectList);
 	}
 
 	/**

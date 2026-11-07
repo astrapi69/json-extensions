@@ -24,6 +24,7 @@
  */
 package io.github.astrapi69.json;
 
+import static org.testng.Assert.assertNotEquals;
 import static org.testng.AssertJUnit.assertEquals;
 
 import java.io.IOException;
@@ -111,6 +112,9 @@ public class JSONObjectToObjectExtensionsTest
 		actual = CollectionExtensions.isEqualCollection(jsonList, objectList);
 		expected = true;
 		assertEquals(expected, actual);
+		// the deserialized employees keep subOrdinates null, the expected ones from the builder
+		// have an empty set, so today they differ (#29)
+		assertNotEquals(jsonList, objectList);
 	}
 
 	/**
